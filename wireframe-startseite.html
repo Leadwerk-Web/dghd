@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wireframe Startseite – Navigation als Sidebar</title>
+<meta name="description" content="Low-Fidelity-Wireframe der dghd-Startseite mit seitlicher Navigation. Struktur und Anordnung, kein Screendesign.">
+<meta name="robots" content="noindex">
+<style>
+/* ============================================================
+   WIREFRAME – bewusst grau, unfertig, ohne Markenwelt.
+   Graue Balken = Text, der spaeter geschrieben wird.
+   Schraffierte Flaechen = Bildbedarf.
+   ============================================================ */
+:root{
+  --ink:#1c1c1c;
+  --ink-2:#555;
+  --ink-3:#8a8a8a;
+  --line:#d2d2d2;
+  --line-2:#e6e6e6;
+  --fill:#f4f4f4;
+  --bar:#e2e2e2;
+  --bar-2:#cfcfcf;
+  --dash:#b4b4b4;
+  --rail:288px;
+  --rail-closed:74px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:#fff;
+  color:var(--ink);
+  font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* ---------- Grundbausteine des Wireframes ---------- */
+.bar{display:block;height:10px;background:var(--bar);border-radius:1px}
+.bar + .bar{margin-top:7px}
+.bar--h{height:22px;background:var(--bar-2)}
+.bar--h2{height:16px;background:var(--bar-2)}
+.bar--s{height:8px}
+.w-100{width:100%}.w-90{width:90%}.w-80{width:80%}.w-70{width:70%}
+.w-60{width:60%}.w-50{width:50%}.w-40{width:40%}.w-30{width:30%}.w-20{width:20%}
+.stack{display:grid;gap:0}
+.gap-s{display:grid;gap:10px}
+.gap-m{display:grid;gap:18px}
+.gap-l{display:grid;gap:28px}
+
+.img{
+  border:1px dashed var(--dash);
+  background:repeating-linear-gradient(135deg,#fafafa 0 9px,#f1f1f1 9px 18px);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:var(--ink-3);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:14px;
+}
+.box{border:1px solid var(--line);padding:16px;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);padding:11px 18px;font-size:12.5px;color:var(--ink-2);min-width:150px}
+.btn--primary{border-color:var(--ink-2);color:var(--ink);font-weight:700;background:var(--fill)}
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.h{font-size:19px;font-weight:700;line-height:1.25;margin:0}
+.h--big{font-size:27px}
+.sm{font-size:12px;color:var(--ink-2)}
+.tag{display:inline-block;border:1px solid var(--line);padding:2px 7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);background:#fff;white-space:nowrap}
+.tag--dyn{border-style:dashed}
+
+/* ---------- Sidebar (Wunsch: Navigation seitlich, zunaechst geschlossen) ----------
+   Geschlossen: schmale Leiste mit Logo und Menue-Schalter.
+   Offen: Panel legt sich ueber den Inhalt, der Inhalt springt nicht. */
+.rail{
+  position:fixed;inset:0 auto 0 0;z-index:50;width:var(--rail-closed);
+  border-right:1px solid var(--line);
+  background:#fff;
+  padding:20px 12px;
+  overflow-y:auto;
+  display:flex;flex-direction:column;gap:20px;
+}
+.rail.is-open{width:var(--rail);padding:26px 22px}
+/* Abblendung, damit erkennbar ist, dass das Panel ueber dem Inhalt liegt */
+body.is-rail-open::before{content:"";position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.06)}
+
+.rail__bar{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+.rail.is-open .rail__bar{flex-direction:row;align-items:center;justify-content:space-between;gap:14px}
+/* Geschlossen: Favicon und darunter das Burger-Menue.
+   Offen: volle Bildmarke links, Burger mit Beschriftung rechts. */
+.rail__logo{display:flex;align-items:center;justify-content:center;height:46px}
+.rail__logo img{width:auto;max-width:100%}
+.rail__logo .rail__logo-mark{display:block;height:38px}
+.rail__logo .rail__logo-full{display:none;height:54px}
+.rail.is-open .rail__logo{flex:1;height:56px;justify-content:flex-start}
+.rail.is-open .rail__logo .rail__logo-mark{display:none}
+.rail.is-open .rail__logo .rail__logo-full{display:block}
+
+.rail__toggle{
+  font:inherit;color:var(--ink);background:#fff;cursor:pointer;
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:11px 8px;
+}
+.rail.is-open .rail__toggle{padding:10px 12px}
+.rail__toggle:hover,.rail__toggle:focus-visible{border-color:var(--ink-3)}
+.rail__toggle i{display:block;width:18px;border-top:1px solid var(--ink-2)}
+.rail__toggle i::before,.rail__toggle i::after{content:"";display:block;width:18px;border-top:1px solid var(--ink-2);margin-top:4px}
+.rail__toggle span{display:none;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.rail.is-open .rail__toggle span{display:inline}
+
+.rail__panel{display:flex;flex-direction:column;gap:26px;flex:1}
+.rail__panel[hidden]{display:none}
+
+/* Akkordeon: je Rubrik ein Schalter, darunter die zweite Ebene.
+   Es ist immer nur eine Rubrik geoeffnet (Variante B). */
+.rail__rub{
+  width:100%;font:inherit;text-align:left;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:#fff;border:1px solid var(--line-2);padding:9px 10px;
+  font-size:13.5px;color:var(--ink);
+}
+.rail__rub:hover,.rail__rub:focus-visible{border-color:var(--ink-3)}
+.rail__rub[aria-expanded="true"]{border-color:var(--ink-3);background:var(--fill);font-weight:700}
+.rail__rub span{font-size:13px;color:var(--ink-3);font-weight:400}
+.rail__sub{margin:2px 0 8px;padding:0 0 0 12px;border-left:1px solid var(--line-2);list-style:none}
+.rail__sub[hidden]{display:none}
+.rail__sub li{margin:0}
+.rail .rail__sub a,.rail__sub span{display:block;border:0;padding:6px 0 6px 8px;font-size:12.5px;color:var(--ink-2);text-decoration:none}
+.rail .rail__sub a:hover,.rail .rail__sub a:focus-visible{color:var(--ink);text-decoration:underline}
+
+.rail h2{margin:0 0 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.rail ul{margin:0;padding:0;list-style:none}
+.rail li{margin:0 0 2px}
+.rail li a{display:block;padding:9px 10px;border:1px solid var(--line-2);color:var(--ink);text-decoration:none;font-size:13.5px}
+.rail li a:hover,.rail li a:focus-visible{border-color:var(--ink-3)}
+.rail li small{display:block;font-size:11px;color:var(--ink-3);margin-top:2px}
+.rail__utility li a{font-size:12.5px;color:var(--ink-2);border-color:transparent;padding:7px 10px}
+.rail__utility li a:hover{border-color:var(--line-2)}
+.rail__cta{border:1px solid var(--ink-2);padding:11px;text-align:center;font-size:12.5px;font-weight:700;background:var(--fill)}
+.rail__search{border:1px solid var(--line);padding:10px 12px;font-size:12px;color:var(--ink-3)}
+/* Suche, Utility und Mitgliedschaft sitzen am unteren Ende der Leiste */
+.rail__bottom{margin-top:auto}
+.rail__note{border:1px dashed var(--dash);padding:12px;font-size:11px;color:var(--ink-3);line-height:1.45}
+.rail__note h3{margin:0 0 7px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.rail__note a{color:var(--ink-2)}
+
+/* ---------- Hauptspalte ---------- */
+.page{margin-left:var(--rail-closed)}
+.page__foot{padding:34px clamp(24px,3vw,64px);background:var(--fill);border-top:1px solid var(--line)}
+.page__foot h1{margin:0;font-size:15px;font-weight:700}
+.page__foot p{margin:8px 0 0;font-size:12.5px;color:var(--ink-2);max-width:78ch}
+
+/* Section = ein Startseitenbereich */
+.sec{border-bottom:1px solid var(--line);padding:44px clamp(24px,3vw,64px);position:relative}
+.sec:nth-child(even){background:#fcfcfc}
+.sec__note{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 20px}
+.sec__no{font-size:11px;letter-spacing:.14em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.sec__name{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+/* Inhalte laufen ueber die volle Breite; nur der Seitenrand bleibt */
+.inner{max-width:none}
+
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.split--img{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center}
+
+/* Hero: volle Bildschirmhoehe, Direkteinstiege am unteren Rand */
+.sec--hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;gap:30px}
+.sec--hero .hero__top{flex:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:36px;align-items:center;min-height:0}
+.sec--hero .hero__img{height:100%;min-height:200px}
+.sec--hero .hero__entries{flex:none;border-top:1px solid var(--line-2);padding-top:22px}
+
+/* Veranstaltungs-Zeilen */
+.event{display:grid;grid-template-columns:92px minmax(0,1fr) 90px;gap:18px;align-items:center;border-top:1px solid var(--line-2);padding:16px 0}
+.event:last-of-type{border-bottom:1px solid var(--line-2)}
+.event__date{border:1px solid var(--line);padding:9px;text-align:center;font-size:11px;color:var(--ink-3)}
+
+/* Footer-Spalten */
+.fcols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.fcols h3{margin:0 0 10px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+
+/* ---------- Responsive: Sidebar wird oben angedockt ---------- */
+@media (max-width:1080px){
+  .rail,.rail.is-open{position:static;z-index:auto;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px 24px;gap:18px}
+  body.is-rail-open::before{display:none}
+  .rail__bar,.rail.is-open .rail__bar{flex-direction:row;align-items:center;justify-content:space-between}
+  .rail__logo,.rail.is-open .rail__logo{flex:0 0 150px;height:48px;justify-content:flex-start}
+  .rail__logo .rail__logo-mark,.rail.is-open .rail__logo .rail__logo-mark{display:none}
+  .rail__logo .rail__logo-full,.rail.is-open .rail__logo .rail__logo-full{display:block;height:44px}
+  .rail__toggle,.rail.is-open .rail__toggle{padding:10px 14px}
+  .rail__toggle span,.rail.is-open .rail__toggle span{display:inline}
+  .rail__panel{flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:20px 28px}
+  .rail__panel > *{flex:1 1 210px}
+  .rail__bottom{margin-top:0}
+  .rail__note{flex:1 1 100%}
+  .page{margin-left:0}
+  .g6{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fcols{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .g2,.g3,.g4,.g6,.split,.split--img{grid-template-columns:minmax(0,1fr)}
+  .sec--hero{min-height:0}
+  .sec--hero .hero__top{grid-template-columns:minmax(0,1fr)}
+  .sec--hero .hero__img{height:auto;min-height:220px}
+  .fcols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .event{grid-template-columns:70px minmax(0,1fr)}
+  .event > :last-child{grid-column:1 / -1}
+  .sec{padding:32px 16px}
+}
+@media print{
+  .rail,.rail.is-open{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}
+  .rail__panel[hidden]{display:flex}
+  .rail__toggle{display:none}
+  .page{margin-left:0}
+  .sec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 01 NAVIGATION – als Sidebar (Kundenwunsch) ============ -->
+<aside class="rail" data-rail aria-label="Hauptnavigation (Wireframe)">
+
+  <div class="rail__bar">
+    <a class="rail__logo" href="#s02">
+      <img class="rail__logo-mark" src="./Assets/favicon_dghd.svg" alt="dghd – zur Startseite">
+      <img class="rail__logo-full" src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik">
+    </a>
+    <button class="rail__toggle" type="button" data-rail-toggle aria-expanded="false" aria-controls="rail-panel" aria-label="Menü öffnen">
+      <i aria-hidden="true"></i><span>Menü</span>
+    </button>
+  </div>
+
+  <div class="rail__panel" id="rail-panel" hidden>
+
+    <nav aria-label="Hauptnavigation">
+      <h2>01 · Rubriken</h2>
+      <ul>
+        <li>
+          <button class="rail__rub" type="button" data-rub aria-expanded="false" aria-controls="sub-community">Community<span aria-hidden="true">+</span></button>
+          <ul class="rail__sub" id="sub-community" hidden>
+          <li><a href="#s07">Community im Überblick</a></li>
+          <li><span>Arbeitsgruppen</span></li>
+          <li><span>Netzwerke</span></li>
+          <li><span>Kommissionen</span></li>
+          <li><span>Nachwuchs</span></li>
+          <li><span>Kooperationen</span></li>
+          <li><span>Mitgliedschaft</span></li>
+          </ul>
+        </li>
+        <li>
+          <button class="rail__rub" type="button" data-rub aria-expanded="false" aria-controls="sub-wissenschaft">Wissenschaft &amp; Praxis<span aria-hidden="true">+</span></button>
+          <ul class="rail__sub" id="sub-wissenschaft" hidden>
+          <li><a href="#s06">Wissenschaft &amp; Praxis im Überblick</a></li>
+          <li><span>Forschung</span></li>
+          <li><span>Praxis &amp; Qualitätsentwicklung</span></li>
+          <li><span>Themen</span></li>
+          <li><span>Publikationen &amp; Wissen</span></li>
+          <li><span>Internationales &amp; Politik</span></li>
+          </ul>
+        </li>
+        <li>
+          <button class="rail__rub" type="button" data-rub aria-expanded="false" aria-controls="sub-veranstaltungen">Veranstaltungen<span aria-hidden="true">+</span></button>
+          <ul class="rail__sub" id="sub-veranstaltungen" hidden>
+          <li><a href="#s08">Veranstaltungen im Überblick</a></li>
+          <li><span>Veranstaltungskalender</span></li>
+          <li><span>dghd-Jahrestagung</span></li>
+          <li><span>Veranstaltung einreichen</span></li>
+          </ul>
+        </li>
+        <li>
+          <button class="rail__rub" type="button" data-rub aria-expanded="false" aria-controls="sub-aktuelles">Aktuelles &amp; Einblicke<span aria-hidden="true">+</span></button>
+          <ul class="rail__sub" id="sub-aktuelles" hidden>
+          <li><a href="#s10">Aktuelles</a></li>
+          <li><span>Blickwinkel</span></li>
+          <li><span>Nachrichtenarchiv</span></li>
+          <li><span>dghd-Newsletter</span></li>
+          </ul>
+        </li>
+        <li>
+          <button class="rail__rub" type="button" data-rub aria-expanded="false" aria-controls="sub-dghd">Die dghd<span aria-hidden="true">+</span></button>
+          <ul class="rail__sub" id="sub-dghd" hidden>
+          <li><a href="#s04">Über die dghd</a></li>
+          <li><span>Vorstand</span></li>
+          <li><span>Geschäftsstelle</span></li>
+          <li><span>Kooperationen</span></li>
+          <li><span>Satzung</span></li>
+          <li><span>Kontakt</span></li>
+          </ul>
+        </li>
+        <li>
+          <button class="rail__rub" type="button" data-rub aria-expanded="false" aria-controls="sub-service">Service<span aria-hidden="true">+</span></button>
+          <ul class="rail__sub" id="sub-service" hidden>
+          <li><a href="#s11">Stellenbörse</a></li>
+          <li><span>Didaktik-Landkarte</span></li>
+          <li><span>Downloads</span></li>
+          <li><span>Newsletter</span></li>
+          <li><span>Veranstaltung einreichen</span></li>
+          <li><span>Stellenangebot einreichen</span></li>
+          <li><span>Institution eintragen</span></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="gap-s rail__bottom">
+      <div class="rail__search">Suche …</div>
+      <nav class="rail__utility" aria-label="Servicenavigation">
+        <h2>Utility</h2>
+        <ul>
+          <li><a href="#s11">Login / Meine dghd</a></li>
+          <li><a href="#s14">Vollständige Navigation</a></li>
+        </ul>
+      </nav>
+      <div class="rail__cta">Mitglied werden</div>
+    </div>
+
+    <div class="rail__note">
+      <h3>Nicht Teil der Seite</h3>
+      <p style="margin:0">Sprung zu den Bereichen:
+        <a href="#s02">02</a> <a href="#s04">04</a> <a href="#s05">05</a>
+        <a href="#s06">06</a> <a href="#s07">07</a> <a href="#s08">08</a> <a href="#s09">09</a>
+        <a href="#s10">10</a> <a href="#s11">11</a> <a href="#s12">12</a> <a href="#s13">13</a> <a href="#s14">14</a>
+      </p>
+    </div>
+
+  </div>
+</aside>
+
+<div class="page">
+
+  <main>
+
+    <!-- ===== 02 HERO + DIREKTEINSTIEGE (ehem. 03) ===== -->
+    <section class="sec sec--hero" id="s02">
+      <p class="sec__note"><span class="sec__no">02</span><span class="sec__name">Hero / Einstieg · inkl. Direkteinstiege</span><span class="tag">Statisch</span><span class="tag">Navigation</span><span class="tag">CTA</span><span class="tag">Bildbedarf</span><span class="tag">100 dvh</span></p>
+
+      <div class="inner hero__top">
+        <div class="gap-m">
+          <p class="eyebrow">Deutsche Gesellschaft für Hochschuldidaktik</p>
+          <div class="stack">
+            <span class="bar bar--h w-90"></span>
+            <span class="bar bar--h w-70"></span>
+            <span class="bar bar--h w-50"></span>
+          </div>
+          <div class="stack">
+            <span class="bar w-100"></span>
+            <span class="bar w-100"></span>
+            <span class="bar w-60"></span>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span class="btn btn--primary">dghd entdecken</span>
+            <span class="btn">Mitglied werden</span>
+          </div>
+        </div>
+        <div class="img hero__img">
+          Visueller Bereich · Wissensnetzwerk<br>
+          Lehre · Austausch · Forschung · Weiterbildung<br>
+          (Umsetzung offen)
+        </div>
+      </div>
+
+      <div class="inner hero__entries" id="s03">
+        <p class="sec__note" style="margin-bottom:14px"><span class="sec__name">Direkteinstiege</span><span class="tag">Navigation</span></p>
+        <div class="grid g3">
+          <div class="box gap-s"><p class="eyebrow">01</p><p class="h">Community</p><span class="bar w-100"></span><span class="bar w-70"></span><p class="sm">→ Community</p></div>
+          <div class="box gap-s"><p class="eyebrow">02</p><p class="h">Wissenschaft &amp; Praxis</p><span class="bar w-100"></span><span class="bar w-80"></span><p class="sm">→ Wissenschaft &amp; Praxis</p></div>
+          <div class="box gap-s"><p class="eyebrow">03</p><p class="h">Veranstaltungen</p><span class="bar w-100"></span><span class="bar w-60"></span><p class="sm">→ Veranstaltungen</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 WOFÜR WIR STEHEN ===== -->
+    <section class="sec" id="s04">
+      <p class="sec__note"><span class="sec__no">04</span><span class="sec__name">Wofür wir stehen</span><span class="tag">Statisch</span></p>
+      <div class="inner gap-m">
+        <p class="eyebrow">Wofür wir stehen</p>
+        <div class="stack">
+          <span class="bar bar--h w-100"></span>
+          <span class="bar bar--h w-60"></span>
+        </div>
+        <div class="stack">
+          <span class="bar w-100"></span>
+          <span class="bar w-90"></span>
+        </div>
+        <div class="grid g3" style="gap:14px">
+          <div class="box" style="padding:12px 14px"><p class="h" style="font-size:15px">Verbinden</p></div>
+          <div class="box" style="padding:12px 14px"><p class="h" style="font-size:15px">Fördern</p></div>
+          <div class="box" style="padding:12px 14px"><p class="h" style="font-size:15px">Gestalten</p></div>
+        </div>
+        <p class="sm">→ Mehr über die dghd <span class="tag">optional</span></p>
+      </div>
+    </section>
+
+    <!-- ===== 05 WISSENSNETZWERK ===== -->
+    <section class="sec" id="s05">
+      <p class="sec__note"><span class="sec__no">05</span><span class="sec__name">Wissensnetzwerk</span><span class="tag">Statisch</span></p>
+      <div class="inner gap-m">
+        <p class="h h--big">Wissen entsteht im Austausch</p>
+        <div class="grid g3">
+          <div class="box gap-s"><p class="h">Wissensnetzwerk</p><span class="bar w-100"></span><span class="bar w-90"></span><span class="bar w-50"></span></div>
+          <div class="box gap-s"><p class="h">Lernlandschaft</p><span class="bar w-100"></span><span class="bar w-80"></span><span class="bar w-60"></span></div>
+          <div class="box gap-s"><p class="h">Dialog &amp; Transfer</p><span class="bar w-100"></span><span class="bar w-90"></span><span class="bar w-40"></span></div>
+        </div>
+        <p class="sm">→ Mehr erfahren <span class="tag">optional</span></p>
+      </div>
+    </section>
+
+    <!-- ===== 06 THEMEN ===== -->
+    <section class="sec" id="s06">
+      <p class="sec__note"><span class="sec__no">06</span><span class="sec__name">Wissenschaft &amp; Praxis / Themen</span><span class="tag">Navigation</span></p>
+      <div class="inner gap-m">
+        <p class="h h--big">Woran wir gemeinsam arbeiten</p>
+        <div class="grid g3">
+          <div class="box"><p class="h" style="font-size:15px">Hochschuldidaktische Forschung</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Digitalisierung &amp; KI</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Lehr- und Lernentwicklung</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Qualität &amp; Standards</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Gesellschaft &amp; Hochschule</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Nachwuchs &amp; wissenschaftliche Entwicklung</p></div>
+        </div>
+        <span class="btn">Wissenschaft &amp; Praxis entdecken</span>
+      </div>
+    </section>
+
+    <!-- ===== 07 COMMUNITY ===== -->
+    <section class="sec" id="s07">
+      <p class="sec__note"><span class="sec__no">07</span><span class="sec__name">Community</span><span class="tag">Statisch</span><span class="tag">Bildbedarf</span><span class="tag">CTA</span></p>
+      <div class="inner grid split--img" style="gap:36px">
+        <div class="img" style="min-height:320px">Bild- / Portrait-Platzhalter<br>(Motiv offen)</div>
+        <div class="gap-m">
+          <p class="eyebrow">Community</p>
+          <div class="stack">
+            <span class="bar bar--h w-90"></span>
+            <span class="bar bar--h w-60"></span>
+          </div>
+          <div class="stack">
+            <span class="bar w-100"></span>
+            <span class="bar w-100"></span>
+            <span class="bar w-70"></span>
+          </div>
+          <div class="grid g2" style="gap:10px">
+            <div class="box" style="padding:10px 13px"><span class="sm">Arbeitsgruppen</span></div>
+            <div class="box" style="padding:10px 13px"><span class="sm">Netzwerke</span></div>
+            <div class="box" style="padding:10px 13px"><span class="sm">Kommissionen</span></div>
+            <div class="box" style="padding:10px 13px"><span class="sm">Nachwuchs</span></div>
+          </div>
+          <span class="btn btn--primary">Community entdecken</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 08 VERANSTALTUNGEN ===== -->
+    <section class="sec" id="s08">
+      <p class="sec__note"><span class="sec__no">08</span><span class="sec__name">Veranstaltungen</span><span class="tag tag--dyn">Dynamisch</span><span class="tag">CTA</span></p>
+      <div class="inner gap-m">
+        <p class="h h--big">Was uns zusammenbringt</p>
+        <p class="sm"><span class="tag tag--dyn">Dynamisch</span> Die nächsten Termine aus dem Veranstaltungskalender.</p>
+        <div>
+          <div class="event">
+            <div class="event__date">Datum</div>
+            <div class="stack"><span class="bar bar--h2 w-70"></span><span class="bar bar--s w-40"></span></div>
+            <span class="tag">Ort / Online</span>
+          </div>
+          <div class="event">
+            <div class="event__date">Datum</div>
+            <div class="stack"><span class="bar bar--h2 w-90"></span><span class="bar bar--s w-30"></span></div>
+            <span class="tag">Ort / Online</span>
+          </div>
+          <div class="event">
+            <div class="event__date">Datum</div>
+            <div class="stack"><span class="bar bar--h2 w-60"></span><span class="bar bar--s w-40"></span></div>
+            <span class="tag">Ort / Online</span>
+          </div>
+        </div>
+        <span class="btn">Alle Veranstaltungen</span>
+      </div>
+    </section>
+
+    <!-- ===== 09 WISSEN & PUBLIKATIONEN ===== -->
+    <section class="sec" id="s09">
+      <p class="sec__note"><span class="sec__no">09</span><span class="sec__name">Wissen &amp; Publikationen</span><span class="tag">Statisch</span><span class="tag">Bildbedarf optional</span></p>
+      <div class="inner gap-m">
+        <p class="h h--big">Wissen teilen</p>
+        <div class="grid split--img" style="gap:28px">
+          <div class="gap-s">
+            <div class="box" style="padding:12px 14px"><span class="sm">Blickpunkt Hochschuldidaktik</span></div>
+            <div class="box" style="padding:12px 14px"><span class="sm">Publikationen</span></div>
+            <div class="box" style="padding:12px 14px"><span class="sm">Forschung</span></div>
+            <div class="box" style="padding:12px 14px"><span class="sm">Standards für die Praxis</span></div>
+            <div class="box" style="padding:12px 14px"><span class="sm">Downloads</span></div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+              <span class="btn">Publikationen entdecken</span>
+              <span class="btn">Downloads</span>
+            </div>
+          </div>
+          <div class="img" style="min-height:260px">Publikations- / Cover-Platzhalter<br>(optional)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 AKTUELLES ===== -->
+    <section class="sec" id="s10">
+      <p class="sec__note"><span class="sec__no">10</span><span class="sec__name">Aktuelles / Blickwinkel</span><span class="tag tag--dyn">Dynamisch</span><span class="tag">CTA</span></p>
+      <div class="inner gap-m">
+        <p class="eyebrow">Neue Perspektiven</p>
+        <p class="h h--big">Aktuelles aus der dghd</p>
+        <p class="sm"><span class="tag tag--dyn">Dynamisch</span> Automatisch aus Beiträgen und Blickwinkel-Artikeln.</p>
+        <div class="grid g4">
+          <div class="box gap-s"><div class="img" style="min-height:96px">Bild</div><span class="tag">Kategorie · Datum</span><span class="bar bar--h2 w-90"></span><span class="bar w-100"></span><span class="bar w-60"></span></div>
+          <div class="box gap-s"><div class="img" style="min-height:96px">Bild</div><span class="tag">Kategorie · Datum</span><span class="bar bar--h2 w-70"></span><span class="bar w-100"></span><span class="bar w-50"></span></div>
+          <div class="box gap-s"><div class="img" style="min-height:96px">Bild</div><span class="tag">Kategorie · Datum</span><span class="bar bar--h2 w-90"></span><span class="bar w-90"></span><span class="bar w-60"></span></div>
+          <div class="box gap-s"><div class="img" style="min-height:96px">Bild</div><span class="tag">Kategorie · Datum</span><span class="bar bar--h2 w-80"></span><span class="bar w-100"></span><span class="bar w-40"></span><p class="sm">optional</p></div>
+        </div>
+        <span class="btn">Alle Beiträge</span>
+      </div>
+    </section>
+
+    <!-- ===== 11 SERVICE-HUB ===== -->
+    <section class="sec" id="s11">
+      <p class="sec__note"><span class="sec__no">11</span><span class="sec__name">Service-Hub</span><span class="tag">Navigation</span><span class="tag">Funktionen</span></p>
+      <div class="inner gap-m">
+        <p class="h h--big">Direkt finden, was Sie suchen</p>
+        <div class="grid g3">
+          <div class="box"><p class="h" style="font-size:15px">Didaktik-Landkarte</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Stellenbörse</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Downloads</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Newsletter</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Veranstaltung einreichen</p><p class="sm">Formular</p></div>
+          <div class="box"><p class="h" style="font-size:15px">Institution eintragen</p><p class="sm">Formular</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 12 MITGLIEDSCHAFT ===== -->
+    <section class="sec" id="s12">
+      <p class="sec__note"><span class="sec__no">12</span><span class="sec__name">Mitgliedschaft</span><span class="tag">Statisch</span><span class="tag">CTA</span></p>
+      <div class="inner gap-m">
+        <p class="eyebrow">Teil der dghd werden</p>
+        <div class="stack">
+          <span class="bar bar--h w-90"></span>
+          <span class="bar bar--h w-50"></span>
+        </div>
+        <div class="stack">
+          <span class="bar w-100"></span>
+          <span class="bar w-80"></span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <span class="btn btn--primary">Mitglied werden</span>
+          <span class="btn">Mehr über die Mitgliedschaft</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 13 NEWSLETTER ===== -->
+    <section class="sec" id="s13">
+      <p class="sec__note"><span class="sec__no">13</span><span class="sec__name">Newsletter</span><span class="tag">Formular</span></p>
+      <div class="inner gap-m">
+        <p class="h h--big">Wissen, Termine und Impulse</p>
+        <div class="stack"><span class="bar w-100"></span><span class="bar w-60"></span></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:stretch">
+          <span class="box" style="flex:1 1 280px;color:var(--ink-3);font-size:12.5px;padding:11px 14px">E-Mail-Adresse</span>
+          <span class="btn btn--primary">Newsletter abonnieren</span>
+        </div>
+        <p class="sm">Einwilligung und Datenschutzhinweis folgen bei der Ausarbeitung.</p>
+      </div>
+    </section>
+
+    <!-- ===== 14 FOOTER ===== -->
+    <section class="sec" id="s14" style="background:var(--fill)">
+      <p class="sec__note"><span class="sec__no">14</span><span class="sec__name">Footer</span><span class="tag">Navigation</span></p>
+      <div class="inner fcols">
+        <div><h3>dghd</h3><div class="stack"><span class="bar bar--s w-80"></span><span class="bar bar--s w-60"></span><span class="bar bar--s w-90"></span><span class="bar bar--s w-50"></span></div><p class="sm" style="margin-top:8px">Über uns · Vorstand · Geschäftsstelle · Kontakt</p></div>
+        <div><h3>Community</h3><div class="stack"><span class="bar bar--s w-90"></span><span class="bar bar--s w-60"></span><span class="bar bar--s w-80"></span><span class="bar bar--s w-70"></span></div><p class="sm" style="margin-top:8px">Arbeitsgruppen · Netzwerke · Kommissionen · Mitglied werden</p></div>
+        <div><h3>Wissenschaft &amp; Praxis</h3><div class="stack"><span class="bar bar--s w-70"></span><span class="bar bar--s w-50"></span><span class="bar bar--s w-80"></span><span class="bar bar--s w-90"></span></div><p class="sm" style="margin-top:8px">Forschung · Praxis · Publikationen · Internationales</p></div>
+        <div><h3>Veranstaltungen</h3><div class="stack"><span class="bar bar--s w-60"></span><span class="bar bar--s w-80"></span><span class="bar bar--s w-90"></span></div><p class="sm" style="margin-top:8px">Kalender · Jahrestagung · Veranstaltung einreichen</p></div>
+        <div><h3>Service</h3><div class="stack"><span class="bar bar--s w-80"></span><span class="bar bar--s w-90"></span><span class="bar bar--s w-50"></span><span class="bar bar--s w-60"></span></div><p class="sm" style="margin-top:8px">Stellenbörse · Didaktik-Landkarte · Downloads · Newsletter</p></div>
+        <div><h3>System</h3><div class="stack"><span class="bar bar--s w-70"></span><span class="bar bar--s w-80"></span><span class="bar bar--s w-90"></span></div><p class="sm" style="margin-top:8px">Impressum · Datenschutz · Barrierefreiheit</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page__foot">
+    <h1>Wireframe Startseite · Navigation als Sidebar</h1>
+    <p>Low-Fidelity-Darstellung der Anordnung. Es geht um Reihenfolge, Gruppierung und Gewichtung der Bereiche – nicht um Farben, Schrift, Bilder oder Komponenten. Bereich 01 (Header) liegt auf Kundenwunsch links als durchgehende Sidebar; die Inhaltsbereiche 02 bis 14 laufen rechts davon untereinander. Bereich 03 (Direkteinstiege) ist in den Hero integriert.</p>
+    <p>Graue Balken stehen für Text, der später geschrieben wird; schraffierte Flächen zeigen Bildbedarf. Die Beschriftung über jedem Bereich – Nummer, Name und Labels wie <span class="tag tag--dyn">Dynamisch</span> oder <span class="tag">CTA</span> – gehört zur Erläuterung und nicht zur Seite.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const rail = document.querySelector("[data-rail]");
+  const toggle = document.querySelector("[data-rail-toggle]");
+  const panel = document.getElementById("rail-panel");
+
+  const setOpen = (open) => {
+    rail.classList.toggle("is-open", open);
+    document.body.classList.toggle("is-rail-open", open);
+    panel.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+  };
+
+  toggle.addEventListener("click", () => setOpen(panel.hidden));
+
+  // Schliessen: Escape, Klick daneben, Sprung zu einem Bereich
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (!panel.hidden && !rail.contains(event.target)) setOpen(false);
+  });
+  panel.addEventListener("click", (event) => {
+    if (event.target.closest("a")) setOpen(false);
+  });
+
+  // Akkordeon: immer nur eine Rubrik offen
+  const rubs = [...panel.querySelectorAll("[data-rub]")];
+  rubs.forEach((rub) => {
+    rub.addEventListener("click", () => {
+      const open = rub.getAttribute("aria-expanded") !== "true";
+      rubs.forEach((other) => {
+        const isCurrent = other === rub;
+        other.setAttribute("aria-expanded", String(isCurrent && open));
+        other.querySelector("span").textContent = isCurrent && open ? "–" : "+";
+        document.getElementById(other.getAttribute("aria-controls")).hidden = !(isCurrent && open);
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

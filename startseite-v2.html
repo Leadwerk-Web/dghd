@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>dghd – Wo Forschung und Praxis sich begegnen</title>
+<meta name="description" content="Die Deutsche Gesellschaft für Hochschuldidaktik verbindet Menschen, die Hochschullehre erforschen, gestalten und weiterentwickeln.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="./Assets/favicon_dghd.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/startseite-v2.css?v=26">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Deutsche Gesellschaft für Hochschuldidaktik e.V.","alternateName":"dghd","url":"https://www.dghd.de/","logo":"https://www.dghd.de/Assets/dghd2026_bildmarke.svg"}</script>
+</head>
+<body>
+
+<!-- Icon-Sprite -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.8 4-5.5 7.5-5.5s6.3 1.7 7.5 5.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15.5h6M9 19h4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-voice" viewBox="0 0 24 24"><path d="M4 10v4h3l6 4V6L7 10z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5C6.5 4 9.5 4 12 6c2.5-2 5.5-2 8-.5V19c-2.5-1.5-5.5-1.5-8 .5-2.5-2-5.5-2-8-.5z"/><path d="M12 6v13.5"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c1.5 1.7 3.4 2.5 5.5 2.5s4-.8 5.5-2.5V11M21.5 9v5"/></symbol>
+  <symbol id="i-board" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="11.5" rx="1.5"/><path d="M7.5 8h6M7.5 11.5h9M9 15.5 7 20.5M15 15.5l2 5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5.5 21V3.5"/><path d="M5.5 4h11l-2.5 4 2.5 4h-11"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c.8-3.3 3.1-5 6-5s5.2 1.7 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.6c2.3.2 3.9 1.7 4.5 4.4"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M7.5 9h9M7.5 12.5h9M7.5 16h5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-burger" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-join" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M2.5 20.5c1.2-3.8 4-5.5 7.5-5.5 1.6 0 3 .3 4.2 1M18.5 13.5v7M15 17h7"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M6 9v11h12V9M10 20v-5h4v5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<dialog class="search" data-search-dialog aria-label="Suche">
+  <form action="https://www.dghd.de/" method="get" role="search">
+    <label for="q">Was möchten Sie finden?</label>
+    <div class="search__row">
+      <input id="q" name="s" type="search" placeholder="z. B. Prüfungsdidaktik, Jahrestagung, Stellenbörse" autocomplete="off">
+      <button class="btn btn--primary" type="submit">Suchen</button>
+    </div>
+  </form>
+  <button class="icon-btn search__close" type="button" data-search-close aria-label="Suche schließen"><svg><use href="#i-close"/></svg></button>
+</dialog>
+
+<div class="app">
+  <!-- ============ Kopfleiste: Menü-Knopf öffnet die Navigation als Schublade ============ -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <button class="topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-burger"/></svg><span>Menü</span></button>
+      <a class="brand logo-crop" href="./startseite-v2.html">
+        <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik, zur Startseite" width="246" height="123">
+      </a>
+      <div class="topbar__tools">
+        <button class="icon-btn" type="button" data-search-open aria-label="Suche öffnen"><svg aria-hidden="true"><use href="#i-search"/></svg></button>
+        <a class="icon-btn icon-btn--label" href="https://www.dghd.de/login/"><svg aria-hidden="true"><use href="#i-user"/></svg><span>Login</span></a>
+        <a class="btn btn--primary btn--sm topbar__cta" href="https://www.dghd.de/community/mitglied-werden/">Mitglied werden</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ Schmale Leiste links (Desktop, immer sichtbar) ============ -->
+  <nav class="rail" aria-label="Schnellzugriff Navigation">
+    <a class="rail__mark" href="./startseite-v2.html" aria-label="dghd – zur Startseite"><img src="./Assets/favicon_dghd.svg" alt="" width="36" height="34"></a>
+    <button class="rail__btn rail__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-burger"/></svg><span class="rail__label">Menü öffnen</span></button>
+    <ul class="rail__list">
+      <li><button class="rail__btn" type="button" data-rail-open="1" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-people"/></svg><span class="rail__label">Community</span></button></li>
+      <li><button class="rail__btn" type="button" data-rail-open="2" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-book"/></svg><span class="rail__label">Wissenschaft &amp; Praxis</span></button></li>
+      <li><button class="rail__btn" type="button" data-rail-open="3" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-calendar"/></svg><span class="rail__label">Veranstaltungen</span></button></li>
+      <li><button class="rail__btn" type="button" data-rail-open="4" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-news"/></svg><span class="rail__label">Aktuelles &amp; Einblicke</span></button></li>
+      <li><button class="rail__btn" type="button" data-rail-open="5" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-home"/></svg><span class="rail__label">Die dghd</span></button></li>
+      <li><button class="rail__btn" type="button" data-rail-open="6" aria-controls="sidebar"><svg aria-hidden="true"><use href="#i-compass"/></svg><span class="rail__label">Service</span></button></li>
+    </ul>
+    <div class="rail__foot">
+      <button class="rail__btn" type="button" data-search-open><svg aria-hidden="true"><use href="#i-search"/></svg><span class="rail__label">Suche</span></button>
+      <a class="rail__btn" href="https://www.dghd.de/login/"><svg aria-hidden="true"><use href="#i-user"/></svg><span class="rail__label">Login / Meine dghd</span></a>
+      <a class="rail__btn rail__join" href="https://www.dghd.de/community/mitglied-werden/"><svg aria-hidden="true"><use href="#i-join"/></svg><span class="rail__label">Mitglied werden</span></a>
+    </div>
+  </nav>
+
+  <!-- ============ Seitenleiste (Navigation nach Sitemap V2) ============ -->
+  <aside class="sidebar" id="sidebar" data-sidebar aria-label="Navigation">
+    <div class="sidebar__bar">
+      <a class="brand logo-crop" href="./startseite-v2.html">
+        <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik, zur Startseite" width="246" height="123">
+      </a>
+      <button class="icon-btn sidebar__close" type="button" data-sidebar-close aria-label="Navigation schließen"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sidebar__panel" id="sidebar-panel">
+      <button class="sidebar__search" type="button" data-search-open><svg aria-hidden="true"><use href="#i-search"/></svg>Suchen auf dghd.de</button>
+      <div class="sidebar__filter" role="group" aria-labelledby="sn-filter-label">
+        <span id="sn-filter-label">Zeigen für</span>
+        <button type="button" data-zg-filter="" aria-pressed="true">Alle</button>
+        <button type="button" data-zg-filter="L" aria-pressed="false">Lehrende</button>
+        <button type="button" data-zg-filter="F" aria-pressed="false">Forschende</button>
+        <button type="button" data-zg-filter="P" aria-pressed="false">HD-Professionals</button>
+        <button type="button" data-zg-filter="M" aria-pressed="false">Leitungen</button>
+      </div>
+      <nav class="sidenav" aria-label="Hauptnavigation" data-sidenav>
+        <ul class="sn-list">
+          <li data-zg="" data-kind="fan">
+            <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-1"><span>Community</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul class="sn-sub sn-sub--fan" id="sn-1" style="--lvl:1" hidden>
+              <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/community/">Community <small>Zur Übersicht</small></a></li>
+              <li data-zg=""><a href="https://www.dghd.de/community/">Community im Überblick</a></li>
+              <li data-zg="" data-kind="fan">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-2"><span>Arbeitsgruppen</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--fan" id="sn-2" style="--lvl:2" hidden>
+                  <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/community/arbeitsgruppen/">Arbeitsgruppen <small>Zur Übersicht</small></a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-civic-engagement-und-service-learning/">AG Civic Engagement und Service Learning</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-curriculumentwicklung/">AG Curriculumentwicklung</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-digitale-medien-und-hochschuldidaktik/">AG Digitale Medien und Hochschuldidaktik</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-forschendes-lernen/">AG Forschendes Lernen</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/community-arbeitsgruppen-ag-hochschuldidaktische-regional-und-landesnetzwerke/">AG Hochschuldidaktische Regional- und Landesnetzwerke</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-ingenieurdidaktik/">AG Ingenieurdidaktik</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-open-teach-ware-lehrportale/">AG Open Teach Ware, Lehrportale</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-pruefen-und-pruefungsdidaktik/">AG Prüfen und Prüfungsdidaktik</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-psychologie-und-lehr-lern-forschung/">AG Psychologie und Lehr-Lern-Forschung</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/g-qualitative-feedback-und-evaluationsmethoden/">AG Qualitative Feedback- und Evaluationsmethoden</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-scholarship-of-academic-development/">AG Scholarship of Academic Development</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-schreibdidaktik-in-der-hochschuldidaktik/">AG Schreibdidaktik in der Hochschuldidaktik</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-trainer-und-trainerinnen/">AG Trainer und Trainerinnen</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/community/arbeitsgruppen/ag-transformatives-lernen-und-nachhaltigkeit/">AG Transformatives Lernen und Nachhaltigkeit</a></li>
+                  <li data-zg="P"><a href="https://www.dghd.de/community/projektgruppen/">Projektgruppe zum beruflichen Selbstverständnis</a></li>
+                </ul>
+              </li>
+              <li data-zg="" data-kind="fan">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-3"><span>Netzwerke</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--fan" id="sn-3" style="--lvl:2" hidden>
+                  <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/community/netzwerke/">Netzwerke <small>Zur Übersicht</small></a></li>
+                  <li data-zg="F"><a href="https://www.dghd.de/community/netzwerke/promovierenden-netzwerk/">Promovierenden-Netzwerk</a></li>
+                  <li data-zg="LP"><a href="https://www.dghd.de/community/netzwerke/netzwerk-tutorienarbeit-an-hochschulen/">Netzwerk Tutorienarbeit an Hochschulen</a></li>
+                  <li data-zg="LF"><a href="https://www.dghd.de/community/netzwerke/netzwerk-theologie-und-hochschuldidaktik/">Netzwerk Theologie und Hochschuldidaktik</a></li>
+                  <li data-zg="LPM"><a href="https://www.dghd.de/community/netzwerke/netzwerk-fachhochschulen-haws/">Netzwerk Fachhochschulen / HAWs</a></li>
+                  <li data-zg="LPM"><a href="#">Netzwerk Orientierungs(studien)programme</a></li>
+                  <li data-zg="LP"><a href="#">Heterogenität und Interkulturalität</a></li>
+                  <li data-zg="PM"><a href="#">Netzwerktreffen der Hochschuldidaktik in Deutschland</a></li>
+                </ul>
+              </li>
+              <li data-zg="" data-kind="fan">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-4"><span>Kommissionen</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--fan" id="sn-4" style="--lvl:2" hidden>
+                  <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/die-dghd/kommissionen/">Kommissionen <small>Zur Übersicht</small></a></li>
+                  <li data-zg="F"><a href="https://www.dghd.de/community/forschungskommission/">Forschungskommission</a></li>
+                  <li data-zg="LP"><a href="https://www.dghd.de/community/weiterbildungskommission/">Weiterbildungskommission</a></li>
+                  <li data-zg="PM" data-kind="fan">
+                    <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-5"><span>Akkreditierungskommission (AKKO)</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                    <ul class="sn-sub sn-sub--fan" id="sn-5" style="--lvl:3" hidden>
+                      <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/community/akkreditierungskommission/">Akkreditierungskommission (AKKO) <small>Zur Übersicht</small></a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/ziele-der-akko/">Ziele der AKKO</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/einladung-zur-teilnahme/">Einladung zur Teilnahme</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/verfahren-der-akko/">Auftrag und Verfahren</a></li>
+                      <li data-zg="LPM"><a href="https://www.dghd.de/community/akkreditierungskommission/dghd-akkreditiert/">Akkreditierte Personen</a></li>
+                      <li data-zg="LPM"><a href="https://www.dghd.de/community/akkreditierungskommission/akkreditierte-programme/">Akkreditierte Programme und Einrichtungen</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/kontakt-zur-akko/">Kontakt zur AKKO</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/akko-downloads/">AKKO-Downloads</a></li>
+                    </ul>
+                  </li>
+                  <li data-zg=""><a href="https://www.dghd.de/community/kommunikation-und-oeffentlichkeitsarbeit/">Kommunikation und Öffentlichkeitsarbeit</a></li>
+                </ul>
+              </li>
+              <li data-zg="F" data-kind="inline">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-6"><span>Nachwuchs</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--inline" id="sn-6" style="--lvl:1" hidden>
+                  <li data-zg="F"><a href="https://www.dghd.de/community/netzwerke/promovierenden-netzwerk/">Promovierenden-Netzwerk</a></li>
+                  <li data-zg="F"><a href="https://www.dghd.de/die-dghd/nachwuchspreis/">dghd-Nachwuchspreis</a></li>
+                </ul>
+              </li>
+              <li data-zg=""><a href="https://www.dghd.de/community/kooperationen/">Kooperationen</a></li>
+              <li data-zg="" data-kind="inline">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-7"><span>Mitgliedschaft</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--inline" id="sn-7" style="--lvl:1" hidden>
+                  <li data-zg=""><a href="https://www.dghd.de/community/mitglied-werden/">Mitglied werden</a></li>
+                  <li data-zg=""><a href="#">Vorteile und Mitgliedsbeiträge</a></li>
+                  <li data-zg=""><a href="https://www.dghd.de/login/">Meine dghd (Login)</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li data-zg="" data-kind="fan">
+            <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-8"><span>Wissenschaft &amp; Praxis</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul class="sn-sub sn-sub--fan" id="sn-8" style="--lvl:1" hidden>
+              <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/forschung/">Wissenschaft &amp; Praxis <small>Zur Übersicht</small></a></li>
+              <li data-zg=""><a href="https://www.dghd.de/forschung/">Wissenschaft &amp; Praxis im Überblick</a></li>
+              <li data-zg="F" data-kind="inline">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-9"><span>Forschung</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--inline" id="sn-9" style="--lvl:1" hidden>
+                  <li data-zg="F"><a href="https://www.dghd.de/forschung/">Hochschuldidaktische Forschung</a></li>
+                  <li data-zg="F"><a href="https://www.dghd.de/community/forschungskommission/">Forschungskommission</a></li>
+                  <li data-zg="F"><a href="#">Nachwuchsförderung</a></li>
+                </ul>
+              </li>
+              <li data-zg="LPM" data-kind="inline">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-10"><span>Praxis &amp; Qualitätsentwicklung</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--inline" id="sn-10" style="--lvl:1" hidden>
+                  <li data-zg="LPM"><a href="https://www.dghd.de/praxis/standards-fuer-die-praxis/">Standards für die Praxis</a></li>
+                  <li data-zg="LP"><a href="https://www.dghd.de/community/weiterbildungskommission/">Weiterbildungskommission</a></li>
+                  <li data-zg="PM" data-kind="fan">
+                    <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-11"><span>Akkreditierung (AKKO)</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                    <ul class="sn-sub sn-sub--fan" id="sn-11" style="--lvl:2" hidden>
+                      <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/community/akkreditierungskommission/">Akkreditierung (AKKO) <small>Zur Übersicht</small></a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/ziele-der-akko/">Ziele der AKKO</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/einladung-zur-teilnahme/">Einladung zur Teilnahme</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/verfahren-der-akko/">Auftrag und Verfahren</a></li>
+                      <li data-zg="LPM"><a href="https://www.dghd.de/community/akkreditierungskommission/dghd-akkreditiert/">Akkreditierte Personen</a></li>
+                      <li data-zg="LPM"><a href="https://www.dghd.de/community/akkreditierungskommission/akkreditierte-programme/">Akkreditierte Programme und Einrichtungen</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/kontakt-zur-akko/">Kontakt zur AKKO</a></li>
+                      <li data-zg="PM"><a href="https://www.dghd.de/community/akkreditierungskommission/akko-downloads/">AKKO-Downloads</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li data-zg="" data-kind="fan">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-12"><span>Themen</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--fan" id="sn-12" style="--lvl:2" hidden>
+                  <li class="sn-head" aria-hidden="false"><span>Themen</span></li>
+                  <li data-zg=""><a href="#">Themenübersicht</a></li>
+                  <li data-zg="LFP"><a href="https://www.dghd.de/themenreihe-gesellschaftliche-bildung-in-der-hochschuldidaktik/">Gesellschaftliche Bildung in der Hochschuldidaktik</a></li>
+                  <li data-zg="F"><a href="https://www.dghd.de/dghd-themenreihe-hochschuldidaktik-als-wissenschaft/">Hochschuldidaktik als Wissenschaft</a></li>
+                  <li data-zg="LF"><a href="https://www.dghd.de/dghd-themenreihe-learning-analytics-in-hochschulen/">Learning Analytics in Hochschulen</a></li>
+                  <li data-zg="LP"><a href="https://www.dghd.de/praxis/veranstaltungskalender/dghd-themenreihe-ki-in-der-hochschullehre/">KI in der Hochschullehre</a></li>
+                </ul>
+              </li>
+              <li data-zg="" data-kind="fan">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-13"><span>Publikationen &amp; Wissen</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--fan" id="sn-13" style="--lvl:2" hidden>
+                  <li class="sn-head" aria-hidden="true"><span>Publikationen &amp; Wissen</span></li>
+                  <li data-zg="F"><a href="https://www.dghd.de/die-dghd/blickpunkt-hochschuldidaktik/">Blickpunkt Hochschuldidaktik (Buchreihe)</a></li>
+                  <li data-zg="F"><a href="#">Publikationen</a></li>
+                  <li data-zg=""><a href="#">Keynotes</a></li>
+                  <li data-zg=""><a href="https://www.dghd.de/die-dghd/downloads/">Downloads</a></li>
+                </ul>
+              </li>
+              <li data-zg="FM" data-kind="fan">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-14"><span>Internationales &amp; Politik</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--fan" id="sn-14" style="--lvl:2" hidden>
+                  <li class="sn-head" aria-hidden="true"><span>Internationales &amp; Politik</span></li>
+                  <li data-zg="FM"><a href="https://www.dghd.de/community/kooperationen/internationale-kooperationen/">Internationale Kooperationen</a></li>
+                  <li data-zg="F"><a href="#">Konferenzen und Publikationsmöglichkeiten</a></li>
+                  <li data-zg="M"><a href="#">Politik und Stellungnahmen</a></li>
+                  <li data-zg="F"><a href="#">Internationale Aktivitäten</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li data-zg="" data-kind="fan">
+            <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-15"><span>Veranstaltungen</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul class="sn-sub sn-sub--fan" id="sn-15" style="--lvl:1" hidden>
+              <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/praxis/veranstaltungskalender/">Veranstaltungen <small>Zur Übersicht</small></a></li>
+              <li data-zg=""><a href="#">Veranstaltungen im Überblick</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/praxis/veranstaltungskalender/">Veranstaltungskalender</a></li>
+              <li data-zg="" data-kind="inline">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-16"><span>dghd-Jahrestagung</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--inline" id="sn-16" style="--lvl:1" hidden>
+                  <li data-zg=""><a href="https://www.dghd.de/die-dghd/dghd-jahrestagungen/">Aktuelle Jahrestagung</a></li>
+                  <li data-zg=""><a href="https://www.dghd.de/die-dghd/dghd-jahrestagungen/">Vergangene Jahrestagungen, Archiv</a></li>
+                </ul>
+              </li>
+              <li data-zg=""><a href="https://www.dghd.de/tagung-ausrichten/">Veranstaltung einreichen</a></li>
+            </ul>
+          </li>
+          <li data-zg="" data-kind="inline">
+            <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-17"><span>Aktuelles &amp; Einblicke</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul class="sn-sub sn-sub--inline" id="sn-17" style="--lvl:0" hidden>
+              <li data-zg=""><a href="#aktuelles">Aktuelles</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/blickwinkel/">Blickwinkel</a></li>
+              <li data-zg=""><a href="#">Nachrichtenarchiv</a></li>
+            </ul>
+          </li>
+          <li data-zg="" data-kind="fan">
+            <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-18"><span>Die dghd</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul class="sn-sub sn-sub--fan" id="sn-18" style="--lvl:1" hidden>
+              <li class="sn-head" aria-hidden="false"><a href="https://www.dghd.de/die-dghd/">Die dghd <small>Zur Übersicht</small></a></li>
+              <li data-zg="" data-kind="inline">
+                <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-19"><span>Über die dghd</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+                <ul class="sn-sub sn-sub--inline" id="sn-19" style="--lvl:1" hidden>
+                  <li data-zg=""><a href="#">Profil und Auftrag</a></li>
+                  <li data-zg=""><a href="#">Ziele</a></li>
+                  <li data-zg=""><a href="#">Geschichte und Entwicklung</a></li>
+                </ul>
+              </li>
+              <li data-zg=""><a href="https://www.dghd.de/die-dghd/der-vorstand/">Vorstand</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/die-dghd/geschaftsstelle/">Geschäftsstelle</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/community/kooperationen/">Kooperationen</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/die-dghd/satzung/">Satzung</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/kontakt/">Kontakt</a></li>
+            </ul>
+          </li>
+          <li data-zg="" data-kind="fan">
+            <button class="sn-toggle" type="button" aria-expanded="false" aria-controls="sn-20"><span>Service</span><svg class="sn-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul class="sn-sub sn-sub--fan" id="sn-20" style="--lvl:1" hidden>
+              <li class="sn-head" aria-hidden="true"><span>Service</span></li>
+              <li data-zg="LP"><a href="https://www.dghd.de/praxis/stellenboerse/">Stellenbörse</a></li>
+              <li data-zg="LPM"><a href="https://www.dghd.de/didaktik-landkarte/">Didaktik-Landkarte</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/die-dghd/downloads/">Downloads</a></li>
+              <li data-zg=""><a href="https://www.dghd.de/tagung-ausrichten/">Veranstaltung einreichen</a></li>
+              <li data-zg="PM"><a href="#">Stellenangebot einreichen</a></li>
+              <li data-zg="M"><a href="#">Institution eintragen</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar__foot">
+        <a class="sidebar__login" href="https://www.dghd.de/login/"><svg aria-hidden="true"><use href="#i-user"/></svg>Login / Meine dghd</a>
+        <a class="btn btn--primary sidebar__cta" href="https://www.dghd.de/community/mitglied-werden/">Mitglied werden</a>
+      </div>
+    </div>
+  </aside>
+  <div class="sn-scrim" data-sn-scrim hidden></div>
+
+<div class="app__main">
+<main id="inhalt">
+
+<!-- ============ 1 Hero – 100dvh, Zielgruppen direkt neben der Headline und als Stationen in der Illustration ============ -->
+<section class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="blobs" aria-hidden="true"><i class="blob blob--violet"></i><i class="blob blob--bordeaux"></i><i class="blob blob--gold"></i></div>
+
+  <!-- Logo oben links (Desktop, ersetzt die Kopfleiste) -->
+  <div class="hero__top wrap"><a class="brand logo-crop hero__brand" href="./startseite-v2.html"><img src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik, zur Startseite" width="246" height="123"></a></div>
+
+  <div class="hero__main wrap">
+    <div class="hero__copy">
+      <p class="kicker"><i class="dot" aria-hidden="true"></i>Deutsche Gesellschaft für Hochschuldidaktik</p>
+      <h1 class="hero__title" id="hero-title">Wo Forschung und Praxis <mark class="hl">sich begegnen</mark>.</h1>
+      <p class="hero__lead">Wir verbinden Menschen, die Hochschullehre erforschen, gestalten und weiterentwickeln. Wo stehen Sie gerade?</p>
+
+      <nav class="paths" aria-label="Einstieg nach Zielgruppe">
+        <ul class="paths__list">
+          <li><a class="path" href="#fuer-forschende" data-audience-link="forschende" data-station="1">
+            <span class="path__no">01</span>
+            <span class="path__text"><b>Ich forsche</b> zur Hochschuldidaktik</span>
+            <svg class="path__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a></li>
+          <li><a class="path" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2">
+            <span class="path__no">02</span>
+            <span class="path__text"><b>Ich lehre</b> an einer Hochschule</span>
+            <svg class="path__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a></li>
+          <li><a class="path" href="#fuer-professionals" data-audience-link="professionals" data-station="3">
+            <span class="path__no">03</span>
+            <span class="path__text"><b>Ich arbeite</b> in der Hochschuldidaktik</span>
+            <svg class="path__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a></li>
+          <li><a class="path" href="#fuer-leitung" data-audience-link="leitung" data-station="4">
+            <span class="path__no">04</span>
+            <span class="path__text"><b>Ich leite</b> eine hochschuldidaktische Einrichtung</span>
+            <svg class="path__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="hero__art">
+      <div class="stage" data-stage>
+        <img class="stage__base" src="./Assets/illustrations/wege-landschaft-basis.webp?v=2" alt="" width="1269" height="833" fetchpriority="high">
+        <!-- Freigestellte Bildelemente der Stationen, passgenau über dem Grundbild (Positionen/Breite in % von 1269 × 833 px) -->
+        <a class="cut" href="#fuer-forschende" data-audience-link="forschende" data-station="1" style="--l:64.539%;--t:68.667%;--w:21.198%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/forschung.webp" alt="" width="269" height="116"></a>
+        <a class="cut" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2" style="--l:34.831%;--t:21.248%;--w:13.633%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/lehre.webp" alt="" width="173" height="117"></a>
+        <a class="cut" href="#fuer-professionals" data-audience-link="professionals" data-station="3" style="--l:74.232%;--t:34.694%;--w:19.385%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/weiterbildung.webp" alt="" width="246" height="105"></a>
+        <a class="cut" href="https://www.dghd.de/community/" data-station="5" style="--l:5.91%;--t:47.779%;--w:17.494%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/austausch.webp" alt="" width="222" height="151"></a>
+        <a class="cut cut--small" href="#fuer-leitung" data-audience-link="leitung" data-station="4" style="--l:71.08%;--t:14.766%;--w:2.443%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/leitung.webp" alt="" width="31" height="58"></a>
+        <!-- Stationen der Illustration = Zielgruppen (Positionen in % der Bildfläche) -->
+        <a class="pin pin--left" href="#fuer-forschende" data-audience-link="forschende" data-station="1" style="--x:58.5%;--y:70%" tabindex="-1" aria-hidden="true"><b>01</b><span>Forschende</span></a>
+        <a class="pin" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2" style="--x:53%;--y:24%" tabindex="-1" aria-hidden="true"><b>02</b><span>Lehrende</span></a>
+        <a class="pin pin--left" href="#fuer-professionals" data-audience-link="professionals" data-station="3" style="--x:69.5%;--y:38%" tabindex="-1" aria-hidden="true"><b>03</b><span>HD-Professionals</span></a>
+        <a class="pin" href="#fuer-leitung" data-audience-link="leitung" data-station="4" style="--x:77.5%;--y:17%" tabindex="-1" aria-hidden="true"><b>04</b><span>Leitung</span></a>
+
+        <!-- gehört zur Station „Austausch“ -->
+        <a class="float float--stats glass" href="https://www.dghd.de/community/" data-station="5">
+          <span class="float__icon" aria-hidden="true"><svg><use href="#i-people"/></svg></span>
+          <span class="float__stats"><span><b>15</b> Arbeitsgruppen</span><span><b>7</b> Netzwerke</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#fuer-sie" aria-label="Weiter zu Ihrem Einstieg"><svg aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+</section>
+
+<!-- ============ 2 Für Sie zusammengestellt (Violett, Glas) ============ -->
+<section class="section section--violet audience" id="fuer-sie" aria-labelledby="audience-title">
+  <div class="blobs blobs--dark" aria-hidden="true"><i class="blob blob--violet"></i><i class="blob blob--bordeaux"></i><i class="blob blob--gold"></i></div>
+  <div class="wrap">
+    <header class="section-head section-head--center">
+      <p class="kicker"><i class="dot" aria-hidden="true"></i>Für Sie zusammengestellt</p>
+      <h2 id="audience-title">Ihr Einstieg in die <span class="accent">Hochschuldidaktik</span></h2>
+    </header>
+
+    <div class="tabs glass-dark" role="tablist" aria-label="Zielgruppe wählen" data-tabs>
+      <button class="tab" role="tab" id="tab-forschende" aria-controls="fuer-forschende" aria-selected="true" data-audience="forschende"><svg aria-hidden="true"><use href="#i-search"/></svg>Forschende</button>
+      <button class="tab" role="tab" id="tab-lehrende" aria-controls="fuer-lehrende" aria-selected="false" tabindex="-1" data-audience="lehrende"><svg aria-hidden="true"><use href="#i-cap"/></svg>Lehrende</button>
+      <button class="tab" role="tab" id="tab-professionals" aria-controls="fuer-professionals" aria-selected="false" tabindex="-1" data-audience="professionals"><svg aria-hidden="true"><use href="#i-board"/></svg>HD-Professionals</button>
+      <button class="tab" role="tab" id="tab-leitung" aria-controls="fuer-leitung" aria-selected="false" tabindex="-1" data-audience="leitung"><svg aria-hidden="true"><use href="#i-flag"/></svg>Leitung von HD-Einrichtungen</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="fuer-forschende" aria-labelledby="tab-forschende" tabindex="0">
+      <div class="panel__intro glass-dark">
+        <p class="panel__no">01</p>
+        <p class="panel__lead">Sie forschen zu Lehren und Lernen an Hochschulen? Hier finden Sie <mark class="hl">Kommission, Nachwuchsförderung</mark> und Orte für Ihre Publikationen.</p>
+        <a class="link-arrow" href="#">Alle Inhalte für Forschende <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="panel__links">
+        <li><a class="tile glass-dark" href="https://www.dghd.de/forschung/" data-spot><small>Wissenschaft &amp; Praxis</small><b>Hochschuldidaktische Forschung</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/forschungskommission/" data-spot><small>Kommission</small><b>Forschungskommission</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/die-dghd/nachwuchspreis/" data-spot><small>Nachwuchs</small><b>dghd-Nachwuchspreis</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/arbeitsgruppen/ag-scholarship-of-academic-development/" data-spot><small>Arbeitsgruppe</small><b>AG Scholarship of Academic Development</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="fuer-lehrende" aria-labelledby="tab-lehrende" tabindex="0">
+      <div class="panel__intro glass-dark">
+        <p class="panel__no">02</p>
+        <p class="panel__lead">Sie möchten Ihre Lehre weiterentwickeln? Finden Sie <mark class="hl">Impulse, Termine und Ansprechpersonen</mark> in Ihrer Nähe.</p>
+        <a class="link-arrow" href="#">Alle Inhalte für Lehrende <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="panel__links">
+        <li><a class="tile glass-dark" href="https://www.dghd.de/praxis/veranstaltungskalender/" data-spot><small>Veranstaltungen</small><b>Veranstaltungskalender</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/praxis/veranstaltungskalender/dghd-themenreihe-ki-in-der-hochschullehre/" data-spot><small>Themenreihe</small><b>KI in der Hochschullehre</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/arbeitsgruppen/ag-digitale-medien-und-hochschuldidaktik/" data-spot><small>Arbeitsgruppe</small><b>AG Digitale Medien und Hochschuldidaktik</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/didaktik-landkarte/" data-spot><small>Service</small><b>Didaktik-Landkarte</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="fuer-professionals" aria-labelledby="tab-professionals" tabindex="0">
+      <div class="panel__intro glass-dark">
+        <p class="panel__no">03</p>
+        <p class="panel__lead">Sie arbeiten in der Hochschuldidaktik? Vernetzen Sie sich und bringen Sie <mark class="hl">Standards und Weiterbildung</mark> mit voran.</p>
+        <a class="link-arrow" href="#">Alle Inhalte für HD-Professionals <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="panel__links">
+        <li><a class="tile glass-dark" href="https://www.dghd.de/praxis/standards-fuer-die-praxis/" data-spot><small>Praxis &amp; Qualität</small><b>Standards für die Praxis</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/weiterbildungskommission/" data-spot><small>Kommission</small><b>Weiterbildungskommission</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/netzwerke/" data-spot><small>Community</small><b>Netzwerke &amp; Netzwerktreffen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/praxis/stellenboerse/" data-spot><small>Service</small><b>Stellenbörse</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="fuer-leitung" aria-labelledby="tab-leitung" tabindex="0">
+      <div class="panel__intro glass-dark">
+        <p class="panel__no">04</p>
+        <p class="panel__lead">Sie leiten eine hochschuldidaktische Einrichtung? Nutzen Sie <mark class="hl">Akkreditierung, Kooperationen</mark> und hochschulpolitische Positionen.</p>
+        <a class="link-arrow" href="#">Alle Inhalte für Leitungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="panel__links">
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/akkreditierungskommission/" data-spot><small>Kommission</small><b>Akkreditierungskommission (AKKO)</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="#" data-spot><small>Internationales &amp; Politik</small><b>Politik &amp; Stellungnahmen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="https://www.dghd.de/community/netzwerke/netzwerk-fachhochschulen-haws/" data-spot><small>Netzwerk</small><b>Netzwerk Fachhochschulen / HAWs</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a class="tile glass-dark" href="#" data-spot><small>Service</small><b>Institution eintragen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 Bereiche als Bento-Grid (Grau, Neumorphism) ============ -->
+<section class="section section--grey areas" aria-labelledby="areas-title">
+  <div class="wrap">
+    <header class="section-head section-head--split">
+      <div>
+        <p class="kicker"><i class="dot" aria-hidden="true"></i>Die dghd im Überblick</p>
+        <h2 id="areas-title">Fünf Bereiche, <span class="accent">ein Ziel</span>: gute Hochschullehre.</h2>
+      </div>
+      <p class="section-head__aside">Von der Arbeitsgruppe bis zur Stellungnahme – hier finden Sie alles, was die dghd bewegt.</p>
+    </header>
+
+    <div class="bento">
+      <article class="bento__tile bento__tile--community neu reveal" data-spot>
+        <div class="bento__body">
+          <span class="bento__icon" aria-hidden="true"><svg><use href="#i-people"/></svg></span>
+          <h3><a class="stretched" href="https://www.dghd.de/community/">Community</a></h3>
+          <p>Mitglieder arbeiten gemeinsam an Themen – in Arbeitsgruppen, Netzwerken und Kommissionen.</p>
+          <ul class="chips chips--neu">
+            <li><a href="https://www.dghd.de/community/arbeitsgruppen/">Arbeitsgruppen</a></li>
+            <li><a href="https://www.dghd.de/community/netzwerke/">Netzwerke</a></li>
+            <li><a href="https://www.dghd.de/die-dghd/kommissionen/">Kommissionen</a></li>
+            <li><a href="https://www.dghd.de/die-dghd/nachwuchspreis/">Nachwuchs</a></li>
+            <li><a href="https://www.dghd.de/community/mitglied-werden/">Mitgliedschaft</a></li>
+          </ul>
+        </div>
+        <img class="bento__art" src="./Assets/illustrations/community-austausch-frei.webp" alt="" width="896" height="607" loading="lazy">
+        <svg class="bento__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </article>
+
+      <article class="bento__tile bento__tile--science neu reveal" data-spot>
+        <div class="bento__body">
+          <span class="bento__icon" aria-hidden="true"><svg><use href="#i-book"/></svg></span>
+          <h3><a class="stretched" href="https://www.dghd.de/forschung/">Wissenschaft &amp; Praxis</a></h3>
+          <p>Forschung, Qualitätsentwicklung und Publikationen – von der Theorie bis in den Lehralltag.</p>
+          <ul class="chips chips--neu">
+            <li><a href="https://www.dghd.de/forschung/">Forschung</a></li>
+            <li><a href="https://www.dghd.de/praxis/standards-fuer-die-praxis/">Praxis &amp; Qualität</a></li>
+            <li><a href="#">Themen</a></li>
+            <li><a href="https://www.dghd.de/die-dghd/blickpunkt-hochschuldidaktik/">Publikationen</a></li>
+            <li><a href="https://www.dghd.de/community/kooperationen/internationale-kooperationen/">Internationales &amp; Politik</a></li>
+          </ul>
+        </div>
+        <img class="bento__art" src="./Assets/illustrations/wissen-publikationen-frei.webp" alt="" width="884" height="695" loading="lazy">
+        <svg class="bento__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </article>
+
+      <article class="bento__tile bento__tile--events reveal" data-spot>
+        <span class="bento__icon" aria-hidden="true"><svg><use href="#i-calendar"/></svg></span>
+        <h3><a class="stretched" href="https://www.dghd.de/praxis/veranstaltungskalender/">Veranstaltungen</a></h3>
+        <p>Jahrestagung, Themenreihen und Termine der Community.</p>
+        <div class="next-date">
+          <time datetime="2026-10-15"><b>15</b>Okt</time>
+          <p><small>Nächster Termin</small>KI in der Hochschullehre</p>
+        </div>
+        <svg class="bento__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </article>
+
+      <article class="bento__tile bento__tile--news neu reveal" data-spot>
+        <span class="bento__icon" aria-hidden="true"><svg><use href="#i-news"/></svg></span>
+        <h3><a class="stretched" href="#aktuelles">Aktuelles &amp; Einblicke</a></h3>
+        <p>Nachrichten, Blickwinkel und das Archiv.</p>
+        <svg class="bento__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </article>
+
+      <article class="bento__tile bento__tile--dghd neu reveal" data-spot>
+        <span class="bento__icon" aria-hidden="true"><svg><use href="#i-home"/></svg></span>
+        <h3><a class="stretched" href="https://www.dghd.de/die-dghd/">Die dghd</a></h3>
+        <p>Profil, Vorstand, Geschäftsstelle und Satzung.</p>
+        <svg class="bento__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </article>
+
+      <div class="bento__tile bento__tile--stats neu reveal">
+        <dl class="stats">
+          <div><dt>Arbeitsgruppen</dt><dd>15</dd></div>
+          <div><dt>Netzwerke</dt><dd>7</dd></div>
+          <div><dt>Kommissionen</dt><dd>4</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 Community (Weiß) ============ -->
+<section class="section community" aria-labelledby="community-title">
+  <div class="wrap community__grid">
+    <div class="community__copy">
+      <p class="kicker"><i class="dot" aria-hidden="true"></i>Community</p>
+      <h2 id="community-title">Eine Community, die <mark class="hl">voneinander lernt</mark>.</h2>
+      <p class="lead">In der dghd arbeiten Mitglieder aus Forschung, Lehre und Hochschuldidaktik an gemeinsamen Themen – offen, kollegial und über Hochschulgrenzen hinweg.</p>
+      <h3 class="chips-title">15 Arbeitsgruppen</h3>
+      <ul class="chips chips--soft">
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-schreibdidaktik-in-der-hochschuldidaktik/">Schreibdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-digitale-medien-und-hochschuldidaktik/">Digitale Medien</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-forschendes-lernen/">Forschendes Lernen</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-civic-engagement-und-service-learning/">Civic Engagement &amp; Service Learning</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-ingenieurdidaktik/">Ingenieurdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-trainer-und-trainerinnen/">Trainer und Trainerinnen</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/">Netzwerktreffen</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/g-qualitative-feedback-und-evaluationsmethoden/">Qualitative Feedback- und Evaluationsmethoden</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-open-teach-ware-lehrportale/">Open Teach Ware</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-psychologie-und-lehr-lern-forschung/">Psychologie und Lehr-Lern-Forschung</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-pruefen-und-pruefungsdidaktik/">Prüfen und Prüfungsdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/community-arbeitsgruppen-ag-hochschuldidaktische-regional-und-landesnetzwerke/">Regional- und Landesnetzwerke</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-curriculumentwicklung/">Curriculumentwicklung</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-scholarship-of-academic-development/">Scholarship of Academic Development</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-transformatives-lernen-und-nachhaltigkeit/">Transformatives Lernen und Nachhaltigkeit</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn--primary" href="https://www.dghd.de/community/">Community entdecken <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" href="https://www.dghd.de/community/netzwerke/">Netzwerke ansehen</a>
+      </div>
+    </div>
+    <figure class="community__art reveal">
+      <div class="blobs blobs--local" aria-hidden="true"><i class="blob blob--violet"></i><i class="blob blob--gold"></i></div>
+      <img src="./Assets/illustrations/ideen-teilen.webp" alt="Zwei Personen im Gespräch, darüber eine Sprechblase und eine Glühbirne" width="851" height="630" loading="lazy">
+      <figcaption class="glass">Ideen teilen.<br>Besser lehren.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5 Veranstaltungen (Grau, Neumorphism) ============ -->
+<section class="section section--grey events" aria-labelledby="events-title">
+  <div class="wrap">
+    <header class="section-head section-head--split">
+      <div>
+        <p class="kicker"><i class="dot" aria-hidden="true"></i>Veranstaltungen</p>
+        <h2 id="events-title">Treffen, <span class="accent">austauschen</span>, weiterdenken</h2>
+      </div>
+      <a class="link-arrow" href="https://www.dghd.de/praxis/veranstaltungskalender/">Zum Veranstaltungskalender <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </header>
+
+    <div class="events__grid">
+      <article class="feature neu reveal" data-spot>
+        <div class="feature__art">
+          <img src="./Assets/illustrations/tagung-konferenz.webp" alt="" width="1152" height="864" loading="lazy">
+        </div>
+        <div class="feature__body">
+          <p class="tag">Jahrestagung</p>
+          <h3>Die dghd-Jahrestagung</h3>
+          <p>Der zentrale Treffpunkt der Hochschuldidaktik: Vorträge, Workshops und viel Raum für Begegnung.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="https://www.dghd.de/die-dghd/dghd-jahrestagungen/">Aktuelle Jahrestagung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="link-arrow" href="https://www.dghd.de/die-dghd/dghd-jahrestagungen/">Archiv</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Beispieltermine für den Prototyp -->
+      <ol class="dates">
+        <li class="date neu reveal" data-spot>
+          <time class="date__day" datetime="2026-10-15"><b>15</b><span>Okt</span></time>
+          <div class="date__body">
+            <p class="date__meta"><span class="tag tag--small">Themenreihe</span> Online</p>
+            <h3><a class="stretched" href="https://www.dghd.de/praxis/veranstaltungskalender/dghd-themenreihe-ki-in-der-hochschullehre/">KI in der Hochschullehre</a></h3>
+          </div>
+          <svg class="date__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </li>
+        <li class="date neu reveal" data-spot>
+          <time class="date__day" datetime="2026-11-05"><b>05</b><span>Nov</span></time>
+          <div class="date__body">
+            <p class="date__meta"><span class="tag tag--small">Themenreihe</span> Online</p>
+            <h3><a class="stretched" href="https://www.dghd.de/dghd-themenreihe-learning-analytics-in-hochschulen/">Learning Analytics in Hochschulen</a></h3>
+          </div>
+          <svg class="date__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </li>
+        <li class="date neu reveal" data-spot>
+          <time class="date__day" datetime="2026-11-26"><b>26</b><span>Nov</span></time>
+          <div class="date__body">
+            <p class="date__meta"><span class="tag tag--small">Themenreihe</span> Online</p>
+            <h3><a class="stretched" href="https://www.dghd.de/dghd-themenreihe-hochschuldidaktik-als-wissenschaft/">Hochschuldidaktik als Wissenschaft</a></h3>
+          </div>
+          <svg class="date__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </li>
+        <li class="date neu reveal" data-spot>
+          <time class="date__day" datetime="2026-12-10"><b>10</b><span>Dez</span></time>
+          <div class="date__body">
+            <p class="date__meta"><span class="tag tag--small">Arbeitstagung</span> Präsenz</p>
+            <h3><a class="stretched" href="https://www.dghd.de/arbeitstagungen/">Arbeitstagung der Arbeitsgruppen</a></h3>
+          </div>
+          <svg class="date__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </li>
+        <li class="dates__submit neu-inset">
+          <p>Sie planen eine hochschuldidaktische Veranstaltung?</p>
+          <a class="link-arrow" href="https://www.dghd.de/tagung-ausrichten/">Veranstaltung einreichen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 Mitmachen (Weiß, CTA) ============ -->
+<section class="divider" aria-labelledby="divider-title">
+  <div class="divider__frames" aria-hidden="true">
+    <span class="divider__frame divider__frame--a"></span>
+    <span class="divider__frame divider__frame--b"></span>
+    <span class="divider__frame divider__frame--c"></span>
+  </div>
+  <div class="wrap divider__grid">
+    <div class="divider__copy">
+      <p class="kicker"><i class="dot" aria-hidden="true"></i>Mitmachen</p>
+      <h2 class="divider__title" id="divider-title">Hochschul&shy;didaktik <span>bewegt.</span> Bewegen Sie mit.</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="divider__text">Für eine zukunftsfähige Hochschulbildung in einer dynamischen Gesellschaft. Bringen Sie Ihre Erfahrung ein – als Mitglied, in einer Arbeitsgruppe oder mit einem eigenen Beitrag.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="https://www.dghd.de/community/mitglied-werden/">Mitglied werden <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="link-arrow" href="https://www.dghd.de/community/">Community kennenlernen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <ul class="ways">
+      <li><a class="way glass" href="https://www.dghd.de/community/arbeitsgruppen/" data-spot>
+        <span class="way__icon" aria-hidden="true"><svg><use href="#i-people"/></svg></span>
+        <span class="way__text"><b>In einer Arbeitsgruppe mitarbeiten</b><small>15 Arbeitsgruppen zu Themen von Prüfungsdidaktik bis Nachhaltigkeit</small></span>
+        <svg class="way__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a></li>
+      <li><a class="way glass" href="https://www.dghd.de/tagung-ausrichten/" data-spot>
+        <span class="way__icon" aria-hidden="true"><svg><use href="#i-calendar"/></svg></span>
+        <span class="way__text"><b>Veranstaltung einreichen</b><small>Tagungen, Workshops und Themenreihen im Kalender teilen</small></span>
+        <svg class="way__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a></li>
+      <li><a class="way glass" href="https://www.dghd.de/blickwinkel/" data-spot>
+        <span class="way__icon" aria-hidden="true"><svg><use href="#i-voice"/></svg></span>
+        <span class="way__text"><b>Beitrag für den Blickwinkel</b><small>Ihre Perspektive auf gute Lehre veröffentlichen</small></span>
+        <svg class="way__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7 Aktuelles & Einblicke (Grau) ============ -->
+<section class="section section--grey news" id="aktuelles" aria-labelledby="news-title">
+  <div class="wrap">
+    <header class="section-head section-head--split">
+      <div>
+        <p class="kicker"><i class="dot" aria-hidden="true"></i>Aktuelles &amp; Einblicke</p>
+        <h2 id="news-title">Was gerade <span class="accent">bewegt</span></h2>
+      </div>
+      <a class="link-arrow" href="#">Zum Nachrichtenarchiv <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </header>
+
+    <ul class="news__grid">
+      <li class="card reveal">
+        <span class="card__frame" aria-hidden="true"></span>
+        <article class="card__inner" data-spot>
+          <span class="card__icon" aria-hidden="true"><svg><use href="#i-doc"/></svg></span>
+          <p class="card__kicker">Aktuelles</p>
+          <h3><a href="#">Neue Perspektiven für die Lehrpraxis</a></h3>
+          <p>Impulse, Materialien und Austausch für eine zukunftsfähige Hochschuldidaktik.</p>
+          <span class="card__more" aria-hidden="true">Mehr erfahren <svg><use href="#i-arrow"/></svg></span>
+        </article>
+      </li>
+      <li class="card reveal">
+        <span class="card__frame" aria-hidden="true"></span>
+        <article class="card__inner" data-spot>
+          <span class="card__icon" aria-hidden="true"><svg><use href="#i-eye"/></svg></span>
+          <p class="card__kicker">Blickwinkel</p>
+          <h3><a href="https://www.dghd.de/blickwinkel/">Was gute Lehre für mich ausmacht</a></h3>
+          <p>Mitglieder erzählen, welche Fragen sie in ihrer Arbeit gerade beschäftigen.</p>
+          <span class="card__more" aria-hidden="true">Mehr erfahren <svg><use href="#i-arrow"/></svg></span>
+        </article>
+      </li>
+      <li class="card reveal">
+        <span class="card__frame" aria-hidden="true"></span>
+        <article class="card__inner" data-spot>
+          <span class="card__icon" aria-hidden="true"><svg><use href="#i-voice"/></svg></span>
+          <p class="card__kicker">Stellungnahme</p>
+          <h3><a href="#">Hochschuldidaktik stärken – Position der dghd</a></h3>
+          <p>Warum hochschuldidaktische Einrichtungen verlässliche Strukturen brauchen.</p>
+          <span class="card__more" aria-hidden="true">Mehr erfahren <svg><use href="#i-arrow"/></svg></span>
+        </article>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 8 Wissen & Ressourcen (Weiß, Bento) ============ -->
+<section class="section knowledge" aria-labelledby="knowledge-title">
+  <div class="wrap knowledge__grid">
+    <div class="knowledge__copy">
+      <p class="kicker"><i class="dot" aria-hidden="true"></i>Publikationen &amp; Wissen</p>
+      <h2 id="knowledge-title">Wissen, das in die <mark class="hl">Lehre wirkt</mark></h2>
+      <p class="lead">Fachbeiträge, Keynotes und Materialien aus der Community – frei zugänglich und zum Weiterdenken.</p>
+      <ul class="resources">
+        <li><a href="https://www.dghd.de/die-dghd/blickpunkt-hochschuldidaktik/" data-spot><span class="res__icon" aria-hidden="true"><svg><use href="#i-book"/></svg></span><b>Blickpunkt Hochschuldidaktik</b><small>Die Publikationsreihe der dghd</small></a></li>
+        <li><a href="#" data-spot><span class="res__icon" aria-hidden="true"><svg><use href="#i-mic"/></svg></span><b>Keynotes</b><small>Vorträge der Jahrestagungen</small></a></li>
+        <li><a href="#" data-spot><span class="res__icon" aria-hidden="true"><svg><use href="#i-compass"/></svg></span><b>Themen-Dossiers</b><small>Beiträge und Termine nach Thema</small></a></li>
+        <li><a href="https://www.dghd.de/die-dghd/downloads/" data-spot><span class="res__icon" aria-hidden="true"><svg><use href="#i-download"/></svg></span><b>Downloads</b><small>Leitfäden, Standards und Formulare</small></a></li>
+      </ul>
+    </div>
+    <figure class="knowledge__art reveal" aria-hidden="true">
+      <span class="tilt tilt--gold"></span>
+      <span class="tilt tilt--violet"></span>
+      <img src="./Assets/illustrations/wissen-publikationen-frei.webp" alt="" width="884" height="695" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 9 Mitgliedschaft (Violett, Glas) ============ -->
+<section class="section section--violet join" aria-labelledby="join-title">
+  <div class="blobs blobs--dark" aria-hidden="true"><i class="blob blob--violet"></i><i class="blob blob--bordeaux"></i><i class="blob blob--gold"></i></div>
+  <div class="wrap join__grid">
+    <figure class="portrait reveal">
+      <span class="portrait__frame portrait__frame--gold" aria-hidden="true"></span>
+      <span class="portrait__frame portrait__frame--bordeaux" aria-hidden="true"></span>
+      <img src="./Assets/photos/community.jpg" alt="Fünf Menschen sitzen lachend nebeneinander auf einer Mauer" width="800" height="1067" loading="lazy">
+      <figcaption>Mitglieder gestalten die dghd – in Arbeitsgruppen, Netzwerken und Kommissionen.</figcaption>
+    </figure>
+    <div class="join__copy">
+      <p class="kicker"><i class="dot" aria-hidden="true"></i>Mitgliedschaft</p>
+      <h2 id="join-title">Werden Sie Teil der <mark class="hl">Fachgesellschaft</mark>.</h2>
+      <p class="lead">Als Mitglied gestalten Sie die Hochschuldidaktik aktiv mit und profitieren von einem starken Netzwerk.</p>
+      <ul class="checks glass-dark">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Mitarbeit in Arbeitsgruppen, Netzwerken und Kommissionen</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Vergünstigte Teilnahme an der Jahrestagung</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Persönlicher Bereich „Meine dghd“</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn--gold" href="https://www.dghd.de/community/mitglied-werden/">Mitglied werden <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--glass" href="https://www.dghd.de/community/mitglied-werden/">Vorteile &amp; Beiträge</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ Footer: Service + System ============ -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <span class="footer__logo"><span class="logo-crop"><img src="./Assets/dghd2026_bildmarke.svg" alt="dghd" width="220" height="110" loading="lazy"></span></span>
+      <p>Deutsche Gesellschaft für Hochschuldidaktik e.V.</p>
+      <a class="btn btn--glass btn--sm" href="https://www.dghd.de/kontakt/">Kontakt aufnehmen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <nav aria-labelledby="f-areas">
+      <h2 id="f-areas">Bereiche</h2>
+      <ul>
+        <li><a href="https://www.dghd.de/community/">Community</a></li>
+        <li><a href="https://www.dghd.de/forschung/">Wissenschaft &amp; Praxis</a></li>
+        <li><a href="https://www.dghd.de/praxis/veranstaltungskalender/">Veranstaltungen</a></li>
+        <li><a href="#aktuelles">Aktuelles &amp; Einblicke</a></li>
+        <li><a href="https://www.dghd.de/die-dghd/">Die dghd</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="f-service">
+      <h2 id="f-service">Service</h2>
+      <ul>
+        <li><a href="https://www.dghd.de/praxis/stellenboerse/">Stellenbörse</a></li>
+        <li><a href="https://www.dghd.de/didaktik-landkarte/">Didaktik-Landkarte</a></li>
+        <li><a href="https://www.dghd.de/die-dghd/downloads/">Downloads</a></li>
+        <li><a href="https://www.dghd.de/tagung-ausrichten/">Veranstaltung einreichen</a></li>
+        <li><a href="#">Stellenangebot einreichen</a></li>
+        <li><a href="#">Institution eintragen</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="f-system">
+      <h2 id="f-system">Rechtliches</h2>
+      <ul>
+        <li><a href="https://www.dghd.de/login/">Login / Meine dghd</a></li>
+        <li><a href="https://www.dghd.de/impressum/">Impressum</a></li>
+        <li><a href="https://www.dghd.de/datenschutz/">Datenschutz</a></li>
+        <li><a href="#">Barrierefreiheit</a></li>
+        <li><a href="https://www.dghd.de/cookie-richtlinie-eu/">Cookie-Einstellungen</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap footer__base">
+    <p>© 2026 dghd e.V.</p>
+    <a href="https://www.dghd.de/social-media/">Social Media</a>
+  </div>
+</footer>
+</div>
+</div>
+
+<script src="./js/startseite-v2.js?v=9" defer></script>
+</body>
+</html>

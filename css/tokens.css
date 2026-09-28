@@ -1,0 +1,88 @@
+:root {
+  --color-primary: #b7394a;
+  --color-primary-dark: #922c3b;
+  --color-primary-soft: #f7e9eb;
+  --color-secondary: #2e1f52;
+  --color-secondary-deep: #1f1538;
+  --color-secondary-soft: #eceaf1;
+  --color-accent: #e6c32b;
+  --color-accent-deep: #c9a61c;
+  --color-text: #3c3c3c;
+  --color-text-muted: #5e585c;
+  --color-text-soft: #7a7377;
+  --color-white: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8f6f7;
+  --color-surface-warm: #fbf8f6;
+  --color-nav: #f4f4f5;
+  --color-border: #e8e3e6;
+  --color-border-strong: #d8d8db;
+  --color-focus: #2e1f52;
+  --color-overlay: rgba(40, 40, 42, 0.28);
+  --gradient-headline: linear-gradient(90deg, #2e1f52 0%, #b7394a 38%, #e6c32b 100%);
+
+  --font: "Raleway", "Segoe UI", sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-md: 1rem;
+  --text-body: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.375rem;
+  --text-h3: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+  --text-h2: clamp(1.7rem, 1.2rem + 1.6vw, 2.55rem);
+  --text-display: clamp(2.65rem, 1.15rem + 4vw, 4.85rem);
+
+  --leading-display: 1.06;
+  --leading-heading: 1.18;
+  --leading-body: 1.7;
+  --tracking-display: -0.025em;
+  --tracking-label: 0.08em;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+  --space-11: 5rem;
+  --space-12: 6.5rem;
+  --space-13: 8rem;
+
+  --section-y: clamp(4.25rem, 6vw, 8.5rem);
+  --gutter: clamp(1rem, 1.4vw, 1.6rem);
+  --container: 1320px;
+  --page-max: 1440px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --header-h: 4.5rem;
+  --nav-rail: 4.5rem;
+  --nav-w: 17.5rem;
+  --nav-context-w: 22rem;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 280ms;
+  --duration-slow: 380ms;
+  --shadow-soft: 0 12px 32px rgba(73, 0, 88, 0.06);
+  --focus-ring: 0 0 0 3px var(--color-white), 0 0 0 6px var(--color-secondary);
+}
+
+@media (max-width: 899px) {
+  :root {
+    --section-y: clamp(4rem, 10vw, 5.5rem);
+    --header-h: 4.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 1ms;
+    --duration-slow: 1ms;
+  }
+}

@@ -1,0 +1,746 @@
+<title>dghd Fächermenü</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root{
+    --bg:#f7f3ef;
+    --surface:#ffffff;
+    --surface-2:#fbf8f5;
+    --ink:#2a1a1c;
+    --ink-soft:#6b5457;
+    --line:#e6dcd6;
+    --rail:#6f2029;
+    --rail-ink:#f3e4e2;
+    --rail-ink-dim:#c99a9c;
+    --accent:#8a2a32;
+    --accent-2:#c68a2e;
+    --focus:#2a1a1c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#211417;
+      --surface:#2c1b1e;
+      --surface-2:#332023;
+      --ink:#f3e9e6;
+      --ink-soft:#c9b3b0;
+      --line:#4a3438;
+      --rail:#180d0f;
+      --rail-ink:#f3e4e2;
+      --rail-ink-dim:#a97c7e;
+      --accent:#e2949a;
+      --accent-2:#e0b667;
+      --focus:#f3e9e6;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#211417;
+    --surface:#2c1b1e;
+    --surface-2:#332023;
+    --ink:#f3e9e6;
+    --ink-soft:#c9b3b0;
+    --line:#4a3438;
+    --rail:#180d0f;
+    --rail-ink:#f3e4e2;
+    --rail-ink-dim:#a97c7e;
+    --accent:#e2949a;
+    --accent-2:#e0b667;
+    --focus:#f3e9e6;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+  }
+  h1,h2,h3,.display{
+    font-family:"Fraunces", Georgia, serif;
+    text-wrap:balance;
+  }
+  .mono{font-family:"IBM Plex Mono", ui-monospace, monospace;}
+
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:24px 20px 60px;
+  }
+
+  .intro{
+    margin:0 0 20px;
+  }
+  .intro .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 8px;
+  }
+  .intro h1{
+    font-size:clamp(22px,4vw,30px);
+    font-weight:600;
+    margin:0 0 8px;
+    line-height:1.15;
+  }
+  .intro p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    line-height:1.55;
+    margin:0;
+  }
+
+  .app{
+    margin-top:22px;
+    display:flex;
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--surface);
+    min-height:520px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+
+  /* top utility bar spans full width above rail+panel+content, like a real site header */
+  .util{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px 10px;
+    padding:10px 16px;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+  }
+  .util .site-id{
+    margin-right:auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--accent);
+    letter-spacing:.01em;
+  }
+  .util .site-id .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent-2);
+    display:inline-block;
+  }
+  .btn{
+    font-family:"IBM Plex Sans", sans-serif;
+    font-size:12.5px;
+    font-weight:500;
+    border-radius:7px;
+    padding:7px 12px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .btn:hover{border-color:var(--ink-soft);}
+  .btn.primary{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+  .btn.primary:hover{filter:brightness(1.08);}
+  .btn:focus-visible, .row:focus-visible, .rail button:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:2px;
+  }
+
+  .shell{
+    display:flex;
+    flex:1;
+    min-height:0;
+  }
+
+  /* icon rail */
+  .rail{
+    width:84px;
+    flex:0 0 auto;
+    background:var(--rail);
+    color:var(--rail-ink);
+    display:flex;
+    flex-direction:column;
+    padding:14px 0 12px;
+  }
+  .rail button{
+    all:unset;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    padding:11px 6px;
+    margin:1px 8px;
+    border-radius:9px;
+    cursor:pointer;
+    color:var(--rail-ink-dim);
+    text-align:center;
+  }
+  .rail button svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;}
+  .rail button .lbl{
+    font-size:10.3px;
+    line-height:1.2;
+    font-weight:500;
+    letter-spacing:.01em;
+  }
+  .rail button:hover{color:var(--rail-ink);background:rgba(255,255,255,.06);}
+  .rail button.active{
+    color:var(--rail-ink);
+    background:rgba(255,255,255,.13);
+  }
+  .rail .spacer{flex:1;}
+  .rail .foot-btn{
+    color:var(--rail-ink-dim);
+    border-top:1px solid rgba(255,255,255,.14);
+    margin:8px 8px 0;
+    padding-top:12px;
+    font-size:10.3px;
+  }
+
+  /* drill panel */
+  .panel{
+    width:250px;
+    flex:0 0 auto;
+    border-right:1px solid var(--line);
+    background:var(--surface-2);
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
+  }
+  .panel.empty{
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    padding:20px;
+    text-align:center;
+  }
+  .crumb{
+    all:unset;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:14px 16px 4px;
+    color:var(--accent);
+    font-size:12.5px;
+    font-weight:500;
+    cursor:pointer;
+  }
+  .crumb svg{width:13px;height:13px;}
+  .crumb:hover{text-decoration:underline;}
+  .panel-head{
+    padding:8px 16px 10px;
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:16.5px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:4px;
+  }
+  .panel-head.top{padding-top:16px;}
+  .list{
+    list-style:none;
+    margin:0;
+    padding:4px 8px 10px;
+  }
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:9px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13.5px;
+    color:var(--ink);
+    line-height:1.35;
+  }
+  .row:hover{background:var(--surface);}
+  .row .chev{color:var(--ink-soft);flex:0 0 auto;}
+  .row .chev svg{width:13px;height:13px;}
+  .row .chev.expand{transition:transform .15s ease;}
+  .row .chev.expand.open{transform:rotate(180deg);color:var(--accent);}
+  .row .flag{
+    font-size:9.5px;
+    font-weight:600;
+    letter-spacing:.03em;
+    color:var(--accent-2);
+    border:1px solid currentColor;
+    border-radius:5px;
+    padding:1px 5px;
+    margin-left:6px;
+    flex:0 0 auto;
+    cursor:help;
+  }
+  .subrow{
+    padding:8px 10px 8px 26px;
+    border-radius:8px;
+    font-size:12.8px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .subrow:hover{background:var(--surface);color:var(--ink);}
+  .subrow::before{content:"–";color:var(--ink-soft);}
+  .sublist{
+    list-style:none;
+    margin:0 4px 4px;
+    padding:2px 0 4px;
+    border-left:2px solid var(--line);
+    margin-left:20px;
+  }
+  .note{
+    margin:2px 16px 14px;
+    padding-top:8px;
+    border-top:1px dashed var(--line);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    font-style:italic;
+    line-height:1.5;
+  }
+
+  /* content preview */
+  .content{
+    flex:1;
+    min-width:0;
+    padding:26px 30px;
+    overflow-y:auto;
+  }
+  .content .path{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+    letter-spacing:.01em;
+  }
+  .content h2{
+    font-size:clamp(20px,3vw,28px);
+    font-weight:600;
+    margin:0 0 10px;
+  }
+  .content .lede{
+    font-size:14px;
+    color:var(--ink-soft);
+    max-width:56ch;
+    line-height:1.6;
+    margin:0 0 18px;
+  }
+  .content .url{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    color:var(--accent);
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:6px 10px;
+  }
+  .content .placeholder-block{
+    margin-top:22px;
+    height:120px;
+    border-radius:10px;
+    background:linear-gradient(135deg, var(--surface-2), var(--bg));
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    font-size:12px;
+  }
+  .welcome ul{
+    padding-left:18px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:16px 14px 40px;}
+    .app{border-radius:10px;min-height:460px;}
+    .rail{width:60px;}
+    .rail button .lbl{display:none;}
+    .rail button svg{width:20px;height:20px;}
+    .panel{width:150px;}
+    .content{padding:18px 16px;}
+    .util{justify-content:space-between;}
+    .util .site-id span.full{display:none;}
+    .util .btn-label-full{display:none;}
+  }
+</style>
+
+<div class="wrap">
+  <div class="intro">
+    <p class="eyebrow">dghd · Webseiten-Relaunch · Klickprototyp</p>
+    <h1>Fächermenü – wie es sich anfühlt</h1>
+    <p>Interaktiver Entwurf der neuen Hauptnavigation nach dem Vorbild der NYU-Seitenleiste: eine feste Icon-Leiste links, daneben ein Fächer, der sich Ebene für Ebene weiter aufblättert. Inhalte aus dem Content-Mapping (Stand 10.09.2026) – zum Ausprobieren, nicht zum Copy-&amp;-Paste. Ab Ebene 2 entscheidet die Anzahl der Unterpunkte dynamisch über die Darstellung: 3 oder weniger klappen mit ⌄ an Ort und Stelle auf, 4 oder mehr öffnen mit › eine neue Spalte. Elemente mit <span class="flag" style="cursor:default;">i</span> sind offene Punkte.</p>
+  </div>
+
+  <div class="app">
+    <div style="display:flex;flex-direction:column;flex:1;min-width:0;">
+      <div class="util">
+        <div class="site-id"><span class="dot"></span><span class="full">dghd.de</span></div>
+        <button class="btn" id="btn-search" aria-label="Suchen">⌕<span class="btn-label-full"> Suchen</span></button>
+        <button class="btn" id="btn-login"><span class="btn-label-full">Login für </span>Mitglieder</button>
+        <button class="btn primary" id="btn-join">Mitglied werden</button>
+      </div>
+      <div class="shell">
+        <nav class="rail" id="rail" aria-label="Hauptbereiche"></nav>
+        <div class="panel" id="panel"></div>
+        <div class="content" id="content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ICONS = {
+  forschende: '<path d="M9 3v6l-4 8a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-8V3"/><path d="M7 3h6"/><path d="M8.5 14h5"/>',
+  lehrende: '<path d="M3 6.5 12 3l9 3.5-9 3.5-9-3.5Z"/><path d="M7 8.8v5c0 1 2.2 2.4 5 2.4s5-1.4 5-2.4v-5"/><path d="M20 7v6"/>',
+  professionals: '<circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><path d="M3.2 9.8a2.6 2.6 0 1 1 3.4 3.9"/><path d="M20.8 9.8a2.6 2.6 0 1 0-3.4 3.9"/>',
+  management: '<rect x="3.5" y="9" width="17" height="11" rx="1.3"/><path d="M8 9V6.5A2.5 2.5 0 0 1 10.5 4h3A2.5 2.5 0 0 1 16 6.5V9"/><path d="M3.5 13.5h17"/>',
+  tagungen: '<rect x="3.5" y="5" width="17" height="15" rx="1.6"/><path d="M3.5 9.5h17"/><path d="M8 3v3.2"/><path d="M16 3v3.2"/><circle cx="8.3" cy="13.2" r="1"/><circle cx="12" cy="13.2" r="1"/><circle cx="15.7" cy="13.2" r="1"/>',
+  blickwinkel: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/>',
+  dghd: '<path d="M12 3 4 7.2v3.7c0 5 3.4 8.9 8 10.1 4.6-1.2 8-5.1 8-10.1V7.2L12 3Z"/><path d="M9 12.2l2 2 4-4.4"/>'
+};
+function icon(key){ return '<svg viewBox="0 0 24 24">'+ICONS[key]+'</svg>'; }
+function chevIcon(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'; }
+function expandIcon(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'; }
+function backIcon(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>'; }
+// Ab Ebene 2 entscheidet die Anzahl der Unterpunkte über die Darstellung:
+// ≤3 Unterpunkte → an Ort und Stelle vertikal aufklappen; ≥4 Unterpunkte → nächste Ebene fächert als neue Spalte auf.
+const VERTICAL_MAX = 3;
+
+/* ---- Inhaltsbaum (aus Hauptnavigation-Entwurf-v1.md, Stand 2026-09-09) ---- */
+const TREE = [
+  { id:"forschende", icon:"forschende", label:"HD Forschende", children:[
+    { id:"f-kommission", label:"Forschungskommission", url:"/community/forschungskommission/" },
+    { id:"f-ags", label:"Arbeitsgruppen für HD Forschende", children:[
+      { id:"f-ag1", label:"AG Scholarship of Academic Development", url:"/community/arbeitsgruppen/ag-scholarship-of-academic-development/" },
+      { id:"f-ag2", label:"AG Qualitative Feedback- und Evaluationsmethoden", url:"/community/arbeitsgruppen/g-qualitative-feedback-und-evaluationsmethoden/" },
+      { id:"f-ag3", label:"AG Psychologie und Lehr-Lern-Forschung", url:"/community/arbeitsgruppen/ag-psychologie-und-lehr-lern-forschung/" }
+    ]},
+    { id:"f-foerderung", label:"Forschungsförderung & Nachwuchs", children:[
+      { id:"f-preis", label:"dghd-Nachwuchspreis", url:"/die-dghd/nachwuchspreis/" },
+      { id:"f-promo", label:"Promovierenden-Netzwerk", url:"/community/netzwerke/promovierenden-netzwerk/" }
+    ]},
+    { id:"f-pub", label:"Publikationen & Internationales", children:[
+      { id:"f-buchreihe", label:"Buchreihe „Blickpunkt Hochschuldidaktik“ – Editorial Board", url:"/die-dghd/blickpunkt-hochschuldidaktik/" },
+      { id:"f-themenreihe1", label:"Themenreihe „Hochschuldidaktik als Wissenschaft“", url:"/dghd-themenreihe-hochschuldidaktik-als-wissenschaft/" },
+      { id:"f-themenreihe2", label:"Themenreihe „Learning Analytics in Hochschulen“", url:"/dghd-themenreihe-learning-analytics-in-hochschulen/", flag:"neu verschoben" },
+      { id:"f-iced", label:"Internationale Kooperationen (ICED-Mitgliedschaft)", url:"/community/kooperationen/internationale-kooperationen/" },
+      { id:"f-konf", label:"Internationale Konferenzen & Publikationsmöglichkeiten", url:"/internationales/sichtbarkeit/" }
+    ]}
+  ], note:"Querverweis, kein Menüpunkt: Jahrestagung – Forschungsforum & JFMH → Ast „Tagungen“. (v2: „Publikationen“ und „International“ zusammengelegt, 5→4 Ebene-2-Punkte)" },
+
+  { id:"lehrende", icon:"lehrende", label:"Lehrende", children:[
+    { id:"l-ags1", label:"Didaktik & Prüfungsformen", flag:"neue Gruppe", children:[
+      { id:"l-ag2", label:"AG Prüfen und Prüfungsdidaktik", url:"/community/arbeitsgruppen/ag-pruefen-und-pruefungsdidaktik/" },
+      { id:"l-ag3", label:"AG Forschendes Lernen", url:"/community/arbeitsgruppen/ag-forschendes-lernen/" },
+      { id:"l-ag5", label:"AG Schreibdidaktik in der Hochschuldidaktik", url:"/community/arbeitsgruppen/ag-schreibdidaktik-in-der-hochschuldidaktik/" },
+      { id:"l-ag6", label:"AG Ingenieurdidaktik", url:"/community/arbeitsgruppen/ag-ingenieurdidaktik/" }
+    ]},
+    { id:"l-ags2", label:"Digitalisierung & Gesellschaft", flag:"neue Gruppe", children:[
+      { id:"l-ag1", label:"AG Digitale Medien und Hochschuldidaktik", children:[
+          { id:"l-ag1-1", label:"Ziele der AG (Beispiel)" },
+          { id:"l-ag1-2", label:"Aktuelle Projekte & Publikationen (Beispiel)" },
+          { id:"l-ag1-3", label:"Kontakt zur AG (Beispiel)" }
+        ] },
+      { id:"l-ag4", label:"AG Open Teach Ware – Lehrportale", url:"/community/arbeitsgruppen/ag-open-teach-ware-lehrportale/" },
+      { id:"l-ag7", label:"AG Civic Engagement und Service Learning", url:"/community/arbeitsgruppen/ag-civic-engagement-und-service-learning/" },
+      { id:"l-ag8", label:"AG Transformatives Lernen und Nachhaltigkeit", url:"/community/arbeitsgruppen/ag-transformatives-lernen-und-nachhaltigkeit/" }
+    ]},
+    { id:"l-standards", label:"Standards & Anerkennung", children:[
+      { id:"l-std1", label:"Standards für die Praxis", url:"/praxis/standards-fuer-die-praxis/" },
+      { id:"l-std2", label:"Standards der gegenseitigen Anerkennung", url:"/praxis/", flag:"Dopplung?" }
+    ]},
+    { id:"l-th1", label:"Themenreihe „Gesellschaftliche Bildung in der Hochschuldidaktik“", url:"/themenreihe-gesellschaftliche-bildung-in-der-hochschuldidaktik/", flag:"neu verschoben" },
+    { id:"l-th2", label:"Themenreihe „KI in der Hochschullehre“", url:"/praxis/veranstaltungskalender/dghd-themenreihe-ki-in-der-hochschullehre/", flag:"neu verschoben" }
+  ], note:"Querverweis, kein Menüpunkt: Offene Foren auf Jahrestagungen → „Tagungen“. Newsletter & Blog-Beiträge → „Blickwinkel“. (v2: AG-Sammelgruppe in zwei thematische Cluster aufgeteilt, Themenreihen entpackt, 3→5 Ebene-2-Punkte)" },
+
+  { id:"professionals", icon:"professionals", label:"HD Professionals", children:[
+    { id:"p-kommission", label:"Weiterbildungskommission", url:"/community/weiterbildungskommission/" },
+    { id:"p-ag1", label:"AG Trainer und Trainerinnen", url:"/community/arbeitsgruppen/ag-trainer-und-trainerinnen/" },
+    { id:"p-ag2", label:"AG Hochschuldidaktische Regional- und Landesnetzwerke", url:"/community/arbeitsgruppen/community-arbeitsgruppen-ag-hochschuldidaktische-regional-und-landesnetzwerke/" },
+    { id:"p-ag3", label:"AG Netzwerktreffen", url:"/community/arbeitsgruppen/ag-netzwerktreffen/", flag:"offen" },
+    { id:"p-qual", label:"Standards & Nachwuchs", children:[
+      { id:"p-q1", label:"Standards für Trainer:innen", url:"/praxis/" },
+      { id:"p-q2", label:"Standards für Anrechnung von Leistungen", url:"/praxis/", flag:"Dopplung?" },
+      { id:"p-q3", label:"Nachwuchsprogramme für Trainer:innen", url:"/community/" }
+    ]}
+  ], note:"Querverweis, kein Menüpunkt: Arbeitstagung – Train-the-Trainer Sessions → „Tagungen“. (v2: AG-Sammelgruppe entpackt, 3→5 Ebene-2-Punkte)" },
+
+  { id:"management", icon:"management", label:"Management von HD-Einrichtungen", children:[
+    { id:"m-vorstand", label:"Vorstand & Kommissionen", children:[
+      { id:"m-v1", label:"Vorstand der dghd – Führungsebene", url:"/die-dghd/der-vorstand/" },
+      { id:"m-v2", label:"Alle Kommissionen – strategische Koordination", url:"/die-dghd/kommissionen/" },
+      { id:"m-v3", label:"Kommission für Politik – Hochschulpolitik", url:"/politik/" },
+      { id:"m-v4", label:"Kommission für Kommunikation und Öffentlichkeitsarbeit", url:"/community/kommunikation-und-oeffentlichkeitsarbeit/" },
+      { id:"m-p1", label:"Positionspapiere und Stellungnahmen", url:"/politik/" }
+    ]},
+    { id:"m-mitglied", label:"Mitgliedschaft & Governance", children:[
+      { id:"m-m1", label:"Institutionelle Mitgliedschaft – strategische Vorteile", url:"/community/mitglied-werden/" },
+      { id:"m-m2", label:"Mitgliederversammlung – Governance", url:"/community/mitglied-werden/" },
+      { id:"m-m3", label:"Geschäftsstelle und Administration", url:"/community/mitglied-werden/" }
+    ]},
+    { id:"m-akko", label:"Akkreditierungskommission (akko)", flag:"seit 08.09. hier", children:[
+      { id:"m-akko1", label:"Ziele der akko", url:"/community/akkreditierungskommission/ziele-der-akko/" },
+      { id:"m-akko2", label:"Auftrag und Verfahren", url:"/community/akkreditierungskommission/verfahren-der-akko/" },
+      { id:"m-akko3", label:"Einladung zur Teilnahme", url:"/community/akkreditierungskommission/einladung-zur-teilnahme/" },
+      { id:"m-akko4", label:"Akkreditierte Personen", url:"/community/akkreditierungskommission/dghd-akkreditiert/" },
+      { id:"m-akko5", label:"Akkreditierte Programme und Einrichtungen", url:"/community/akkreditierungskommission/akkreditierte-programme/" },
+      { id:"m-akko6", label:"akko-Downloads", url:"/community/akkreditierungskommission/akko-downloads/" },
+      { id:"m-akko7", label:"Kontakt zur akko", url:"/community/akkreditierungskommission/kontakt-zur-akko/" }
+    ]},
+    { id:"m-vernetzung", label:"Vernetzung, Kooperationen & Projekte", children:[
+      { id:"m-vn1", label:"Kooperationen mit anderen Fachgesellschaften", url:"/community/kooperationen/" },
+      { id:"m-vn2", label:"Gemeinsame AG mit der GMW", url:"/community/kooperationen/gesellschaft-fuer-medien-in-der-wissenschaft/", flag:"offen" },
+      { id:"m-vn3", label:"Internationale Strategien (ICED u. a.)", url:"/community/kooperationen/internationale-kooperationen/" },
+      { id:"m-vn4", label:"Keynotes und internationale Expertise", url:"/internationales/keynotes/" },
+      { id:"m-vn5", label:"Netzwerke – Übersicht", url:"/community/netzwerke/", children:[
+        { id:"m-net1", label:"Netzwerk Fachhochschulen / HAWs", url:"/community/netzwerke/netzwerk-fachhochschulen-haws/", flag:"offen" },
+        { id:"m-net2", label:"Netzwerk „Theologie und Hochschuldidaktik“", url:"/community/netzwerke/netzwerk-theologie-und-hochschuldidaktik/", flag:"offen" },
+        { id:"m-net3", label:"Netzwerk Tutorienarbeit an Hochschulen", url:"/community/netzwerke/netzwerk-tutorienarbeit-an-hochschulen/", flag:"offen" }
+      ]},
+      { id:"m-pg1", label:"Projektgruppe zum beruflichen Selbstverständnis der Hochschuldidaktik", url:"/community/kooperationen/ag-zum-beruflichen-selbstverstandnis-der-hochschuldidaktik/", flag:"offen" }
+    ]},
+    { id:"m-orga", label:"Organisationsentwicklung", flag:"neue Gruppe", children:[
+      { id:"m-ag1", label:"AG Curriculumentwicklung", url:"/community/arbeitsgruppen/ag-curriculumentwicklung/", flag:"seit 08.09. hier" },
+      { id:"m-pers1", label:"Stellenanzeigen – strategische Personalgewinnung", url:"/praxis/stellenboerse/" }
+    ]}
+  ], note:"v2: „Politik & Positionen“ in „Vorstand & Kommissionen“ integriert, „Projektgruppen“ in „Vernetzung & Kooperationen“ integriert, Einzel-AG mit „Personal & Stellen“ zu „Organisationsentwicklung“ zusammengelegt, 8→5 Ebene-2-Punkte." },
+
+  { id:"tagungen", icon:"tagungen", label:"Tagungen", children:[
+    { id:"t1", label:"Fachtagungen / Jahrestagungen", url:"/die-dghd/dghd-jahrestagungen/" },
+    { id:"t2", label:"Arbeitstagungen (mitgliederexklusiv)", url:"/arbeitstagungen/" },
+    { id:"t3", label:"Tagung ausrichten", url:"/tagung-ausrichten/" },
+    { id:"t4", label:"Veranstaltungskalender", url:"/praxis/veranstaltungskalender/" },
+    { id:"t5", label:"Junges Forum für Medien und Hochschulentwicklung (JFMH)", url:"/community/kooperationen/junges-forum-fuer-medien-und-hochschulentwicklung/" }
+  ], note:"Zielgruppenübergreifend – deshalb eigener Ebene-1-Punkt statt Mehrfachnennung." },
+
+  { id:"blickwinkel", icon:"blickwinkel", label:"Blickwinkel", children:[
+    { id:"b1", label:"Alle Beiträge", url:"/blickwinkel/" },
+    { id:"b2", label:"Blickwinkel FAQ", url:"/blickwinkel-faq/" },
+    { id:"b3", label:"Social Media & Netiquette", url:"/social-media/" },
+    { id:"b4", label:"dghd-Newsletter-Archiv", url:"/die-dghd/newsletter/" },
+    { id:"b5", label:"Beitrag einreichen", url:"/kontakt/" }
+  ]},
+
+  { id:"dghd", icon:"dghd", label:"Die dghd", children:[
+    { id:"d1", label:"Der Vorstand", url:"/die-dghd/der-vorstand/" },
+    { id:"d2", label:"Geschäftsstelle", url:"/die-dghd/geschaftsstelle/" },
+    { id:"d3", label:"Satzung", url:"/die-dghd/satzung/" },
+    { id:"d4", label:"Kommissionen im Überblick", url:"/die-dghd/kommissionen/" },
+    { id:"d5", label:"Arbeitsgruppen im Überblick", url:"/community/arbeitsgruppen/" },
+    { id:"d6", label:"Buchreihe der dghd", url:"/die-dghd/blickpunkt-hochschuldidaktik/" },
+    { id:"d7", label:"Downloads", url:"/die-dghd/downloads/" },
+    { id:"d8", label:"Jetzt Mitglied werden", url:"/community/mitglied-werden/" },
+    { id:"d9", label:"Kontakt", url:"/kontakt/" }
+  ], note:"Schlanker Transparenz-Ast – Überschneidung mit „Management von HD-Einrichtungen“ ist gewollt." }
+];
+
+/* ---- State & Rendering ---- */
+let path = ["lehrende"];      // Pfad von node-ids ab Ebene 1 (Standardansicht offen zum Start)
+let activeLeaf = null;        // aktuell im Content-Bereich angezeigtes Leaf
+let expanded = {};            // welche vertikal aufklappbaren Knoten offen sind (id -> bool)
+
+function findNode(list, id){
+  for(const n of list){
+    if(n.id===id) return n;
+    if(n.children){ const f=findNode(n.children,id); if(f) return f; }
+  }
+  return null;
+}
+function pathNodes(){
+  let list = TREE, out=[];
+  for(const id of path){
+    const n = findNode(list,id);
+    if(!n) break;
+    out.push(n);
+    list = n.children||[];
+  }
+  return out;
+}
+
+function renderRail(){
+  const rail = document.getElementById("rail");
+  rail.innerHTML = "";
+  TREE.forEach(top=>{
+    const b = document.createElement("button");
+    b.className = path[0]===top.id ? "active" : "";
+    b.innerHTML = icon(top.icon)+'<span class="lbl">'+top.label+'</span>';
+    b.onclick = ()=>{
+      if(path[0]===top.id){ path=[]; } else { path=[top.id]; }
+      activeLeaf=null; expanded={};
+      render();
+    };
+    rail.appendChild(b);
+  });
+  const spacer=document.createElement("div"); spacer.className="spacer"; rail.appendChild(spacer);
+  const foot=document.createElement("div"); foot.className="foot-btn"; foot.textContent="Alle Bereiche"; rail.appendChild(foot);
+}
+
+function renderPanel(){
+  const panel = document.getElementById("panel");
+  panel.innerHTML = "";
+  if(path.length===0){
+    panel.className="panel empty";
+    panel.innerHTML = '<div>← Bereich in der Leiste wählen,<br>um den Fächer zu öffnen.</div>';
+    return;
+  }
+  panel.className="panel";
+  const nodes = pathNodes();
+  const current = nodes[nodes.length-1];
+  const parent = nodes.length>1 ? nodes[nodes.length-2] : null;
+
+  if(parent){
+    const crumb=document.createElement("button");
+    crumb.className="crumb";
+    crumb.innerHTML = backIcon()+parent.label;
+    crumb.onclick=()=>{ path=path.slice(0,-1); expanded={}; render(); };
+    panel.appendChild(crumb);
+  }
+  const head=document.createElement("div");
+  head.className="panel-head"+(parent?"":" top");
+  head.textContent=current.label;
+  panel.appendChild(head);
+
+  const list=document.createElement("ul");
+  list.className="list";
+  (current.children||[]).forEach(item=>{
+    list.appendChild(renderListItem(item,[]));
+  });
+  panel.appendChild(list);
+
+  if(current.note){
+    const note=document.createElement("div");
+    note.className="note";
+    note.textContent=current.note;
+    panel.appendChild(note);
+  }
+}
+
+function flagHtml(text){
+  return '<span class="flag" title="'+text+'">i</span>';
+}
+
+// Baut EINEN Menüpunkt (li). Ab Ebene 2 entscheidet allein die Anzahl der
+// Unterpunkte über die Darstellung – siehe VERTICAL_MAX oben. `extra` sammelt
+// die Labels vertikal aufgeklappter Vorfahren (die nicht Teil von `path`
+// sind), damit Breadcrumbs auch für Blätter in einer aufgeklappten Liste
+// stimmen.
+function renderListItem(item, extra){
+  const li=document.createElement("li");
+  const childCount = item.children ? item.children.length : 0;
+  if(childCount>0 && childCount<=VERTICAL_MAX){
+    li.appendChild(renderExpandRow(item, extra));
+  } else if(childCount>0){
+    const row=document.createElement("div");
+    row.className="row"; row.tabIndex=0;
+    row.title="Öffnet die nächste Ebene als neue Spalte ("+childCount+" Unterpunkte)";
+    row.innerHTML = '<span>'+item.label+(item.flag?flagHtml(item.flag):'')+'</span><span class="chev">'+chevIcon()+'</span>';
+    row.onclick=()=>{ path=[...path,item.id]; activeLeaf=null; render(); };
+    li.appendChild(row);
+  } else {
+    const row=document.createElement("div");
+    row.className="row"; row.tabIndex=0;
+    row.innerHTML = '<span>'+item.label+(item.flag?flagHtml(item.flag):'')+'</span>';
+    row.onclick=()=>{ activeLeaf=Object.assign({},item,{_crumbs:extra}); renderContent(); highlightActive(); };
+    li.appendChild(row);
+  }
+  return li;
+}
+
+// Vertikales Aufklappen an Ort und Stelle (≤3 Unterpunkte) – rekursiv, damit
+// dieselbe Regel auch für tiefer verschachtelte Punkte gilt.
+function renderExpandRow(item, extra){
+  const wrap=document.createElement("div");
+  const row=document.createElement("div");
+  row.className="row"; row.tabIndex=0;
+  const isOpen = !!expanded[item.id];
+  const childCount = item.children.length;
+  row.title=(isOpen?"Einklappen":"Klappt "+childCount+" Unterpunkt"+(childCount===1?"":"e")+" hier auf")+" – bleibt in dieser Spalte";
+  row.innerHTML = '<span>'+item.label+(item.flag?flagHtml(item.flag):'')+'</span><span class="chev expand'+(isOpen?' open':'')+'">'+expandIcon()+'</span>';
+  row.onclick=()=>{
+    expanded[item.id] = !expanded[item.id];
+    renderPanel();
+  };
+  wrap.appendChild(row);
+  if(isOpen){
+    const childExtra = extra.concat(item.label);
+    const sub=document.createElement("ul");
+    sub.className="sublist";
+    item.children.forEach(s=>{
+      const sli=document.createElement("li");
+      if(s.children && s.children.length){
+        sli.appendChild(renderListItem(s, childExtra));
+      } else {
+        const srow=document.createElement("div");
+        srow.className="subrow"; srow.tabIndex=0;
+        srow.innerHTML = s.label+(s.flag?flagHtml(s.flag):'');
+        srow.onclick=(e)=>{ e.stopPropagation(); activeLeaf=Object.assign({},s,{_crumbs:childExtra}); renderContent(); };
+        sli.appendChild(srow);
+      }
+      sub.appendChild(sli);
+    });
+    wrap.appendChild(sub);
+  }
+  return wrap;
+}
+
+function highlightActive(){ /* leichte visuelle Rückmeldung reicht über Content-Wechsel */ }
+
+function renderContent(){
+  const el = document.getElementById("content");
+  if(!activeLeaf){
+    const nodes = pathNodes();
+    if(nodes.length===0){
+      el.innerHTML = welcomeHtml();
+    } else {
+      const top = nodes[0];
+      el.innerHTML =
+        '<p class="path">dghd.de'+nodes.map(n=>" / "+n.label).join('')+'</p>'+
+        '<h2>'+top.label+'</h2>'+
+        '<p class="lede">Landingpage für diese Zielgruppe – in dieser Ausbaustufe zeigt der erste Klick noch die nächste Menüebene (siehe Fächer links). Eine eigene, redaktionell kuratierte Seite ist für eine spätere Ausbaustufe vorgesehen.</p>'+
+        '<div class="placeholder-block">Platzhalter – Seiteninhalt folgt</div>';
+    }
+    return;
+  }
+  const nodes = pathNodes();
+  const extra = activeLeaf._crumbs || [];
+  const crumbs = nodes.map(n=>n.label).concat(extra).join(' / ');
+  const isExample = /\(Beispiel\)\s*$/.test(activeLeaf.label);
+  el.innerHTML =
+    '<p class="path">dghd.de / '+crumbs+'</p>'+
+    '<h2>'+activeLeaf.label.replace(/\s*\(Beispiel\)$/,'')+'</h2>'+
+    (isExample
+      ? '<p class="lede">Illustrative Beispiel-Unterseite: Diese Gruppe hat ≤3 Unterpunkte und klappt deshalb – wie besprochen, ab Ebene 2 dynamisch – an Ort und Stelle vertikal auf, statt eine neue Spalte zu öffnen.</p>'
+      : '<p class="lede">Zielseite dieses Menüpunkts.</p>'+
+        (activeLeaf.url ? '<div class="url">dghd.de'+activeLeaf.url+'</div>' : '')
+    )+
+    '<div class="placeholder-block">Platzhalter – Seiteninhalt folgt</div>';
+}
+
+function welcomeHtml(){
+  return '<h2>Startzustand</h2>'+
+  '<p class="lede">Noch kein Bereich gewählt. Klicke links auf eine Icon-Leiste, um den Fächer zu öffnen – oder probiere direkt „Lehrende“ aus: dort öffnen manche Gruppen eine neue Spalte, andere klappen direkt vertikal auf.</p>'+
+  '<div class="welcome"><ul>'+
+  '<li>Ab Ebene 2 entscheidet die Anzahl der Unterpunkte dynamisch über die Darstellung: 3 oder weniger klappen mit dem Abwärts-Pfeil (⌄) an Ort und Stelle auf, 4 oder mehr öffnen mit dem Rechts-Pfeil (›) eine neue Spalte.</li>'+
+  '<li>Arbeitsgruppen erscheinen nur unter ihrer primären Zielgruppe.</li>'+
+  '<li>„Mitglied werden“ ist ein fester Button oben, kein Menüpunkt.</li>'+
+  '</ul></div>';
+}
+
+function render(){ renderRail(); renderPanel(); renderContent(); }
+render();
+
+document.getElementById("btn-join").onclick=()=>alert("CTA-Button „Mitglied werden“ – fester Header-Button, siehe Entscheidung vom 08.09.2026.");
+document.getElementById("btn-login").onclick=()=>alert("Login für Mitglieder (Platzhalter im Prototyp).");
+document.getElementById("btn-search").onclick=()=>alert("Such-Overlay (Platzhalter im Prototyp).");
+</script>

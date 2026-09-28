@@ -1,0 +1,42 @@
+﻿**********************
+nStart der Windows PowerShell-Aufzeichnung
+Startzeit: 20260922085338
+Benutzername: DESKTOP-C5BLTGB\haag_
+RunAs-Benutzer: DESKTOP-C5BLTGB\haag_
+Konfigurationsname: 
+Computer: DESKTOP-C5BLTGB (Microsoft Windows NT 10.0.19045.0)
+Hostanwendung: powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File c:\Users\haag_\Desktop\Github\dghd\scripts\sync-hub-scheduled.ps1
+Prozess-ID: 9844
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Sync: dghd-hub -> C:\Users\haag_\Desktop\Github\dghd\hub
+Transferred:              0 B / 0 B, -, 0 B/s, ETA -
+Checks:                18 / 18, 100%, Listed 48
+Elapsed time:         1.0s
+
+Fertig. Inhalt:
+          -1 2026-09-17 08:49:16        -1 Design
+          -1 2026-09-14 14:29:23        -1 Kategorien + Tags
+          -1 2026-09-14 14:37:25        -1 Navigation
+          -1 2026-09-03 22:47:49        -1 Wordpress Export
+
+
+Name              Mode   LastWriteTime
+----              ----   -------------
+Design            d----- 17.09.2026 08:49:16
+Kategorien + Tags d----- 14.09.2026 14:29:23
+Navigation        d----- 14.09.2026 14:37:25
+Wordpress Export  d----- 03.09.2026 22:47:49
+
+
+**********************
+Ende der Windows PowerShell-Aufzeichnung
+Endzeit: 20260922085341
+**********************

@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sidebar mit Unterpunkten – drei Varianten</title>
+<meta name="description" content="Vergleich: Wie die ausgeklappte Sidebar der dghd-Startseite aussieht, wenn die Unterpunkte mit angezeigt werden.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="./Assets/favicon_dghd.svg">
+<style>
+/* Grauer Wireframe-Stil wie in wireframe-startseite.html */
+:root{
+  --ink:#1c1c1c;--ink-2:#555;--ink-3:#8a8a8a;
+  --line:#d2d2d2;--line-2:#e6e6e6;--fill:#f4f4f4;--bar:#e2e2e2;--dash:#b4b4b4;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;padding:44px clamp(20px,3vw,56px) 90px;background:#fff;color:var(--ink);
+  font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif;font-size:14px;line-height:1.5}
+h1{margin:0;font-size:26px;letter-spacing:-.01em}
+.lead{margin:10px 0 0;max-width:78ch;color:var(--ink-2)}
+.facts{margin:22px 0 0;border:1px solid var(--line);background:var(--fill);padding:16px 18px;max-width:78ch;font-size:13px}
+.facts b{font-variant-numeric:tabular-nums}
+
+.variant{margin:48px 0 0;border-top:1px solid var(--line);padding-top:26px;
+  display:grid;grid-template-columns:minmax(0,660px) minmax(0,1fr);gap:32px;align-items:start}
+.variant h2{margin:0 0 4px;font-size:17px}
+.variant .kicker{margin:0 0 14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.eval h3{margin:18px 0 6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.eval ul{margin:0;padding-left:17px}
+.eval li{margin:0 0 5px;color:var(--ink-2);font-size:13px}
+.verdict{margin:18px 0 0;border:1px solid var(--line);padding:12px 14px;font-size:13px;background:var(--fill)}
+
+/* Bildschirm-Attrappe */
+.frame{position:relative;height:620px;border:1px solid var(--line);overflow:hidden;background:#fff}
+.frame__scroll{position:absolute;inset:0;display:flex}
+.rail{width:250px;flex:none;border-right:1px solid var(--line);padding:16px 14px;overflow-y:auto;background:#fff}
+.flyout{width:280px;flex:none;border-right:1px solid var(--line);padding:16px 14px;overflow-y:auto;background:#fcfcfc}
+.content{flex:1;padding:18px;min-width:0;background:#fff}
+
+.logo{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.logo img{height:38px;width:auto}
+.burger{border:1px solid var(--line);padding:8px 10px;display:flex;align-items:center;gap:8px}
+.burger i{display:block;width:16px;border-top:1px solid var(--ink-2)}
+.burger i::before,.burger i::after{content:"";display:block;width:16px;border-top:1px solid var(--ink-2);margin-top:4px}
+.burger span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+
+.nav{margin:0;padding:0;list-style:none}
+.nav > li{margin:0 0 4px}
+.rub{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line-2);padding:8px 10px;font-size:13px;font-weight:700}
+.rub em{font-style:normal;color:var(--ink-3);font-weight:400;font-size:12px}
+.rub--open{border-color:var(--ink-3);background:var(--fill)}
+.sub{margin:2px 0 10px;padding:0 0 0 12px;list-style:none;border-left:1px solid var(--line-2)}
+.sub li{font-size:12.5px;color:var(--ink-2);padding:5px 0 5px 8px}
+.sub--3{margin:0;border:0;padding-left:10px}
+.sub--3 li{font-size:11.5px;color:var(--ink-3);padding:3px 0 3px 8px}
+.lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 7px}
+.bottom{margin-top:18px;border-top:1px solid var(--line-2);padding-top:12px;display:grid;gap:8px}
+.field{border:1px solid var(--line);padding:8px 10px;font-size:12px;color:var(--ink-3)}
+.cta{border:1px solid var(--ink-2);padding:9px;text-align:center;font-size:12px;font-weight:700;background:var(--fill)}
+.util{font-size:12px;color:var(--ink-2)}
+
+/* angedeuteter Seiteninhalt hinter der Navigation */
+.bar{display:block;height:10px;background:var(--bar);margin-bottom:7px}
+.bar--h{height:20px;background:#cfcfcf}
+.img{border:1px dashed var(--dash);background:repeating-linear-gradient(135deg,#fafafa 0 9px,#f1f1f1 9px 18px);
+  min-height:200px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.dim{opacity:.45}
+.cut{position:absolute;left:0;right:0;bottom:0;border-top:1px dashed var(--dash);background:rgba(255,255,255,.92);
+  padding:6px 10px;font-size:11px;color:var(--ink-3)}
+
+.deep{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:20px}
+.deep h3{margin:0 0 8px;font-size:13px}
+.deep .frame{height:560px}
+.deep .rail{width:205px;padding:14px 12px}
+.deep .rub{font-size:12.5px;padding:7px 9px}
+.deep .sub li{font-size:12px;padding:4px 0 4px 8px}
+.deep .note{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.tile{border:1px solid var(--line-2);padding:8px 10px;font-size:11.5px;color:var(--ink-2);margin-bottom:6px}
+.ctxnav{width:180px;flex:none;border-right:1px solid var(--line-2);padding:14px 12px;background:#fcfcfc;overflow-y:auto}
+.ctxnav p{margin:0 0 8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.ctxnav li{list-style:none;font-size:11.5px;color:var(--ink-2);padding:4px 0}
+.ctxnav ul{margin:0;padding:0}
+
+@media (max-width:1100px){
+  .deep{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:1000px){
+  .variant{grid-template-columns:minmax(0,1fr)}
+  .frame{height:540px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ausgeklappte Sidebar mit Unterpunkten – drei Varianten</h1>
+  <p class="lead">Antwort auf die Frage, wie die geöffnete Navigation aussähe, wenn die Unterpunkte mit angezeigt werden. Weiterhin nur Struktur, keine Gestaltung.</p>
+  <div class="facts">
+    Umfang laut Sitemap: <b>6</b> Rubriken · <b>34</b> Unterpunkte auf Ebene 2 · <b>46</b> weitere Einträge auf Ebene 3
+    (davon allein <b>12</b> Arbeitsgruppen und <b>4</b> Netzwerke unter „Community“).
+    Alle 34 Punkte der zweiten Ebene untereinander ergeben rund <b>1.150 px</b> Höhe – mehr, als ein Laptop-Bildschirm hergibt.
+  </div>
+</header>
+
+<!-- ============ VARIANTE A ============ -->
+<section class="variant">
+  <div>
+    <p class="kicker">Variante A</p>
+    <h2>Alle Unterpunkte untereinander</h2>
+    <div class="frame">
+      <div class="frame__scroll">
+        <div class="rail">
+          <div class="logo">
+            <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd">
+            <span class="burger"><i aria-hidden="true"></i><span>Menü</span></span>
+          </div>
+          <ul class="nav">
+            <li><span class="rub">Community</span>
+              <ul class="sub">
+                <li>Community im Überblick</li><li>Arbeitsgruppen</li><li>Netzwerke</li>
+                <li>Kommissionen</li><li>Nachwuchs</li><li>Kooperationen</li><li>Mitgliedschaft</li>
+              </ul>
+            </li>
+            <li><span class="rub">Wissenschaft &amp; Praxis</span>
+              <ul class="sub">
+                <li>Überblick</li><li>Forschung</li><li>Praxis &amp; Qualitätsentwicklung</li>
+                <li>Themen</li><li>Publikationen &amp; Wissen</li><li>Internationales &amp; Politik</li>
+              </ul>
+            </li>
+            <li><span class="rub">Veranstaltungen</span>
+              <ul class="sub">
+                <li>Überblick</li><li>Veranstaltungskalender</li><li>dghd-Jahrestagung</li><li>Veranstaltung einreichen</li>
+              </ul>
+            </li>
+            <li><span class="rub">Aktuelles &amp; Einblicke</span>
+              <ul class="sub">
+                <li>Aktuelles</li><li>Blickwinkel</li><li>Nachrichtenarchiv</li><li>dghd-Newsletter</li>
+              </ul>
+            </li>
+            <li><span class="rub">Die dghd</span>
+              <ul class="sub">
+                <li>Über die dghd</li><li>Vorstand</li><li>Geschäftsstelle</li><li>Kooperationen</li><li>Satzung</li><li>Kontakt</li>
+              </ul>
+            </li>
+            <li><span class="rub">Service</span>
+              <ul class="sub">
+                <li>Stellenbörse</li><li>Didaktik-Landkarte</li><li>Downloads</li><li>Newsletter</li>
+                <li>Veranstaltung einreichen</li><li>Stellenangebot einreichen</li><li>Institution eintragen</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="bottom">
+            <span class="field">Suche …</span>
+            <span class="util">Login / Meine dghd</span>
+            <span class="cta">Mitglied werden</span>
+          </div>
+        </div>
+        <div class="content dim">
+          <span class="bar bar--h" style="width:70%"></span>
+          <span class="bar" style="width:90%"></span>
+          <span class="bar" style="width:60%"></span>
+          <div class="img" style="margin-top:18px">Hero</div>
+        </div>
+      </div>
+      <p class="cut">Das Panel ist höher als der Bildschirm – die Navigation muss gescrollt werden, Suche und „Mitglied werden“ liegen unterhalb der Kante.</p>
+    </div>
+  </div>
+  <div class="eval">
+    <h3>Dafür</h3>
+    <ul>
+      <li>Alles auf einen Blick, kein zweiter Klick nötig.</li>
+      <li>Einfach umzusetzen und vorhersehbar.</li>
+    </ul>
+    <h3>Dagegen</h3>
+    <ul>
+      <li>Rund 1.150 px Höhe: Ein Teil der Rubriken ist beim Öffnen nicht sichtbar.</li>
+      <li>Suche, Login und „Mitglied werden“ rutschen aus dem Blick, obwohl sie unten verankert sein sollen.</li>
+      <li>Die dritte Ebene – 12 Arbeitsgruppen, 4 Netzwerke, 4 Kommissionen – passt gar nicht hinein.</li>
+      <li>Alle 34 Punkte wirken gleich wichtig.</li>
+    </ul>
+    <p class="verdict">Nur tragfähig, wenn die zweite Ebene deutlich kürzer wird – etwa 3 bis 4 Punkte je Rubrik.</p>
+  </div>
+</section>
+
+<!-- ============ VARIANTE B ============ -->
+<section class="variant">
+  <div>
+    <p class="kicker">Variante B</p>
+    <h2>Akkordeon – eine Rubrik geöffnet</h2>
+    <div class="frame">
+      <div class="frame__scroll">
+        <div class="rail">
+          <div class="logo">
+            <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd">
+            <span class="burger"><i aria-hidden="true"></i><span>Menü</span></span>
+          </div>
+          <ul class="nav">
+            <li><span class="rub rub--open">Community <em>–</em></span>
+              <ul class="sub">
+                <li>Community im Überblick</li><li>Arbeitsgruppen</li><li>Netzwerke</li>
+                <li>Kommissionen</li><li>Nachwuchs</li><li>Kooperationen</li><li>Mitgliedschaft</li>
+              </ul>
+            </li>
+            <li><span class="rub">Wissenschaft &amp; Praxis <em>+</em></span></li>
+            <li><span class="rub">Veranstaltungen <em>+</em></span></li>
+            <li><span class="rub">Aktuelles &amp; Einblicke <em>+</em></span></li>
+            <li><span class="rub">Die dghd <em>+</em></span></li>
+            <li><span class="rub">Service <em>+</em></span></li>
+          </ul>
+          <div class="bottom">
+            <span class="field">Suche …</span>
+            <span class="util">Login / Meine dghd</span>
+            <span class="cta">Mitglied werden</span>
+          </div>
+        </div>
+        <div class="content dim">
+          <span class="bar bar--h" style="width:70%"></span>
+          <span class="bar" style="width:90%"></span>
+          <span class="bar" style="width:60%"></span>
+          <div class="img" style="margin-top:18px">Hero</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="eval">
+    <h3>Dafür</h3>
+    <ul>
+      <li>Passt ohne Scrollen auf den Bildschirm; alle sechs Rubriken bleiben sichtbar.</li>
+      <li>Suche und „Mitglied werden“ bleiben unten verankert.</li>
+      <li>Der geöffnete Zweig zeigt, wo man sich befindet.</li>
+    </ul>
+    <h3>Dagegen</h3>
+    <ul>
+      <li>Ein zusätzlicher Klick je Rubrik.</li>
+      <li>Beim Öffnen springen die darunterliegenden Rubriken nach unten.</li>
+      <li>Für die dritte Ebene wird es auch hier eng.</li>
+    </ul>
+    <p class="verdict">Die ruhigste Lösung, solange die Sidebar schmal bleiben soll.</p>
+  </div>
+</section>
+
+<!-- ============ VARIANTE C ============ -->
+<section class="variant">
+  <div>
+    <p class="kicker">Variante C</p>
+    <h2>Zweistufig – Rubriken und daneben die Unterpunkte</h2>
+    <div class="frame">
+      <div class="frame__scroll">
+        <div class="rail" style="width:230px">
+          <div class="logo">
+            <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd">
+            <span class="burger"><i aria-hidden="true"></i><span>Menü</span></span>
+          </div>
+          <ul class="nav">
+            <li><span class="rub rub--open">Community <em>›</em></span></li>
+            <li><span class="rub">Wissenschaft &amp; Praxis <em>›</em></span></li>
+            <li><span class="rub">Veranstaltungen <em>›</em></span></li>
+            <li><span class="rub">Aktuelles &amp; Einblicke <em>›</em></span></li>
+            <li><span class="rub">Die dghd <em>›</em></span></li>
+            <li><span class="rub">Service <em>›</em></span></li>
+          </ul>
+          <div class="bottom">
+            <span class="field">Suche …</span>
+            <span class="util">Login / Meine dghd</span>
+            <span class="cta">Mitglied werden</span>
+          </div>
+        </div>
+        <div class="flyout">
+          <p class="lbl" style="margin-top:0">Community</p>
+          <ul class="sub" style="border:0;padding-left:0;margin:0">
+            <li>Community im Überblick</li>
+            <li>Arbeitsgruppen
+              <ul class="sub sub--3">
+                <li>AG Digitale Medien und Hochschuldidaktik</li>
+                <li>AG Forschendes Lernen</li>
+                <li>AG Prüfen und Prüfungsdidaktik</li>
+                <li>… 9 weitere Arbeitsgruppen</li>
+              </ul>
+            </li>
+            <li>Netzwerke
+              <ul class="sub sub--3">
+                <li>Promovierenden-Netzwerk</li>
+                <li>Netzwerk Tutorienarbeit</li>
+                <li>… 2 weitere</li>
+              </ul>
+            </li>
+            <li>Kommissionen
+              <ul class="sub sub--3">
+                <li>Forschungskommission</li>
+                <li>Weiterbildungskommission</li>
+                <li>… 2 weitere</li>
+              </ul>
+            </li>
+            <li>Nachwuchs</li>
+            <li>Kooperationen</li>
+            <li>Mitgliedschaft</li>
+          </ul>
+        </div>
+        <div class="content dim" style="padding:14px">
+          <span class="bar bar--h" style="width:80%"></span>
+          <span class="bar" style="width:90%"></span>
+          <div class="img" style="margin-top:14px;min-height:150px">Hero</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="eval">
+    <h3>Dafür</h3>
+    <ul>
+      <li>Trägt als Einzige die dritte Ebene – Arbeitsgruppen, Netzwerke, Kommissionen.</li>
+      <li>Die Rubrikenliste bleibt ruhig, es springt nichts.</li>
+      <li>Entspricht der Tiefe der Sitemap.</li>
+    </ul>
+    <h3>Dagegen</h3>
+    <ul>
+      <li>Braucht rund 510 px Breite und verdeckt damit einen großen Teil der Seite.</li>
+      <li>Auf Telefonen muss die zweite Spalte die erste ersetzen – zwei getrennte Ansichten.</li>
+      <li>Aufwendiger in Umsetzung und Bedienung.</li>
+    </ul>
+    <p class="verdict">Die richtige Wahl, wenn die Navigation die volle Tiefe abbilden soll.</p>
+  </div>
+</section>
+
+
+<!-- ============ TIEFE: BEISPIEL ARBEITSGRUPPEN ============ -->
+<section class="variant" style="grid-template-columns:minmax(0,1fr)">
+  <div>
+    <p class="kicker">Anschlussfrage</p>
+    <h2>Wie geht es unter „Arbeitsgruppen“ weiter?</h2>
+    <p class="lead" style="margin-bottom:0">„Arbeitsgruppen“ ist kein Endpunkt, sondern enthält <b>12</b> einzelne AGs – ebenso „Netzwerke“ (4) und „Kommissionen“ (4). Dafür gibt es drei Fortsetzungen.</p>
+    <div class="deep">
+      <div>
+        <h3>B1 · Dritte Ebene klappt mit auf</h3>
+        <div class="frame">
+          <div class="frame__scroll">
+            <div class="rail">
+          <div class="logo">
+            <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd">
+            <span class="burger"><i aria-hidden="true"></i><span>Menü</span></span>
+          </div>
+              <ul class="nav">
+                <li><span class="rub rub--open">Community <em>–</em></span>
+                  <ul class="sub">
+                    <li>Community im Überblick</li>
+                    <li><b style="font-weight:700;color:var(--ink)">Arbeitsgruppen –</b>
+                      <ul class="sub sub--3">
+                    <li>AG Digitale Medien und Hochschuldidaktik</li>
+                    <li>AG Forschendes Lernen</li>
+                    <li>AG Prüfen und Prüfungsdidaktik</li>
+                    <li>AG Ingenieurdidaktik</li>
+                    <li>AG Civic Engagement und Service Learning</li>
+                    <li>AG Schuldidaktik in der Hochschuldidaktik</li>
+                    <li>AG Trainer und Trainerinnen</li>
+                    <li>AG Netzwerktreffen</li>
+                    <li>AG Qualitative Feedback- und Evaluationsmethoden</li>
+                    <li>AG Open Teach Ware – Lehrportale</li>
+                    <li>AG Psychologie und Lehr-Lern-Forschung</li>
+                    <li>AG Hochschuldidaktische Regional- und Landesnetzwerke</li>
+                      </ul>
+                    </li>
+                    <li>Netzwerke</li><li>Kommissionen</li><li>Nachwuchs</li>
+                    <li>Kooperationen</li><li>Mitgliedschaft</li>
+                  </ul>
+                </li>
+            <li><span class="rub">Wissenschaft &amp; Praxis <em>+</em></span></li>
+            <li><span class="rub">Veranstaltungen <em>+</em></span></li>
+            <li><span class="rub">Aktuelles &amp; Einblicke <em>+</em></span></li>
+            <li><span class="rub">Die dghd <em>+</em></span></li>
+            <li><span class="rub">Service <em>+</em></span></li>
+              </ul>
+            </div>
+            <div class="content dim"><span class="bar bar--h" style="width:70%"></span><span class="bar" style="width:90%"></span></div>
+          </div>
+          <p class="cut">Rund 900 px Navigation: Die übrigen Rubriken und der untere Block sind nicht mehr im Bild.</p>
+        </div>
+        <p class="note">Die Navigation trägt alles, wird aber wieder länger als der Bildschirm – genau das Problem von Variante A, nur eine Ebene tiefer.</p>
+      </div>
+
+      <div>
+        <h3>B2 · Klick führt auf die Seite „Arbeitsgruppen“</h3>
+        <div class="frame">
+          <div class="frame__scroll">
+            <div class="rail">
+          <div class="logo">
+            <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd">
+            <span class="burger"><i aria-hidden="true"></i><span>Menü</span></span>
+          </div>
+              <ul class="nav">
+                <li><span class="rub rub--open">Community <em>–</em></span>
+                  <ul class="sub">
+                    <li>Community im Überblick</li>
+                    <li><b style="font-weight:700;color:var(--ink)">Arbeitsgruppen ›</b></li>
+                    <li>Netzwerke</li><li>Kommissionen</li><li>Nachwuchs</li>
+                    <li>Kooperationen</li><li>Mitgliedschaft</li>
+                  </ul>
+                </li>
+            <li><span class="rub">Wissenschaft &amp; Praxis <em>+</em></span></li>
+            <li><span class="rub">Veranstaltungen <em>+</em></span></li>
+            <li><span class="rub">Aktuelles &amp; Einblicke <em>+</em></span></li>
+            <li><span class="rub">Die dghd <em>+</em></span></li>
+            <li><span class="rub">Service <em>+</em></span></li>
+              </ul>
+              <div class="bottom">
+                <span class="field">Suche …</span>
+                <span class="cta">Mitglied werden</span>
+              </div>
+            </div>
+            <div class="content">
+              <p class="lbl" style="margin-top:0">Unterseite · Community</p>
+              <span class="bar bar--h" style="width:60%"></span>
+              <span class="bar" style="width:90%;margin-bottom:14px"></span>
+              <div class="tile">AG Digitale Medien und Hochschuldidaktik</div>
+              <div class="tile">AG Forschendes Lernen</div>
+              <div class="tile">AG Prüfen und Prüfungsdidaktik</div>
+              <div class="tile">AG Ingenieurdidaktik</div>
+              <div class="tile">AG Civic Engagement und Service Learning</div>
+              <div class="tile">AG Schuldidaktik in der Hochschuldidaktik</div>
+              <div class="tile">AG Trainer und Trainerinnen</div>
+              <div class="tile">AG Netzwerktreffen</div>
+              <div class="tile" style="border-style:dashed;color:var(--ink-3)">… 4 weitere Arbeitsgruppen</div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Die Navigation endet auf Ebene 2. Die 12 Arbeitsgruppen stehen auf der Seite selbst – dort ist Platz für Beschreibung, Ansprechpersonen und Termine.</p>
+      </div>
+
+      <div>
+        <h3>B3 · Unterseite mit eigener Seitennavigation</h3>
+        <div class="frame">
+          <div class="frame__scroll">
+            <div class="rail" style="width:175px">
+          <div class="logo">
+            <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd">
+            <span class="burger"><i aria-hidden="true"></i><span>Menü</span></span>
+          </div>
+              <ul class="nav">
+                <li><span class="rub rub--open">Community <em>–</em></span>
+                  <ul class="sub">
+                    <li>Überblick</li>
+                    <li><b style="font-weight:700;color:var(--ink)">Arbeitsgruppen</b></li>
+                    <li>Netzwerke</li><li>Kommissionen</li><li>Nachwuchs</li>
+                  </ul>
+                </li>
+                <li><span class="rub">Wissenschaft &amp; Praxis <em>+</em></span></li>
+                <li><span class="rub">Veranstaltungen <em>+</em></span></li>
+              </ul>
+            </div>
+            <div class="ctxnav">
+              <p>In diesem Bereich</p>
+              <ul>
+                <li>AG Digitale Medien und Hochschuldidaktik</li>
+                <li>AG Forschendes Lernen</li>
+                <li>AG Prüfen und Prüfungsdidaktik</li>
+                <li>AG Ingenieurdidaktik</li>
+                <li>AG Civic Engagement und Service Learning</li>
+                <li>AG Schuldidaktik in der Hochschuldidaktik</li>
+                <li style="color:var(--ink-3)">… 6 weitere</li>
+              </ul>
+            </div>
+            <div class="content dim" style="padding:14px">
+              <span class="bar bar--h" style="width:80%"></span>
+              <span class="bar" style="width:95%"></span>
+              <span class="bar" style="width:70%"></span>
+              <div class="img" style="margin-top:14px;min-height:120px">Inhalt der AG</div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Die globale Navigation bleibt schmal, die dritte Ebene steht als eigene Spalte auf der Unterseite – sie wechselt mit dem Bereich, in dem man sich befindet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variant" style="grid-template-columns:minmax(0,1fr)">
+  <div class="eval" style="max-width:78ch">
+    <h3>Empfehlung</h3>
+    <p style="color:var(--ink-2);margin:0 0 10px">Variante B für die Startseite, weil die Sidebar dort schmal bleiben und den Hero nicht verdecken soll – und weil sie beim Öffnen ohne Scrollen auskommt.</p>
+    <p style="color:var(--ink-2);margin:0 0 10px">Für die Tiefe darunter: <b>B2</b>. Die Sidebar endet auf Ebene 2, „Arbeitsgruppen“ führt auf eine Übersichtsseite mit allen 12 AGs. Das hält die Navigation kurz und gibt den AGs den Platz, den sie brauchen. Wenn sich später zeigt, dass Nutzende häufig zwischen einzelnen AGs wechseln, lässt sich B3 ergänzen, ohne die globale Navigation zu ändern.</p>
+    <p style="color:var(--ink-2);margin:0">Variante C wäre die Alternative, falls die Navigation ausdrücklich bis zu den Arbeitsgruppen führen soll. Variante A setzt voraus, dass die zweite Ebene vorher gekürzt wird; „Vollständige Navigation“ im unteren Teil der Sidebar kann diese Lücke schließen und auf eine eigene Übersichtsseite führen.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sidebar mit Megamenü – Wireframe</title>
+<meta name="description" content="Wireframe: Sidebar der dghd-Startseite, die je Rubrik ein Megamenü mit allen Unterpunkten öffnet.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="./Assets/favicon_dghd.svg">
+<style>
+/* Grauer Wireframe-Stil – keine Gestaltung, nur Struktur. */
+:root{
+  --ink:#1c1c1c;--ink-2:#555;--ink-3:#8a8a8a;
+  --line:#d2d2d2;--line-2:#e6e6e6;--fill:#f4f4f4;--bar:#e2e2e2;--dash:#b4b4b4;
+  --rail-closed:74px;--rail:250px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);
+  font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif;font-size:14px;line-height:1.5}
+
+/* ---------- Leiste ---------- */
+.rail{position:fixed;inset:0 auto 0 0;z-index:50;width:var(--rail-closed);
+  background:#fff;border-right:1px solid var(--line);padding:20px 12px;
+  display:flex;flex-direction:column;gap:20px;overflow-y:auto}
+.rail.is-open{width:var(--rail);padding:24px 18px}
+.rail__bar{display:flex;flex-direction:column;align-items:center;gap:12px}
+.rail.is-open .rail__bar{flex-direction:row;justify-content:space-between}
+.rail__logo{display:flex;align-items:center;justify-content:center}
+.rail__logo img{width:auto;max-width:100%}
+.rail__logo .mark{display:block;height:38px}
+.rail__logo .full{display:none;height:50px}
+.rail.is-open .rail__logo{flex:1;justify-content:flex-start}
+.rail.is-open .rail__logo .mark{display:none}
+.rail.is-open .rail__logo .full{display:block}
+.burger{font:inherit;cursor:pointer;background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;gap:9px;padding:11px 8px}
+.burger:hover,.burger:focus-visible{border-color:var(--ink-3)}
+.burger i{display:block;width:18px;border-top:1px solid var(--ink-2)}
+.burger i::before,.burger i::after{content:"";display:block;width:18px;border-top:1px solid var(--ink-2);margin-top:4px}
+.burger span{display:none;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.rail.is-open .burger span{display:inline}
+
+.rail__panel{display:flex;flex-direction:column;gap:22px;flex:1}
+.rail__panel[hidden]{display:none}
+.rail h2{margin:0 0 9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.rail ul{margin:0;padding:0;list-style:none}
+.rub{width:100%;font:inherit;text-align:left;cursor:pointer;background:#fff;
+  border:1px solid var(--line-2);padding:9px 10px;margin-bottom:3px;font-size:13.5px;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rub:hover,.rub:focus-visible{border-color:var(--ink-3)}
+.rub[aria-expanded="true"]{border-color:var(--ink-3);background:var(--fill);font-weight:700}
+.rub span{color:var(--ink-3);font-weight:400}
+.rail__bottom{margin-top:auto;display:grid;gap:8px}
+.field{border:1px solid var(--line);padding:9px 11px;font-size:12px;color:var(--ink-3)}
+.util{font-size:12.5px;color:var(--ink-2)}
+.cta{border:1px solid var(--ink-2);padding:10px;text-align:center;font-size:12.5px;font-weight:700;background:var(--fill)}
+
+/* ---------- Megamenü: die zweite Spalte ---------- */
+.megawrap{position:fixed;top:0;bottom:0;left:var(--rail);z-index:49;
+  width:min(760px,calc(100vw - var(--rail)));
+  background:#fff;border-right:1px solid var(--line);
+  padding:24px 26px;overflow-y:auto}
+.megawrap[hidden]{display:none}
+.mega[hidden]{display:none}
+.mega__head{border-bottom:1px solid var(--line-2);padding-bottom:12px;margin-bottom:18px}
+.mega__title{margin:0;font-size:18px;font-weight:700}
+.mega__meta{margin:4px 0 0;font-size:11px;letter-spacing:.06em;color:var(--ink-3)}
+.mega__cols{columns:3;column-gap:26px}
+.mega__col{break-inside:avoid;margin:0 0 18px}
+.mega__h{margin:0 0 7px;font-size:12.5px;font-weight:700;border-bottom:1px solid var(--line-2);padding-bottom:5px}
+.mega__col ul{margin:0;padding:0;list-style:none}
+.mega__col li{font-size:12px;color:var(--ink-2);padding:3px 0}
+.mega__leaf{margin:0;font-size:11px;color:var(--ink-3)}
+.mega__foot{margin:6px 0 0;padding-top:14px;border-top:1px solid var(--line-2);font-size:12.5px;color:var(--ink-2)}
+.scrim{position:fixed;inset:0;z-index:48;background:rgba(0,0,0,.06)}
+.scrim[hidden]{display:none}
+
+/* ---------- angedeutete Seite ---------- */
+.page{margin-left:var(--rail-closed);padding:0 0 60px}
+.sec{border-bottom:1px solid var(--line);padding:40px clamp(24px,3vw,64px);position:relative}
+.note{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.tag{border:1px solid var(--line);padding:2px 7px;font-size:10px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:34px;align-items:center;min-height:62vh}
+.bar{display:block;height:10px;background:var(--bar);margin-bottom:7px}
+.bar--h{height:22px;background:#cfcfcf}
+.img{border:1px dashed var(--dash);background:repeating-linear-gradient(135deg,#fafafa 0 9px,#f1f1f1 9px 18px);
+  min-height:280px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:14px}
+.foot{padding:30px clamp(24px,3vw,64px);background:var(--fill);border-top:1px solid var(--line)}
+.foot h1{margin:0;font-size:15px}
+.foot p{margin:8px 0 0;font-size:12.5px;color:var(--ink-2);max-width:78ch}
+
+@media (max-width:900px){
+  .rail,.rail.is-open{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line);
+    flex-direction:row;flex-wrap:wrap;padding:14px 20px;gap:16px}
+  .rail__bar,.rail.is-open .rail__bar{flex:1 1 100%;flex-direction:row;justify-content:space-between}
+  .rail__logo .mark{display:none}
+  .rail__logo .full,.rail.is-open .rail__logo .full{display:block;height:42px}
+  .burger span{display:inline}
+  .rail__panel{flex:1 1 100%}
+  .rail__bottom{margin-top:0}
+  .megawrap{position:static;width:auto;border-right:0;border-top:1px solid var(--line);padding:18px 20px}
+  .mega__cols{columns:1}
+  .scrim{display:none}
+  .page{margin-left:0}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0}
+}
+</style>
+</head>
+<body>
+
+<aside class="rail" data-rail aria-label="Hauptnavigation (Wireframe)">
+  <div class="rail__bar">
+    <a class="rail__logo" href="#top">
+      <img class="mark" src="./Assets/favicon_dghd.svg" alt="dghd – zur Startseite">
+      <img class="full" src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik">
+    </a>
+    <button class="burger" type="button" data-toggle aria-expanded="false" aria-controls="rail-panel" aria-label="Menü öffnen">
+      <i aria-hidden="true"></i><span>Menü</span>
+    </button>
+  </div>
+
+  <div class="rail__panel" id="rail-panel" hidden>
+    <nav aria-label="Rubriken">
+      <h2>Rubriken</h2>
+      <ul>
+      <li><button class="rub" type="button" data-rub="community" aria-expanded="true" aria-controls="mega-community">Community<span aria-hidden="true">›</span></button></li>
+      <li><button class="rub" type="button" data-rub="wissenschaft-und-praxis" aria-expanded="false" aria-controls="mega-wissenschaft-und-praxis">Wissenschaft &amp; Praxis<span aria-hidden="true">›</span></button></li>
+      <li><button class="rub" type="button" data-rub="veranstaltungen" aria-expanded="false" aria-controls="mega-veranstaltungen">Veranstaltungen<span aria-hidden="true">›</span></button></li>
+      <li><button class="rub" type="button" data-rub="aktuelles-und-einblicke" aria-expanded="false" aria-controls="mega-aktuelles-und-einblicke">Aktuelles &amp; Einblicke<span aria-hidden="true">›</span></button></li>
+      <li><button class="rub" type="button" data-rub="die-dghd" aria-expanded="false" aria-controls="mega-die-dghd">Die dghd<span aria-hidden="true">›</span></button></li>
+      <li><button class="rub" type="button" data-rub="service" aria-expanded="false" aria-controls="mega-service">Service<span aria-hidden="true">›</span></button></li>
+      </ul>
+    </nav>
+    <div class="rail__bottom">
+      <span class="field">Suche …</span>
+      <span class="util">Login / Meine dghd</span>
+      <span class="cta">Mitglied werden</span>
+    </div>
+  </div>
+</aside>
+
+<div class="megawrap" data-mega hidden>
+    <div class="mega" id="mega-community" data-panel="community">
+      <div class="mega__head">
+        <p class="mega__title">Community</p>
+        <p class="mega__meta">7 Unterpunkte · 25 Einträge auf Ebene 3</p>
+      </div>
+      <div class="mega__cols">
+        <div class="mega__col">
+          <p class="mega__h">Community im Überblick</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Arbeitsgruppen</p>
+          <ul><li>AG Schuldidaktik in der Hochschuldidaktik</li><li>AG Digitale Medien und Hochschuldidaktik</li><li>AG Forschendes Lernen</li><li>AG Civic Engagement und Service Learning</li><li>AG Ingenieurdidaktik</li><li>AG Trainer und Trainerinnen</li><li>AG Netzwerktreffen</li><li>AG Qualitative Feedback- und Evaluationsmethoden</li><li>AG Open Teach Ware – Lehrportale</li><li>AG Psychologie und Lehr-Lern-Forschung</li><li>AG Prüfen und Prüfungsdidaktik</li><li>AG Hochschuldidaktische Regional- und Landesnetzwerke</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Netzwerke</p>
+          <ul><li>Promovierenden-Netzwerk</li><li>Netzwerk Tutorienarbeit an Hochschulen</li><li>Netzwerk Technologie und Hochschuldidaktik</li><li>Netzwerktreffen der Hochschuldidaktik in Deutschland</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Kommissionen</p>
+          <ul><li>Forschungskommission</li><li>Weiterbildungskommission</li><li>Akkreditierungskommission (AKKO)</li><li>Kommunikation &amp; Öffentlichkeitsarbeit</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Nachwuchs</p>
+          <ul><li>Promovierenden-Netzwerk</li><li>dghd-Nachwuchspreis</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Kooperationen</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Mitgliedschaft</p>
+          <ul><li>Mitglied werden</li><li>Vorteile &amp; Mitgliedsbeiträge</li><li>Meine dghd / Login</li></ul>
+        </div>
+      </div>
+      <p class="mega__foot">→ Community im Überblick</p>
+    </div>
+    <div class="mega" id="mega-wissenschaft-und-praxis" data-panel="wissenschaft-und-praxis" hidden>
+      <div class="mega__head">
+        <p class="mega__title">Wissenschaft &amp; Praxis</p>
+        <p class="mega__meta">6 Unterpunkte · 16 Einträge auf Ebene 3</p>
+      </div>
+      <div class="mega__cols">
+        <div class="mega__col">
+          <p class="mega__h">Wissenschaft &amp; Praxis im Überblick</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Forschung</p>
+          <ul><li>Hochschuldidaktische Forschung</li><li>Forschungskommission</li><li>Nachwuchsförderung</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Praxis &amp; Qualitätsentwicklung</p>
+          <ul><li>Standards für die Praxis</li><li>Weiterbildungskommission</li><li>Akkreditierungskommission (AKKO)</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Themen</p>
+          <ul><li>Themenübersicht</li><li>Themenseiten / Themen-Dossiers</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Publikationen &amp; Wissen</p>
+          <ul><li>Blickpunkt Hochschuldidaktik</li><li>Publikationen</li><li>Keynotes</li><li>Downloads</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Internationales &amp; Politik</p>
+          <ul><li>Internationale Kooperationen</li><li>Konferenzen &amp; Publikationsmöglichkeiten</li><li>Politik / Stellungnahmen</li><li>Internationale Aktivitäten</li></ul>
+        </div>
+      </div>
+      <p class="mega__foot">→ Wissenschaft &amp; Praxis im Überblick</p>
+    </div>
+    <div class="mega" id="mega-veranstaltungen" data-panel="veranstaltungen" hidden>
+      <div class="mega__head">
+        <p class="mega__title">Veranstaltungen</p>
+        <p class="mega__meta">4 Unterpunkte · 2 Einträge auf Ebene 3</p>
+      </div>
+      <div class="mega__cols">
+        <div class="mega__col">
+          <p class="mega__h">Veranstaltungen im Überblick</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Veranstaltungskalender</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">dghd-Jahrestagung</p>
+          <ul><li>Aktuelle Jahrestagung</li><li>Vergangene Jahrestagungen / Archiv</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Veranstaltung einreichen</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+      </div>
+      <p class="mega__foot">→ Veranstaltungen im Überblick</p>
+    </div>
+    <div class="mega" id="mega-aktuelles-und-einblicke" data-panel="aktuelles-und-einblicke" hidden>
+      <div class="mega__head">
+        <p class="mega__title">Aktuelles &amp; Einblicke</p>
+        <p class="mega__meta">4 Unterpunkte · 0 Einträge auf Ebene 3</p>
+      </div>
+      <div class="mega__cols">
+        <div class="mega__col">
+          <p class="mega__h">Aktuelles</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Blickwinkel</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Nachrichtenarchiv</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">dghd-Newsletter</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+      </div>
+      <p class="mega__foot">→ Aktuelles &amp; Einblicke im Überblick</p>
+    </div>
+    <div class="mega" id="mega-die-dghd" data-panel="die-dghd" hidden>
+      <div class="mega__head">
+        <p class="mega__title">Die dghd</p>
+        <p class="mega__meta">6 Unterpunkte · 3 Einträge auf Ebene 3</p>
+      </div>
+      <div class="mega__cols">
+        <div class="mega__col">
+          <p class="mega__h">Über die dghd</p>
+          <ul><li>Profil &amp; Auftrag</li><li>Ziele</li><li>Geschichte / Entwicklung</li></ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Vorstand</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Geschäftsstelle</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Kooperationen</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Satzung</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Kontakt</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+      </div>
+      <p class="mega__foot">→ Die dghd im Überblick</p>
+    </div>
+    <div class="mega" id="mega-service" data-panel="service" hidden>
+      <div class="mega__head">
+        <p class="mega__title">Service</p>
+        <p class="mega__meta">7 Unterpunkte · 0 Einträge auf Ebene 3</p>
+      </div>
+      <div class="mega__cols">
+        <div class="mega__col">
+          <p class="mega__h">Stellenbörse</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Didaktik-Landkarte</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Downloads</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Newsletter</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Veranstaltung einreichen</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Stellenangebot einreichen</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+        <div class="mega__col">
+          <p class="mega__h">Institution eintragen</p>
+          <p class="mega__leaf">Einzelseite</p>
+        </div>
+      </div>
+      <p class="mega__foot">→ Service im Überblick</p>
+    </div>
+</div>
+
+<div class="scrim" data-scrim hidden></div>
+
+<div class="page" id="top">
+  <section class="sec">
+    <p class="note">02 Hero / Einstieg <span class="tag">Statisch</span> <span class="tag">Bildbedarf</span></p>
+    <div class="hero">
+      <div>
+        <p class="note" style="margin-bottom:12px">Deutsche Gesellschaft für Hochschuldidaktik</p>
+        <span class="bar bar--h" style="width:90%"></span>
+        <span class="bar bar--h" style="width:70%"></span>
+        <span class="bar bar--h" style="width:50%;margin-bottom:18px"></span>
+        <span class="bar" style="width:100%"></span>
+        <span class="bar" style="width:100%"></span>
+        <span class="bar" style="width:60%"></span>
+      </div>
+      <div class="img">Visueller Bereich · Wissensnetzwerk</div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <h1>Wireframe · Sidebar mit Megamenü</h1>
+    <p>Die Leiste startet geschlossen. Der Burger öffnet die Rubriken; ein Klick auf eine Rubrik öffnet rechts daneben eine zweite Spalte mit allen Unterpunkten der zweiten und dritten Ebene. Escape oder ein Klick daneben schließt beides.</p>
+    <p>Inhalte aus der Sitemap. Weiterhin nur Struktur – keine Farben, keine Typografie, keine fertigen Komponenten.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const rail = document.querySelector("[data-rail]");
+  const toggle = document.querySelector("[data-toggle]");
+  const panel = document.getElementById("rail-panel");
+  const mega = document.querySelector("[data-mega]");
+  const scrim = document.querySelector("[data-scrim]");
+  const rubs = [...panel.querySelectorAll("[data-rub]")];
+
+  const showMega = (key) => {
+    mega.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== key; });
+    mega.hidden = !key;
+    scrim.hidden = !key;
+    rubs.forEach((r) => r.setAttribute("aria-expanded", String(r.dataset.rub === key)));
+  };
+
+  const setOpen = (open) => {
+    rail.classList.toggle("is-open", open);
+    panel.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+    showMega(open ? rubs[0].dataset.rub : null);
+  };
+
+  toggle.addEventListener("click", () => setOpen(panel.hidden));
+  rubs.forEach((rub) => rub.addEventListener("click", () => {
+    const active = rub.getAttribute("aria-expanded") === "true";
+    showMega(active ? null : rub.dataset.rub);
+  }));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) { setOpen(false); toggle.focus(); }
+  });
+  document.addEventListener("click", (event) => {
+    if (panel.hidden) return;
+    if (rail.contains(event.target) || mega.contains(event.target)) return;
+    setOpen(false);
+  });
+})();
+</script>
+
+</body>
+</html>

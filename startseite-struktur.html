@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Startseite – Struktur &amp; Informationsarchitektur (Wireframe)</title>
+<meta name="description" content="Neutrale Strukturübersicht der geplanten dghd-Startseite: Reihenfolge, Hierarchie und Gewichtung der Sections. Kein Screendesign.">
+<meta name="robots" content="noindex">
+<style>
+/* ============================================================
+   Neutrale Strukturdarstellung – bewusst KEIN Designentwurf.
+   Nur Graustufen, dünne Linien, keine Marken-Assets.
+   ============================================================ */
+:root{
+  --ink:#1c1c1c;
+  --ink-2:#4a4a4a;
+  --ink-3:#7a7a7a;
+  --line:#d4d4d4;
+  --line-2:#e6e6e6;
+  --fill:#f6f6f6;
+  --dash:#b4b4b4;
+  --max:1180px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:48px 20px 96px;
+  background:#fff;
+  color:var(--ink);
+  font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+  font-size:14px;
+  line-height:1.5;
+}
+.wrap{max-width:var(--max);margin:0 auto}
+
+/* ---------- Kopf ---------- */
+.doc-head{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:40px}
+.doc-head .kicker{margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.doc-head h1{margin:10px 0 0;font-size:28px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.doc-head .sub{margin:8px 0 0;max-width:68ch;color:var(--ink-2)}
+.doc-head .note{margin:18px 0 0;padding:12px 14px;border:1px solid var(--line);background:var(--fill);max-width:68ch;font-size:13px;color:var(--ink-2)}
+
+/* ---------- Legende ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:10px 14px;margin:24px 0 0;align-items:center}
+.legend p{margin:0 6px 0 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- Inhaltstyp-Labels ---------- */
+.tag{
+  display:inline-block;
+  padding:2px 7px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  white-space:nowrap;
+}
+.tag--dyn{background:var(--fill);border-color:var(--dash);border-style:dashed}
+.tag--form{background:var(--fill)}
+.tag--img{border-style:dashed;color:var(--ink-3)}
+
+/* ---------- Gesamtueberblick ---------- */
+.toc{border:1px solid var(--line);padding:22px 24px;margin:0 0 46px;background:#fff}
+.toc h2{margin:0 0 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.toc ol{margin:0;padding:0;list-style:none;columns:2;column-gap:44px}
+.toc li{margin:0 0 6px;break-inside:avoid;font-size:13px}
+.toc li a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+.toc li a:hover,.toc li a:focus-visible{border-bottom-color:var(--ink)}
+.toc li span{display:inline-block;width:26px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.toc li em{font-style:normal;color:var(--ink-3)}
+
+/* ---------- Section-Bloecke ---------- */
+.flow{margin:0;padding:0}
+.arrow{
+  display:block;height:38px;position:relative;
+}
+.arrow::before{content:"";position:absolute;left:50%;top:0;bottom:8px;border-left:1px solid var(--line)}
+.arrow::after{
+  content:"";position:absolute;left:50%;bottom:6px;width:7px;height:7px;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  transform:translateX(-50%) rotate(45deg);
+}
+
+.block{border:1px solid var(--line);background:#fff;display:grid;grid-template-columns:258px 1fr}
+.block__meta{border-right:1px solid var(--line-2);padding:20px 22px;background:var(--fill)}
+.block__num{display:block;font-size:12px;letter-spacing:.14em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.block__meta h2{margin:6px 0 0;font-size:17px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.block__fn{margin:12px 0 0;font-size:12.5px;color:var(--ink-2)}
+.block__fn b{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:3px}
+.block__tags{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+.block__body{padding:22px 24px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+
+/* Gewichtung / spaetere Flaechenanteile */
+.h-xs .block__body{min-height:64px}
+.h-sm .block__body{min-height:130px}
+.h-md .block__body{min-height:210px}
+.h-lg .block__body{min-height:330px}
+
+/* ---------- Inhaltsbausteine innerhalb einer Section ---------- */
+.eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px}
+
+/* Platzhalter fuer Text, der spaeter geschrieben wird */
+.ph{border:1px dashed var(--dash);padding:10px 12px;color:var(--ink-2);font-size:13px}
+.ph--h{font-size:17px;font-weight:700;color:var(--ink)}
+.ph--img{
+  border:1px dashed var(--dash);background:
+    repeating-linear-gradient(135deg,#fafafa 0 8px,#f2f2f2 8px 16px);
+  display:flex;align-items:center;justify-content:center;
+  min-height:150px;color:var(--ink-3);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:12px;
+}
+
+/* Gruppen von gleichrangigen Elementen */
+.row{display:grid;gap:12px}
+.row--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.row--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.row--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.row--6{grid-template-columns:repeat(3,minmax(0,1fr))}
+.row--split{grid-template-columns:minmax(0,7fr) minmax(0,10fr);align-items:stretch}
+
+.item{border:1px solid var(--line);padding:12px 13px;min-width:0}
+.item__n{font-size:10px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.item b{display:block;font-size:13.5px;font-weight:700;margin-top:2px;line-height:1.3}
+.item p{margin:5px 0 0;font-size:12px;color:var(--ink-2);line-height:1.4}
+.item .meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.item .meta span{border:1px solid var(--line-2);padding:1px 6px;font-size:10.5px;color:var(--ink-3)}
+
+/* Einfache Aufzaehlung von Inhalten ohne eigene Kachelwirkung */
+.list{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 8px}
+.list li{border:1px solid var(--line-2);padding:4px 9px;font-size:12.5px;color:var(--ink)}
+.list--plain li{border:0;padding:0}
+.list--plain li::after{content:"·";margin-left:8px;color:var(--ink-3)}
+.list--plain li:last-child::after{content:""}
+
+/* Weiterfuehrende Links / CTAs */
+.links{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.link{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);padding:6px 11px;font-size:12.5px}
+.link::before{content:"→";color:var(--ink-3)}
+.link--primary{border-color:var(--ink-2);font-weight:700}
+
+/* Formular-Schema */
+.form{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.form .field{flex:1 1 260px;border:1px solid var(--line);padding:10px 12px;color:var(--ink-3);font-size:12.5px;background:#fff}
+.form .submit{border:1px solid var(--ink-2);padding:10px 14px;font-size:12.5px;font-weight:700}
+
+/* Footer-Gruppen */
+.cols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.cols section{min-width:0}
+.cols h3{margin:0 0 7px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--line-2);padding-bottom:5px}
+.cols ul{margin:0;padding:0;list-style:none}
+.cols li{font-size:12px;color:var(--ink-2);margin:0 0 4px;line-height:1.35}
+
+.hint{font-size:11.5px;color:var(--ink-3)}
+
+/* ---------- Fuss ---------- */
+.doc-foot{margin:56px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);max-width:68ch}
+
+/* ---------- Responsive ---------- */
+@media (max-width:940px){
+  .block{grid-template-columns:1fr}
+  .block__meta{border-right:0;border-bottom:1px solid var(--line-2)}
+  .cols{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .row--split{grid-template-columns:minmax(0,1fr)}
+  .row--6{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toc ol{columns:1}
+}
+@media (max-width:620px){
+  body{padding:32px 14px 64px}
+  .row--3,.row--4,.row--6,.row--2{grid-template-columns:minmax(0,1fr)}
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .h-lg .block__body,.h-md .block__body{min-height:0}
+}
+@media print{
+  body{padding:0;font-size:11px}
+  .block,.arrow{break-inside:avoid}
+  .toc{break-after:page}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc-head">
+    <p class="kicker">dghd – Website-Relaunch · Schritt 1 von 2</p>
+    <h1>Startseite: Struktur und Informationsarchitektur</h1>
+    <p class="sub">Neutrale Darstellung der geplanten Startseite von oben nach unten: Reihenfolge der Bereiche, Zugehörigkeit der Inhalte, Gewichtung und Funktionslogik.</p>
+    <p class="note"><b>Kein Screendesign.</b> Diese Ansicht zeigt ausschließlich Inhalt, Reihenfolge, Hierarchie und Funktion. Typografie, Farben, Bilder und Komponenten werden erst nach Freigabe dieser Struktur gestaltet. Die Blockhöhen deuten die spätere Gewichtung an, nicht die tatsächlichen Maße.</p>
+
+    <div class="legend">
+      <p>Inhaltstypen</p>
+      <span class="tag">Statisch</span>
+      <span class="tag tag--dyn">Dynamisch</span>
+      <span class="tag">Navigation</span>
+      <span class="tag">CTA</span>
+      <span class="tag tag--form">Formular</span>
+      <span class="tag tag--img">Bild-Platzhalter</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Übersicht der Startseitenbereiche">
+    <h2>Reihenfolge der Bereiche</h2>
+    <ol>
+      <li><span>01</span><a href="#s01">Header</a> <em>– sehr niedrig</em></li>
+      <li><span>02</span><a href="#s02">Hero / Einstieg</a> <em>– groß</em></li>
+      <li><span>03</span><a href="#s03">Direkteinstiege</a> <em>– mittel</em></li>
+      <li><span>04</span><a href="#s04">Wofür wir stehen</a> <em>– klein bis mittel</em></li>
+      <li><span>05</span><a href="#s05">Wissensnetzwerk</a> <em>– mittel</em></li>
+      <li><span>06</span><a href="#s06">Wissenschaft &amp; Praxis / Themen</a> <em>– mittel</em></li>
+      <li><span>07</span><a href="#s07">Community</a> <em>– groß</em></li>
+      <li><span>08</span><a href="#s08">Veranstaltungen</a> <em>– mittel, dynamisch</em></li>
+      <li><span>09</span><a href="#s09">Wissen &amp; Publikationen</a> <em>– mittel</em></li>
+      <li><span>10</span><a href="#s10">Aktuelles / Blickwinkel</a> <em>– mittel bis groß, dynamisch</em></li>
+      <li><span>11</span><a href="#s11">Service-Hub</a> <em>– mittel</em></li>
+      <li><span>12</span><a href="#s12">Mitgliedschaft</a> <em>– mittel</em></li>
+      <li><span>13</span><a href="#s13">Newsletter</a> <em>– klein, Formular</em></li>
+      <li><span>14</span><a href="#s14">Footer</a> <em>– mittel</em></li>
+    </ol>
+  </nav>
+
+  <main class="flow">
+
+    <!-- ===== 01 ===== -->
+    <section class="block h-xs" id="s01">
+      <div class="block__meta">
+        <span class="block__num">01</span>
+        <h2>Header</h2>
+        <p class="block__fn"><b>Funktion</b>Globale Orientierung und Navigation. Auf allen Seiten identisch.</p>
+        <div class="block__tags"><span class="tag">Navigation</span><span class="tag">Global</span></div>
+      </div>
+      <div class="block__body">
+        <div class="row row--3">
+          <div class="item"><span class="lbl">Marke</span><b>dghd Logo</b><p>Verlinkt auf die Startseite.</p></div>
+          <div class="item"><span class="lbl">Rubriken (wie Sitemap)</span>
+            <ul class="list"><li>Community</li><li>Wissenschaft &amp; Praxis</li><li>Veranstaltungen</li><li>Aktuelles &amp; Einblicke</li><li>Die dghd</li><li>Service</li></ul>
+          </div>
+          <div class="item"><span class="lbl">Utility</span>
+            <ul class="list"><li>Suche</li><li>Login / Meine dghd</li><li>Mitglied werden</li><li>Vollständige Navigation</li></ul>
+          </div>
+        </div>
+        <p class="hint">Auf Kundenwunsch als seitliche Navigation (Sidebar) umgesetzt. Dort ist Platz für alle sechs Rubriken der Sitemap – ein waagerechter Header hätte nur drei bis vier getragen. Zu klären: Sind alle sechs gleichrangig, oder werden drei hervorgehoben?</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 02 ===== -->
+    <section class="block h-lg" id="s02">
+      <div class="block__meta">
+        <span class="block__num">02</span>
+        <h2>Hero / Einstieg</h2>
+        <p class="block__fn"><b>Funktion</b>In wenigen Sekunden beantworten: Wer ist die dghd, wofür steht sie, was bietet diese Website?</p>
+        <div class="block__tags"><span class="tag">Statisch</span><span class="tag">CTA</span><span class="tag tag--img">Bild-Platzhalter</span></div>
+      </div>
+      <div class="block__body">
+        <div class="row row--split">
+          <div class="row">
+            <p class="eyebrow">Eyebrow · Deutsche Gesellschaft für Hochschuldidaktik</p>
+            <div class="ph ph--h">H1 – Platzhalter für die zentrale Positionierung</div>
+            <div class="ph">Kurzbeschreibung, 2–3 Zeilen: Was die dghd tut und für wen.</div>
+            <div class="links">
+              <span class="link link--primary">dghd entdecken <span class="tag">CTA primär</span></span>
+              <span class="link">Mitglied werden <span class="tag">CTA sekundär</span></span>
+            </div>
+          </div>
+          <div class="ph--img">
+            Visueller Bereich · Wissensnetzwerk<br>
+            Themen: Lehre · Austausch · Forschung · Weiterbildung<br>
+            (Form und Umsetzung offen)
+          </div>
+        </div>
+        <p class="hint">Der visuelle Bereich ist hier nur als Fläche reserviert. Ob Illustration, Diagramm oder Bild, wird später entschieden.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 03 ===== -->
+    <section class="block h-md" id="s03">
+      <div class="block__meta">
+        <span class="block__num">03</span>
+        <h2>Direkteinstiege</h2>
+        <p class="block__fn"><b>Funktion</b>Die drei wichtigsten Wege in die Website anbieten – entspricht der primären Navigation.</p>
+        <div class="block__tags"><span class="tag">Navigation</span><span class="tag">Statisch</span></div>
+      </div>
+      <div class="block__body">
+        <div class="row row--3">
+          <div class="item"><span class="item__n">01</span><b>Community</b><p>Menschen, Netzwerke und Arbeitsgruppen</p><div class="meta"><span>→ Unterseite Community</span></div></div>
+          <div class="item"><span class="item__n">02</span><b>Wissenschaft &amp; Praxis</b><p>Forschung, Wissen und hochschuldidaktische Entwicklung</p><div class="meta"><span>→ Unterseite Wissenschaft &amp; Praxis</span></div></div>
+          <div class="item"><span class="item__n">03</span><b>Veranstaltungen</b><p>Tagungen, Austausch und Weiterbildung</p><div class="meta"><span>→ Unterseite Veranstaltungen</span></div></div>
+        </div>
+        <p class="hint">Drei gleichrangige Elemente in einem Bereich. Jedes führt auf eine Hauptrubrik.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 04 ===== -->
+    <section class="block h-sm" id="s04">
+      <div class="block__meta">
+        <span class="block__num">04</span>
+        <h2>Wofür wir stehen</h2>
+        <p class="block__fn"><b>Funktion</b>Positionierung und Auftrag der dghd.</p>
+        <div class="block__tags"><span class="tag">Statisch</span><span class="tag">CTA optional</span></div>
+      </div>
+      <div class="block__body">
+        <p class="eyebrow">Eyebrow · Wofür wir stehen</p>
+        <div class="ph ph--h">Platzhalter für die große Positionierungsheadline</div>
+        <div class="ph">Kurztext: Beschreibung des Auftrags der dghd.</div>
+        <div>
+          <span class="lbl">Drei Kernbegriffe</span>
+          <ul class="list"><li>Verbinden</li><li>Fördern</li><li>Gestalten</li></ul>
+        </div>
+        <div class="links"><span class="link">Mehr über die dghd <span class="tag">optional</span></span></div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 05 ===== -->
+    <section class="block h-md" id="s05">
+      <div class="block__meta">
+        <span class="block__num">05</span>
+        <h2>Wissensnetzwerk</h2>
+        <p class="block__fn"><b>Funktion</b>Die übergeordnete Idee der dghd als Netzwerk darstellen.</p>
+        <div class="block__tags"><span class="tag">Statisch</span></div>
+      </div>
+      <div class="block__body">
+        <div class="ph ph--h">Headline: Wissen entsteht im Austausch</div>
+        <div class="row row--3">
+          <div class="item"><span class="item__n">01</span><b>Wissensnetzwerk</b><p>Kurzbeschreibung (Platzhalter)</p></div>
+          <div class="item"><span class="item__n">02</span><b>Lernlandschaft</b><p>Kurzbeschreibung (Platzhalter)</p></div>
+          <div class="item"><span class="item__n">03</span><b>Dialog &amp; Transfer</b><p>Kurzbeschreibung (Platzhalter)</p></div>
+        </div>
+        <div class="links"><span class="link">Mehr erfahren <span class="tag">optional</span></span></div>
+        <p class="hint">Drei Themen eines gemeinsamen Bereichs – noch keine Aussage zur späteren Kachelform.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 06 ===== -->
+    <section class="block h-md" id="s06">
+      <div class="block__meta">
+        <span class="block__num">06</span>
+        <h2>Wissenschaft &amp; Praxis / Themen</h2>
+        <p class="block__fn"><b>Funktion</b>Zentrale fachliche Themen sichtbar machen und in die Tiefe führen.</p>
+        <div class="block__tags"><span class="tag">Navigation</span><span class="tag">Statisch</span></div>
+      </div>
+      <div class="block__body">
+        <div class="ph ph--h">Headline: Woran wir gemeinsam arbeiten</div>
+        <div class="row row--6">
+          <div class="item"><b>Hochschuldidaktische Forschung</b></div>
+          <div class="item"><b>Digitalisierung &amp; KI</b></div>
+          <div class="item"><b>Lehr- und Lernentwicklung</b></div>
+          <div class="item"><b>Qualität &amp; Standards</b></div>
+          <div class="item"><b>Gesellschaft &amp; Hochschule</b></div>
+          <div class="item"><b>Nachwuchs &amp; wissenschaftliche Entwicklung</b></div>
+        </div>
+        <div class="links"><span class="link">Wissenschaft &amp; Praxis entdecken <span class="tag">CTA</span></span></div>
+        <p class="hint">Sechs Themen innerhalb eines Bereichs, keine sechs eigenen Startseitenbereiche.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 07 ===== -->
+    <section class="block h-lg" id="s07">
+      <div class="block__meta">
+        <span class="block__num">07</span>
+        <h2>Community</h2>
+        <p class="block__fn"><b>Funktion</b>Menschen, Beteiligung und Organisationsformen zeigen.</p>
+        <div class="block__tags"><span class="tag">Statisch</span><span class="tag tag--img">Bild-Platzhalter</span><span class="tag">CTA</span></div>
+      </div>
+      <div class="block__body">
+        <div class="row row--split">
+          <div>
+            <span class="lbl">Bereich A</span>
+            <div class="ph--img">Bild- / Portrait-Platzhalter<br>(Motiv und Bildsprache offen)</div>
+          </div>
+          <div class="row">
+            <span class="lbl">Bereich B</span>
+            <p class="eyebrow">Eyebrow · Community</p>
+            <div class="ph ph--h">Platzhalter für die Community-Aussage</div>
+            <div class="ph">Kurzbeschreibung.</div>
+            <div>
+              <span class="lbl">Direktlinks</span>
+              <ul class="list"><li>Arbeitsgruppen</li><li>Netzwerke</li><li>Kommissionen</li><li>Nachwuchs</li></ul>
+            </div>
+            <div class="links"><span class="link link--primary">Community entdecken <span class="tag">CTA</span></span></div>
+          </div>
+        </div>
+        <p class="hint">Bereich mit Bildbedarf: Hier wird später Bildmaterial benötigt.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 08 ===== -->
+    <section class="block h-md" id="s08">
+      <div class="block__meta">
+        <span class="block__num">08</span>
+        <h2>Veranstaltungen</h2>
+        <p class="block__fn"><b>Funktion</b>Aktuelle Termine schnell zugänglich machen.</p>
+        <div class="block__tags"><span class="tag tag--dyn">Dynamisch</span><span class="tag">CTA</span></div>
+      </div>
+      <div class="block__body">
+        <div class="ph ph--h">Headline: Was uns zusammenbringt</div>
+        <p class="hint"><span class="tag tag--dyn">Dynamischer Content</span> Automatisch aus dem Veranstaltungskalender, die nächsten Termine.</p>
+        <div class="row row--3">
+          <div class="item"><span class="item__n">Veranstaltung 1</span><b>Titel (Platzhalter)</b><div class="meta"><span>Datum</span><span>Kategorie</span><span>Ort / Online</span></div></div>
+          <div class="item"><span class="item__n">Veranstaltung 2</span><b>Titel (Platzhalter)</b><div class="meta"><span>Datum</span><span>Kategorie</span><span>Ort / Online</span></div></div>
+          <div class="item"><span class="item__n">Veranstaltung 3</span><b>Titel (Platzhalter)</b><div class="meta"><span>Datum</span><span>Kategorie</span><span>Ort / Online</span></div></div>
+        </div>
+        <div class="links"><span class="link">Alle Veranstaltungen <span class="tag">CTA</span></span></div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 09 ===== -->
+    <section class="block h-md" id="s09">
+      <div class="block__meta">
+        <span class="block__num">09</span>
+        <h2>Wissen &amp; Publikationen</h2>
+        <p class="block__fn"><b>Funktion</b>Wissensangebote und Publikationen bündeln.</p>
+        <div class="block__tags"><span class="tag">Statisch</span><span class="tag tag--img">Bild-Platzhalter optional</span></div>
+      </div>
+      <div class="block__body">
+        <div class="ph ph--h">Headline: Wissen teilen</div>
+        <div class="row row--split">
+          <div class="row">
+            <div class="row row--2">
+              <div class="item"><b>Blickpunkt Hochschuldidaktik</b></div>
+              <div class="item"><b>Publikationen</b></div>
+              <div class="item"><b>Forschung</b></div>
+              <div class="item"><b>Standards für die Praxis</b></div>
+              <div class="item"><b>Downloads</b></div>
+            </div>
+            <div class="links">
+              <span class="link">Publikationen entdecken <span class="tag">CTA</span></span>
+              <span class="link">Downloads <span class="tag">CTA</span></span>
+            </div>
+          </div>
+          <div class="ph--img">Publikations- / Cover-Platzhalter<br>(optional)</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 10 ===== -->
+    <section class="block h-lg" id="s10">
+      <div class="block__meta">
+        <span class="block__num">10</span>
+        <h2>Aktuelles / Blickwinkel</h2>
+        <p class="block__fn"><b>Funktion</b>Neue Inhalte und Entwicklungen zeigen.</p>
+        <div class="block__tags"><span class="tag tag--dyn">Dynamisch</span><span class="tag">CTA</span></div>
+      </div>
+      <div class="block__body">
+        <p class="eyebrow">Eyebrow · Neue Perspektiven</p>
+        <div class="ph ph--h">Headline: Aktuelles aus der dghd</div>
+        <p class="hint"><span class="tag tag--dyn">Dynamischer Content</span> Automatisch aus Beiträgen und Blickwinkel-Artikeln.</p>
+        <div class="row row--4">
+          <div class="item"><span class="item__n">Beitrag 1</span><b>Titel (Platzhalter)</b><p>Kurztext</p><div class="meta"><span>Kategorie</span><span>Datum</span></div></div>
+          <div class="item"><span class="item__n">Beitrag 2</span><b>Titel (Platzhalter)</b><p>Kurztext</p><div class="meta"><span>Kategorie</span><span>Datum</span></div></div>
+          <div class="item"><span class="item__n">Beitrag 3</span><b>Titel (Platzhalter)</b><p>Kurztext</p><div class="meta"><span>Kategorie</span><span>Datum</span></div></div>
+          <div class="item"><span class="item__n">Beitrag 4 · optional</span><b>Titel (Platzhalter)</b><p>Kurztext</p><div class="meta"><span>Kategorie</span><span>Datum</span></div></div>
+        </div>
+        <div class="links"><span class="link">Alle Beiträge <span class="tag">CTA</span></span></div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 11 ===== -->
+    <section class="block h-md" id="s11">
+      <div class="block__meta">
+        <span class="block__num">11</span>
+        <h2>Service-Hub</h2>
+        <p class="block__fn"><b>Funktion</b>Häufig benötigte Funktionen direkt erreichbar machen.</p>
+        <div class="block__tags"><span class="tag">Navigation</span><span class="tag">Funktionen</span></div>
+      </div>
+      <div class="block__body">
+        <div class="ph ph--h">Headline: Direkt finden, was Sie suchen</div>
+        <div class="row row--6">
+          <div class="item"><b>Didaktik-Landkarte</b></div>
+          <div class="item"><b>Stellenbörse</b></div>
+          <div class="item"><b>Downloads</b></div>
+          <div class="item"><b>Newsletter</b></div>
+          <div class="item"><b>Veranstaltung einreichen</b><div class="meta"><span>Eingabe durch Nutzende</span></div></div>
+          <div class="item"><b>Institution eintragen</b><div class="meta"><span>Eingabe durch Nutzende</span></div></div>
+        </div>
+        <p class="hint">Sechs Services in einem gemeinsamen Bereich. Zwei davon führen zu Einreichungsformularen.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 12 ===== -->
+    <section class="block h-md" id="s12">
+      <div class="block__meta">
+        <span class="block__num">12</span>
+        <h2>Mitgliedschaft</h2>
+        <p class="block__fn"><b>Funktion</b>Beteiligung und Mitgliedschaft fördern.</p>
+        <div class="block__tags"><span class="tag">Statisch</span><span class="tag">CTA</span></div>
+      </div>
+      <div class="block__body">
+        <p class="eyebrow">Eyebrow · Teil der dghd werden</p>
+        <div class="ph ph--h">Platzhalter für die Mitgliedschafts-Aussage</div>
+        <div class="ph">Kurzbeschreibung.</div>
+        <div class="links">
+          <span class="link link--primary">Mitglied werden <span class="tag">CTA primär</span></span>
+          <span class="link">Mehr über die Mitgliedschaft <span class="tag">CTA sekundär</span></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 13 ===== -->
+    <section class="block h-sm" id="s13">
+      <div class="block__meta">
+        <span class="block__num">13</span>
+        <h2>Newsletter</h2>
+        <p class="block__fn"><b>Funktion</b>Regelmäßige Kommunikation ermöglichen.</p>
+        <div class="block__tags"><span class="tag tag--form">Formular</span><span class="tag">Interaktiv</span></div>
+      </div>
+      <div class="block__body">
+        <div class="ph ph--h">Headline: Wissen, Termine und Impulse</div>
+        <div class="ph">Kurztext.</div>
+        <div class="form">
+          <span class="field">E-Mail-Adresse</span>
+          <span class="submit">Newsletter abonnieren</span>
+          <span class="tag tag--form">Formular / interaktives Element</span>
+        </div>
+        <p class="hint">Benötigt später Einwilligung und Datenschutzhinweis.</p>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <!-- ===== 14 ===== -->
+    <section class="block h-md" id="s14">
+      <div class="block__meta">
+        <span class="block__num">14</span>
+        <h2>Footer</h2>
+        <p class="block__fn"><b>Funktion</b>Sekundäre Navigation und rechtliche Informationen.</p>
+        <div class="block__tags"><span class="tag">Navigation</span><span class="tag">Global</span></div>
+      </div>
+      <div class="block__body">
+        <div class="cols">
+          <section><h3>dghd</h3><ul><li>Über uns</li><li>Vorstand</li><li>Geschäftsstelle</li><li>Kontakt</li></ul></section>
+          <section><h3>Community</h3><ul><li>Arbeitsgruppen</li><li>Netzwerke</li><li>Kommissionen</li><li>Mitglied werden</li></ul></section>
+          <section><h3>Wissenschaft &amp; Praxis</h3><ul><li>Forschung</li><li>Praxis</li><li>Publikationen</li><li>Internationales</li></ul></section>
+          <section><h3>Veranstaltungen</h3><ul><li>Kalender</li><li>Jahrestagung</li><li>Veranstaltung einreichen</li></ul></section>
+          <section><h3>Service</h3><ul><li>Stellenbörse</li><li>Didaktik-Landkarte</li><li>Downloads</li><li>Newsletter</li></ul></section>
+          <section><h3>System</h3><ul><li>Impressum</li><li>Datenschutz</li><li>Barrierefreiheit</li></ul></section>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p><b>Zur Abstimmung:</b> Stimmt die Reihenfolge? Fehlt ein Bereich? Ist ein Bereich zu prominent oder zu schwach gewichtet? Sind die Inhalte logisch gruppiert? Sind die dynamischen Bereiche (08, 10) richtig platziert?</p>
+    <p>Bildbedarf besteht in 02 (visueller Bereich), 07 (Community) und optional 09 (Publikationen). Dynamische Inhalte kommen aus Veranstaltungskalender und Beiträgen. Nach Freigabe dieser Struktur folgt das visuelle Konzept.</p>
+  </footer>
+
+</div>
+</body>
+</html>

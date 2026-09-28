@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sitemap dghd – Version 2</title>
+<meta name="description" content="Sitemap der dghd: Informationsarchitektur der Website mit allen Bereichen, Unterseiten und Footer-Einträgen.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="./Assets/favicon_dghd.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/tokens.css">
+<style>
+:root{
+  --ink:var(--color-secondary,#2e1f52);
+  --ink-soft:#544672;
+  --accent:var(--color-primary,#b7394a);
+  --line:#2e1f52;
+  --card-border:#ded8e6;
+  --shadow:0 1px 2px rgba(46,31,82,.08);
+
+  --c-community:#f7e3e6;
+  --c-community-bd:#e9bcc3;
+  --c-wissenschaft:#fbf0cd;
+  --c-wissenschaft-bd:#eed88a;
+  --c-veranstaltungen:#dde5f4;
+  --c-veranstaltungen-bd:#b2c2e2;
+  --c-aktuelles:#f7e3e6;
+  --c-aktuelles-bd:#e9bcc3;
+  --c-dghd:#fbf0cd;
+  --c-dghd-bd:#eed88a;
+  --c-service:#e6e2f0;
+  --c-service-bd:#c4bcda;
+  --c-system:#ebeaee;
+  --c-system-bd:#cfccd6;
+
+  /* Aenderungen in V2 */
+  --c-change:#e0a54c;
+  --c-change-ink:#a4481a;
+  --c-audience:#fdf2df;
+  --c-removed:#f1f0f2;
+  --c-removed-ink:#8d8898;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:40px 16px 72px;
+  background:var(--color-white,#fff);
+  color:var(--ink);
+  font-family:var(--font,"Raleway","Segoe UI",sans-serif);
+  font-size:14px;
+  line-height:1.45;
+}
+.wrap{max-width:1700px;margin:0 auto}
+
+/* Mindestbreite einer Spalte, damit auch lange Komposita in eine Zeile passen
+   ("Akkreditierungskommission", "Veranstaltungskalender").
+   Wird der Platz knapp, scrollt der Baum waagerecht statt umzubrechen. */
+.tree{--col-min:224px;--col-gap:14px;overflow-x:auto;padding-bottom:4px}
+.tree > *{min-width:calc(7 * var(--col-min) + 6 * var(--col-gap))}
+
+/* ---------- Kopf ---------- */
+.page-head{margin:0 0 34px;text-align:center}
+.page-head__brand{display:inline-block;vertical-align:baseline}
+.page-head__brand img{display:block;width:auto;height:1.15em;margin-bottom:-.16em}
+.page-head h1{
+  margin:0;
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:.28em;
+  font-size:clamp(34px,6vw,54px);
+  font-weight:800;
+  letter-spacing:-.025em;
+  line-height:1.05;
+}
+.page-head p{
+  margin:6px 0 0;
+  font-size:clamp(15px,2.4vw,21px);
+  font-weight:500;
+  color:var(--ink-soft);
+}
+.page-head p.page-head__meta{margin-top:4px;font-size:13px;font-weight:500}
+
+/* ---------- Startseite ---------- */
+.root{display:flex;justify-content:center}
+.root__node{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 30px;
+  border:2px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  font-size:clamp(18px,2.6vw,24px);
+  font-weight:600;
+  box-shadow:var(--shadow);
+}
+.root__node svg{flex:none;width:26px;height:26px;stroke:var(--line);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Verbinder ---------- */
+.trunk{height:26px;position:relative}
+.trunk::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px solid var(--line)}
+.connectors{display:grid;grid-template-columns:repeat(7,1fr);height:24px}
+.connectors i{position:relative;display:block}
+.connectors i::before{content:"";position:absolute;top:0;left:0;right:0;border-top:2px solid var(--line)}
+.connectors i:first-child::before{left:50%}
+.connectors i:last-child::before{right:50%}
+.connectors i::after{content:"";position:absolute;top:0;bottom:0;left:50%;border-left:2px solid var(--line)}
+
+/* ---------- Spalten ---------- */
+.columns{display:grid;grid-template-columns:repeat(7,minmax(var(--col-min),1fr));gap:0 var(--col-gap);align-items:start}
+.col{min-width:0}
+.col__head{
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:16px 12px;
+  text-align:center;
+  font-size:clamp(13px,1.35vw,17px);
+  font-weight:700;
+  line-height:1.2;
+  min-height:76px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);
+}
+.col--community .col__head{background:var(--c-community);border-color:var(--c-community-bd)}
+.col--wissenschaft .col__head{background:var(--c-wissenschaft);border-color:var(--c-wissenschaft-bd)}
+.col--veranstaltungen .col__head{background:var(--c-veranstaltungen);border-color:var(--c-veranstaltungen-bd)}
+.col--aktuelles .col__head{background:var(--c-aktuelles);border-color:var(--c-aktuelles-bd)}
+.col--dghd .col__head{background:var(--c-dghd);border-color:var(--c-dghd-bd)}
+.col--service .col__head{background:var(--c-service);border-color:var(--c-service-bd)}
+.col--system .col__head{background:var(--c-system);border-color:var(--c-system-bd)}
+
+/* Stamm der Spalte: senkrechte Linie links, an der die Karten haengen */
+.col__items{position:relative;margin:0;padding:18px 0 0 14px;list-style:none}
+/* Stammstueck zwischen Spaltenkopf und erster Karte */
+.col__items::before{content:"";position:absolute;left:0;top:0;height:18px;border-left:2px solid var(--line)}
+.col__items > li{position:relative;margin:0 0 10px}
+/* Waagerechter Abzweig zur Karte */
+.col__items > li::before{content:"";position:absolute;left:-14px;top:22px;width:14px;border-top:2px solid var(--line)}
+/* Stamm laeuft durch die Karte und den Abstand zur naechsten */
+.col__items > li::after{content:"";position:absolute;left:-14px;top:0;bottom:-10px;border-left:2px solid var(--line)}
+/* Bei der letzten Karte endet der Stamm am waagerechten Abzweig */
+.col__items > li:last-child::after{bottom:auto;height:24px}
+.col__items > li:last-child{margin-bottom:0}
+
+.card{
+  border:1px solid var(--card-border);
+  border-radius:9px;
+  background:#fff;
+  padding:11px 12px;
+  box-shadow:var(--shadow);
+}
+.card > b{display:block;font-size:13px;font-weight:700;line-height:1.3;hyphens:auto;overflow-wrap:break-word}
+.card > b a{color:inherit;text-decoration:none}
+.card > b a:hover,.card > b a:focus-visible{text-decoration:underline}
+.card ul{margin:8px 0 0;padding-left:15px;list-style:disc}
+.card ul li{margin:0 0 5px;font-size:12px;color:var(--ink-soft);line-height:1.35;hyphens:auto;overflow-wrap:break-word}
+.card ul li:last-child{margin-bottom:0}
+
+/* Karte mit Ergaenzungen in V2: orange umrandet */
+.card--changed{border:2px solid var(--c-change);border-radius:14px}
+/* Neuer Eintrag: "+" statt Punkt */
+.card ul li.is-new{list-style-type:"+ ";color:var(--ink)}
+.card ul li.is-new::marker{color:var(--c-change-ink);font-weight:700}
+.tag{
+  display:inline-block;margin-left:4px;padding:0 5px;
+  border-radius:4px;background:var(--c-audience);
+  font-size:10px;font-weight:700;color:var(--c-change-ink);
+  vertical-align:1px;white-space:nowrap;
+}
+/* Entfallene Seite */
+.card--removed{background:var(--c-removed);border-style:dashed;box-shadow:none;color:var(--c-removed-ink)}
+.card--removed > b{font-weight:600}
+.card--removed del{text-decoration-thickness:1.5px}
+.card--removed small{display:block;margin-top:4px;font-size:12px;line-height:1.35}
+
+/* ---------- Einstiege nach Zielgruppe (neu in V2) ---------- */
+.audiences{
+  border:2px dashed var(--c-change);
+  border-radius:14px;
+  padding:14px 14px 16px;
+}
+.audiences__label{margin:0 0 12px;text-align:center;font-size:13px;color:var(--c-change-ink)}
+.audiences__label b{font-weight:700}
+.audiences__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none}
+.audience{
+  background:var(--c-audience);
+  border:1px solid var(--c-change);
+  border-radius:10px;
+  padding:14px 12px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+.audience b{display:block;font-size:14px;font-weight:700;line-height:1.3}
+.audience span{display:block;margin-top:3px;font-size:12px;color:var(--ink-soft)}
+
+/* ---------- Legende ---------- */
+.legend{
+  margin:48px 0 0;
+  padding-top:22px;
+  border-top:1px solid var(--card-border);
+  display:flex;flex-wrap:wrap;gap:10px 18px;
+  font-size:12px;color:var(--ink-soft);
+}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend b{width:13px;height:13px;border-radius:3px;border:1px solid var(--card-border);display:inline-block}
+.footnote{margin:14px 0 0;font-size:12px;color:var(--ink-soft)}
+
+/* ---------- Aenderungen gegenueber V1 ---------- */
+.changes{
+  margin:36px 0 0;
+  padding:18px 22px;
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  background:#f8f7fb;
+  font-size:13px;
+}
+.changes h2{margin:0 0 8px;font-size:15px;font-weight:700}
+.changes ol{margin:0;padding-left:20px}
+.changes li{margin:0 0 4px}
+.changes p{margin:10px 0 0}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1100px){
+  .tree{overflow-x:visible}
+  .tree > *{min-width:0}
+  .connectors{display:none}
+  .trunk{height:22px}
+  .columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}
+  .col__head{min-height:0;padding:13px 12px;font-size:16px}
+  .audiences__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  body{padding:28px 14px 56px}
+  .columns{grid-template-columns:minmax(0,1fr);gap:24px}
+  .audiences__grid{grid-template-columns:minmax(0,1fr)}
+  .root__node{padding:12px 20px}
+}
+@media print{
+  body{padding:0;font-size:11px}
+  .tree{--col-min:0;overflow-x:visible}
+  .tree > *{min-width:0}
+  .card,.col__head,.root__node{box-shadow:none}
+  .columns{gap:0 8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-head">
+    <h1>
+      Sitemap
+      <a class="page-head__brand" href="./index.html"><img src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik" width="132" height="66"></a>
+    </h1>
+    <p>Version 2 · Informationsarchitektur der Website</p>
+    <p class="page-head__meta">Stand 23.09.2026 · Grundlage Version 1 (Tina) und Absprachen mit David</p>
+  </header>
+
+  <div class="tree">
+  <div class="root">
+    <div class="root__node">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>
+      <span>Startseite</span>
+    </div>
+  </div>
+
+  <div class="trunk" aria-hidden="true"></div>
+  <section class="audiences" aria-labelledby="c-audiences">
+    <p class="audiences__label" id="c-audiences"><b>Neu in V2 · Einstiege nach Zielgruppe</b> (Startseite, filtern Inhalte über das Schlagwort Zielgruppe)</p>
+    <ul class="audiences__grid">
+      <li class="audience"><b>Ich forsche zur Hochschuldidaktik</b><span>Zielgruppe: HD-Forschende</span></li>
+      <li class="audience"><b>Ich lehre an einer Hochschule</b><span>Zielgruppe: Lehrende</span></li>
+      <li class="audience"><b>Ich arbeite in der Hochschuldidaktik</b><span>Zielgruppe: HD-Professionals</span></li>
+      <li class="audience"><b>Ich leite eine HD-Einrichtung</b><span>Zielgruppe: Management von HD-Einrichtungen</span></li>
+    </ul>
+  </section>
+  <div class="trunk" aria-hidden="true"></div>
+  <div class="connectors" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <main class="columns">
+
+    <!-- 1 Community -->
+    <section class="col col--community" aria-labelledby="c-community">
+      <h2 class="col__head" id="c-community">Community</h2>
+      <ul class="col__items">
+        <li><div class="card"><b>Community im Überblick</b></div></li>
+        <li><div class="card card--changed">
+          <b>Arbeitsgruppen</b>
+          <ul>
+            <li>AG Schreibdidaktik in der Hochschuldidaktik</li>
+            <li>AG Digitale Medien und Hochschuldidaktik</li>
+            <li>AG Forschendes Lernen</li>
+            <li>AG Civic Engagement und Service Learning</li>
+            <li>AG Ingenieurdidaktik</li>
+            <li>AG Trainer und Trainerinnen</li>
+            <li>AG Netzwerktreffen</li>
+            <li>AG Qualitative Feedback- und Evaluationsmethoden</li>
+            <li>AG Open Teach Ware – Lehrportale</li>
+            <li>AG Psychologie und Lehr-Lern-Forschung</li>
+            <li>AG Prüfen und Prüfungsdidaktik</li>
+            <li>AG Hochschuldidaktische Regional- und Landesnetzwerke</li>
+            <li class="is-new">AG Curriculumentwicklung</li>
+            <li class="is-new">AG Scholarship of Academic Development</li>
+            <li class="is-new">AG Transformatives Lernen und Nachhaltigkeit</li>
+          </ul>
+        </div></li>
+        <li><div class="card card--changed">
+          <b>Netzwerke</b>
+          <ul>
+            <li>Promovierenden-Netzwerk</li>
+            <li>Netzwerk Tutorienarbeit an Hochschulen</li>
+            <li>Netzwerk Theologie und Hochschuldidaktik <span class="tag">korrigiert</span></li>
+            <li class="is-new">Netzwerk Orientierungs(studien)programme</li>
+            <li class="is-new">Netzwerk Fachhochschulen / HAWs</li>
+            <li class="is-new">Heterogenität &amp; Interkulturalität</li>
+            <li>Netzwerktreffen der Hochschuldidaktik in Deutschland</li>
+          </ul>
+        </div></li>
+        <li><div class="card">
+          <b>Kommissionen</b>
+          <ul>
+            <li>Forschungskommission</li>
+            <li>Weiterbildungskommission</li>
+            <li>Akkreditierungskommission (AKKO)</li>
+            <li>Kommunikation &amp; Öffentlichkeitsarbeit</li>
+          </ul>
+        </div></li>
+        <li><div class="card">
+          <b>Nachwuchs</b>
+          <ul>
+            <li>Promovierenden-Netzwerk</li>
+            <li>dghd-Nachwuchspreis</li>
+          </ul>
+        </div></li>
+        <li><div class="card"><b>Kooperationen</b></div></li>
+        <li><div class="card">
+          <b>Mitgliedschaft</b>
+          <ul>
+            <li>Mitglied werden</li>
+            <li>Vorteile &amp; Mitgliedsbeiträge</li>
+            <li>Meine dghd / Login</li>
+          </ul>
+        </div></li>
+      </ul>
+    </section>
+
+    <!-- 2 Wissenschaft & Praxis -->
+    <section class="col col--wissenschaft" aria-labelledby="c-wissenschaft">
+      <h2 class="col__head" id="c-wissenschaft">Wissenschaft &amp; Praxis</h2>
+      <ul class="col__items">
+        <li><div class="card"><b>Wissenschaft &amp; Praxis im Überblick</b></div></li>
+        <li><div class="card">
+          <b>Forschung</b>
+          <ul>
+            <li>Hochschuldidaktische Forschung</li>
+            <li>Forschungskommission</li>
+            <li>Nachwuchsförderung</li>
+          </ul>
+        </div></li>
+        <li><div class="card">
+          <b>Praxis &amp; Qualitätsentwicklung</b>
+          <ul>
+            <li>Standards für die Praxis</li>
+            <li>Weiterbildungskommission</li>
+            <li>Akkreditierungskommission (AKKO)</li>
+          </ul>
+        </div></li>
+        <li><div class="card">
+          <b>Themen</b>
+          <ul>
+            <li>Themenübersicht</li>
+            <li>Themenseiten / Themen-Dossiers</li>
+          </ul>
+        </div></li>
+        <li><div class="card">
+          <b>Publikationen &amp; Wissen</b>
+          <ul>
+            <li>Blickpunkt Hochschuldidaktik</li>
+            <li>Publikationen</li>
+            <li>Keynotes</li>
+            <li>Downloads</li>
+          </ul>
+        </div></li>
+        <li><div class="card">
+          <b>Internationales &amp; Politik</b>
+          <ul>
+            <li>Internationale Kooperationen</li>
+            <li>Konferenzen &amp; Publikationsmöglichkeiten</li>
+            <li>Politik / Stellungnahmen</li>
+            <li>Internationale Aktivitäten</li>
+          </ul>
+        </div></li>
+      </ul>
+    </section>
+
+    <!-- 3 Veranstaltungen -->
+    <section class="col col--veranstaltungen" aria-labelledby="c-veranstaltungen">
+      <h2 class="col__head" id="c-veranstaltungen">Veranstaltungen</h2>
+      <ul class="col__items">
+        <li><div class="card"><b>Veranstaltungen im Überblick</b></div></li>
+        <li><div class="card"><b>Veranstaltungskalender</b></div></li>
+        <li><div class="card">
+          <b>dghd-Jahrestagung</b>
+          <ul>
+            <li>Aktuelle Jahrestagung</li>
+            <li>Vergangene Jahrestagungen / Archiv</li>
+          </ul>
+        </div></li>
+        <li><div class="card"><b>Veranstaltung einreichen</b></div></li>
+      </ul>
+    </section>
+
+    <!-- 4 Aktuelles & Einblicke -->
+    <section class="col col--aktuelles" aria-labelledby="c-aktuelles">
+      <h2 class="col__head" id="c-aktuelles">Aktuelles &amp; Einblicke</h2>
+      <ul class="col__items">
+        <li><div class="card"><b>Aktuelles</b></div></li>
+        <li><div class="card"><b>Blickwinkel</b></div></li>
+        <li><div class="card"><b>Nachrichtenarchiv</b></div></li>
+        <li><div class="card card--removed"><b><del>dghd-Newsletter</del> entfällt</b><small>kein öffentlicher Newsletter (Absprache 03.09.)</small></div></li>
+      </ul>
+    </section>
+
+    <!-- 5 Die dghd -->
+    <section class="col col--dghd" aria-labelledby="c-dghd">
+      <h2 class="col__head" id="c-dghd">Die dghd</h2>
+      <ul class="col__items">
+        <li><div class="card">
+          <b>Über die dghd</b>
+          <ul>
+            <li>Profil &amp; Auftrag</li>
+            <li>Ziele</li>
+            <li>Geschichte / Entwicklung</li>
+          </ul>
+        </div></li>
+        <li><div class="card"><b>Vorstand</b></div></li>
+        <li><div class="card"><b>Geschäftsstelle</b></div></li>
+        <li><div class="card"><b>Kooperationen</b></div></li>
+        <li><div class="card"><b>Satzung</b></div></li>
+        <li><div class="card"><b>Kontakt</b></div></li>
+      </ul>
+    </section>
+
+    <!-- 6 Service -->
+    <section class="col col--service" aria-labelledby="c-service">
+      <h2 class="col__head" id="c-service">Service</h2>
+      <ul class="col__items">
+        <li><div class="card"><b>Stellenbörse</b></div></li>
+        <li><div class="card"><b>Didaktik-Landkarte</b></div></li>
+        <li><div class="card"><b>Downloads</b></div></li>
+        <li><div class="card card--removed"><b><del>Newsletter</del> entfällt</b><small>kein öffentlicher Newsletter (Absprache 03.09.)</small></div></li>
+        <li><div class="card"><b>Veranstaltung einreichen</b></div></li>
+        <li><div class="card"><b>Stellenangebot einreichen</b></div></li>
+        <li><div class="card"><b>Institution eintragen</b></div></li>
+      </ul>
+    </section>
+
+    <!-- 7 System / Footer -->
+    <section class="col col--system" aria-labelledby="c-system">
+      <h2 class="col__head" id="c-system">System / Footer</h2>
+      <ul class="col__items">
+        <li><div class="card"><b>Suche</b></div></li>
+        <li><div class="card"><b>Login / Meine dghd</b></div></li>
+        <li><div class="card"><b>Kontakt</b></div></li>
+        <li><div class="card"><b>Impressum</b></div></li>
+        <li><div class="card"><b>Datenschutz</b></div></li>
+        <li><div class="card"><b>Barrierefreiheit</b></div></li>
+        <li><div class="card"><b>Cookie-Einstellungen</b></div></li>
+      </ul>
+    </section>
+
+  </main>
+  </div>
+
+  <div class="legend">
+    <span><b style="background:#f7e3e6;border-color:#e9bcc3"></b> Community</span>
+    <span><b style="background:#fbf0cd;border-color:#eed88a"></b> Wissenschaft &amp; Praxis</span>
+    <span><b style="background:#dde5f4;border-color:#b2c2e2"></b> Veranstaltungen</span>
+    <span><b style="background:#f7e3e6;border-color:#e9bcc3"></b> Aktuelles &amp; Einblicke</span>
+    <span><b style="background:#fbf0cd;border-color:#eed88a"></b> Die dghd</span>
+    <span><b style="background:#e6e2f0;border-color:#c4bcda"></b> Service</span>
+    <span><b style="background:#ebeaee;border-color:#cfccd6"></b> System / Footer</span>
+    <span><b style="background:#fff;border:2px solid #e0a54c"></b> In V2 ergänzt (+ = neuer Eintrag)</span>
+    <span><b style="background:#f1f0f2;border-style:dashed"></b> Entfällt</span>
+  </div>
+  <p class="footnote">Fett gesetzte Einträge sind eigene Seiten, eingerückte Punkte sind Unterseiten bzw. Abschnitte der jeweiligen Seite.</p>
+
+  <section class="changes" aria-labelledby="c-changes">
+    <h2 id="c-changes">Änderungen gegenüber Version 1</h2>
+    <ol>
+      <li>Newsletter entfernt (Aktuelles &amp; Einblicke und Service), laut Absprache vom 03.09. kein öffentlicher Newsletter auf der Website</li>
+      <li>Einstiege nach den vier Zielgruppen aus Davids Zielgruppenbeschreibung ergänzt</li>
+      <li>Arbeitsgruppen und Netzwerke mit Aufrufen laut Matomo ergänzt (orange umrandet, + markiert)</li>
+      <li>Netzwerk Theologie und Hochschuldidaktik (in V1 als Technologie geführt) korrigiert</li>
+    </ol>
+    <p><b>Offen:</b> Begriffe mit Davids fünf Hauptkategorien abgleichen, Kooperationen nur einmal führen, ActivityPub / Fediverse einplanen</p>
+  </section>
+
+</div>
+</body>
+</html>
