@@ -36,6 +36,8 @@
         if (other && other !== btn && other.getAttribute("aria-expanded") === "true") setOpen(other, false);
       });
       setOpen(btn, open);
+      // Desktop: Klick neben die offenen Fächer schließt sie wieder
+      if (desktopNav.matches) scrim.hidden = !sidenav.querySelector(".sn-list > li > .sn-toggle[aria-expanded='true']");
       // per Tastatur geöffnete Fächer: Fokus auf den ersten Eintrag
       if (open && e.detail === 0 && btn.parentElement.getAttribute("data-kind") === "fan" && desktopNav.matches) {
         var first = document.getElementById(btn.getAttribute("aria-controls")).querySelector("a, .sn-toggle");
@@ -66,10 +68,20 @@
     });
   });
 
-  /* ---------- Seitenleiste als Schublade: standardmäßig zu, öffnet über den Menü-Knopf ---------- */
+  /* ---------- Seitenleiste: Desktop dauerhaft offen (nur erste Ebene), darunter Schublade über den Menü-Knopf ---------- */
   var sidebarToggles = document.querySelectorAll("[data-sidebar-toggle]");
   var sidebarClose = document.querySelector("[data-sidebar-close]");
   var returnFocus = null;
+
+  // schließt auf dem Desktop nur die Fächer, mobil die ganze Schublade
+  function closeNav() {
+    if (desktopNav.matches) {
+      closeAll();
+      scrim.hidden = true;
+    } else {
+      setDrawer(false);
+    }
+  }
 
   function setDrawer(open, opener) {
     sidebar.classList.toggle("is-open", open);
@@ -99,21 +111,28 @@
       });
     });
     sidebarClose.addEventListener("click", function () { setDrawer(false); });
-    scrim.addEventListener("click", function () { setDrawer(false); });
+    scrim.addEventListener("click", closeNav);
     sidebar.addEventListener("click", function (e) {
-      if (e.target.closest("a")) setDrawer(false);
+      if (e.target.closest("a")) closeNav();
     });
-    // Escape schließt zuerst die tiefste offene Ebene, dann die Schublade
+    // Escape schließt zuerst die tiefste offene Ebene, dann (mobil) die Schublade
     document.addEventListener("keydown", function (e) {
-      if (e.key !== "Escape" || !sidebar.classList.contains("is-open")) return;
+      if (e.key !== "Escape" || !(desktopNav.matches || sidebar.classList.contains("is-open"))) return;
       var openBtns = sidenav.querySelectorAll(".sn-toggle[aria-expanded='true']");
       if (openBtns.length) {
         var last = openBtns[openBtns.length - 1];
         setOpen(last, false);
         last.focus();
-      } else {
+        if (desktopNav.matches && openBtns.length === 1) scrim.hidden = true;
+      } else if (!desktopNav.matches) {
         setDrawer(false);
       }
+    });
+    // Wechsel zwischen Desktop und Mobil: offene Schublade/Fächer zurücksetzen
+    desktopNav.addEventListener("change", function () {
+      if (sidebar.classList.contains("is-open")) setDrawer(false);
+      closeAll();
+      scrim.hidden = true;
     });
   }
 
@@ -123,7 +142,7 @@
   if (searchDialog && typeof searchDialog.showModal === "function") {
     document.querySelectorAll("[data-search-open]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        if (sidebar && sidebar.classList.contains("is-open")) setDrawer(false);
+        if (sidebar && (desktopNav.matches || sidebar.classList.contains("is-open"))) closeNav();
         searchDialog.showModal();
         searchDialog.querySelector("input").focus();
       });

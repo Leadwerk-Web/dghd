@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/startseite-v2.css?v=26">
+<link rel="stylesheet" href="./css/startseite-v2.css?v=42">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Deutsche Gesellschaft für Hochschuldidaktik e.V.","alternateName":"dghd","url":"https://www.dghd.de/","logo":"https://www.dghd.de/Assets/dghd2026_bildmarke.svg"}</script>
 </head>
@@ -95,6 +95,7 @@
   <!-- ============ Seitenleiste (Navigation nach Sitemap V2) ============ -->
   <aside class="sidebar" id="sidebar" data-sidebar aria-label="Navigation">
     <div class="sidebar__bar">
+      <a class="sidebar__mark" href="./startseite-v2.html" aria-label="dghd – zur Startseite"><img src="./Assets/favicon_dghd.svg" alt="" width="36" height="34"></a>
       <a class="brand logo-crop" href="./startseite-v2.html">
         <img src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik, zur Startseite" width="246" height="123">
       </a>
@@ -328,6 +329,8 @@
 <!-- ============ 1 Hero – 100dvh, Zielgruppen direkt neben der Headline und als Stationen in der Illustration ============ -->
 <section class="hero" aria-labelledby="hero-title" data-hero>
   <div class="blobs" aria-hidden="true"><i class="blob blob--violet"></i><i class="blob blob--bordeaux"></i><i class="blob blob--gold"></i></div>
+  <!-- Rahmen (Moderationskarten-Motiv) in den Ecken, bewegen sich unabhängig -->
+  <div class="hero__frames" aria-hidden="true"><i class="hf hf--a"></i><i class="hf hf--b"></i><i class="hf hf--c"></i></div>
 
   <!-- Logo oben links (Desktop, ersetzt die Kopfleiste) -->
   <div class="hero__top wrap"><a class="brand logo-crop hero__brand" href="./startseite-v2.html"><img src="./Assets/dghd2026_bildmarke.svg" alt="dghd – Deutsche Gesellschaft für Hochschuldidaktik, zur Startseite" width="246" height="123"></a></div>
@@ -369,14 +372,14 @@
         <img class="stage__base" src="./Assets/illustrations/wege-landschaft-basis.webp?v=2" alt="" width="1269" height="833" fetchpriority="high">
         <!-- Freigestellte Bildelemente der Stationen, passgenau über dem Grundbild (Positionen/Breite in % von 1269 × 833 px) -->
         <a class="cut" href="#fuer-forschende" data-audience-link="forschende" data-station="1" style="--l:64.539%;--t:68.667%;--w:21.198%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/forschung.webp" alt="" width="269" height="116"></a>
-        <a class="cut" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2" style="--l:34.831%;--t:21.248%;--w:13.633%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/lehre.webp" alt="" width="173" height="117"></a>
-        <a class="cut" href="#fuer-professionals" data-audience-link="professionals" data-station="3" style="--l:74.232%;--t:34.694%;--w:19.385%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/weiterbildung.webp" alt="" width="246" height="105"></a>
+        <a class="cut" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2" style="--l:68.716%;--t:33.133%;--w:13.633%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/lehre.webp" alt="" width="173" height="117"></a>
+        <a class="cut" href="#fuer-professionals" data-audience-link="professionals" data-station="3" style="--l:40.347%;--t:22.809%;--w:19.385%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/weiterbildung.webp" alt="" width="246" height="105"></a>
         <a class="cut" href="https://www.dghd.de/community/" data-station="5" style="--l:5.91%;--t:47.779%;--w:17.494%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/austausch.webp" alt="" width="222" height="151"></a>
         <a class="cut cut--small" href="#fuer-leitung" data-audience-link="leitung" data-station="4" style="--l:71.08%;--t:14.766%;--w:2.443%" tabindex="-1" aria-hidden="true"><img src="./Assets/illustrations/stationen/leitung.webp" alt="" width="31" height="58"></a>
         <!-- Stationen der Illustration = Zielgruppen (Positionen in % der Bildfläche) -->
         <a class="pin pin--left" href="#fuer-forschende" data-audience-link="forschende" data-station="1" style="--x:58.5%;--y:70%" tabindex="-1" aria-hidden="true"><b>01</b><span>Forschende</span></a>
-        <a class="pin" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2" style="--x:53%;--y:24%" tabindex="-1" aria-hidden="true"><b>02</b><span>Lehrende</span></a>
-        <a class="pin pin--left" href="#fuer-professionals" data-audience-link="professionals" data-station="3" style="--x:69.5%;--y:38%" tabindex="-1" aria-hidden="true"><b>03</b><span>HD-Professionals</span></a>
+        <a class="pin" href="#fuer-lehrende" data-audience-link="lehrende" data-station="2" style="--x:86.85%;--y:35.9%" tabindex="-1" aria-hidden="true"><b>02</b><span>Lehrende</span></a>
+        <a class="pin pin--left" href="#fuer-professionals" data-audience-link="professionals" data-station="3" style="--x:35.6%;--y:26.1%" tabindex="-1" aria-hidden="true"><b>03</b><span>HD-Professionals</span></a>
         <a class="pin" href="#fuer-leitung" data-audience-link="leitung" data-station="4" style="--x:77.5%;--y:17%" tabindex="-1" aria-hidden="true"><b>04</b><span>Leitung</span></a>
 
         <!-- gehört zur Station „Austausch“ -->
@@ -388,7 +391,41 @@
     </div>
   </div>
 
-  <a class="scroll-cue" href="#fuer-sie" aria-label="Weiter zu Ihrem Einstieg"><svg aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+  <!-- Themenband: füllt den unteren Rand und zeigt, woran die Community arbeitet -->
+  <div class="topics" aria-label="Themen der Community">
+    <p class="topics__label">Themen</p>
+    <div class="topics__track">
+      <ul class="topics__row">
+        <li><a href="https://www.dghd.de/praxis/veranstaltungskalender/dghd-themenreihe-ki-in-der-hochschullehre/">KI in der Hochschullehre</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-pruefen-und-pruefungsdidaktik/">Prüfungsdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-forschendes-lernen/">Forschendes Lernen</a></li>
+        <li><a href="https://www.dghd.de/dghd-themenreihe-learning-analytics-in-hochschulen/">Learning Analytics</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-schreibdidaktik-in-der-hochschuldidaktik/">Schreibdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-curriculumentwicklung/">Curriculumentwicklung</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-digitale-medien-und-hochschuldidaktik/">Digitale Medien</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-civic-engagement-und-service-learning/">Service Learning</a></li>
+        <li><a href="https://www.dghd.de/dghd-themenreihe-hochschuldidaktik-als-wissenschaft/">Hochschuldidaktik als Wissenschaft</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-transformatives-lernen-und-nachhaltigkeit/">Transformatives Lernen</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-ingenieurdidaktik/">Ingenieurdidaktik</a></li>
+        <li><a href="https://www.dghd.de/themenreihe-gesellschaftliche-bildung-in-der-hochschuldidaktik/">Gesellschaftliche Bildung</a></li>
+      </ul>
+      <!-- Kopie für die Endlos-Schleife -->
+      <ul class="topics__row" aria-hidden="true">
+        <li><a href="https://www.dghd.de/praxis/veranstaltungskalender/dghd-themenreihe-ki-in-der-hochschullehre/" tabindex="-1">KI in der Hochschullehre</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-pruefen-und-pruefungsdidaktik/" tabindex="-1">Prüfungsdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-forschendes-lernen/" tabindex="-1">Forschendes Lernen</a></li>
+        <li><a href="https://www.dghd.de/dghd-themenreihe-learning-analytics-in-hochschulen/" tabindex="-1">Learning Analytics</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-schreibdidaktik-in-der-hochschuldidaktik/" tabindex="-1">Schreibdidaktik</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-curriculumentwicklung/" tabindex="-1">Curriculumentwicklung</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-digitale-medien-und-hochschuldidaktik/" tabindex="-1">Digitale Medien</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-civic-engagement-und-service-learning/" tabindex="-1">Service Learning</a></li>
+        <li><a href="https://www.dghd.de/dghd-themenreihe-hochschuldidaktik-als-wissenschaft/" tabindex="-1">Hochschuldidaktik als Wissenschaft</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-transformatives-lernen-und-nachhaltigkeit/" tabindex="-1">Transformatives Lernen</a></li>
+        <li><a href="https://www.dghd.de/community/arbeitsgruppen/ag-ingenieurdidaktik/" tabindex="-1">Ingenieurdidaktik</a></li>
+        <li><a href="https://www.dghd.de/themenreihe-gesellschaftliche-bildung-in-der-hochschuldidaktik/" tabindex="-1">Gesellschaftliche Bildung</a></li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- ============ 2 Für Sie zusammengestellt (Violett, Glas) ============ -->
@@ -838,6 +875,6 @@
 </div>
 </div>
 
-<script src="./js/startseite-v2.js?v=9" defer></script>
+<script src="./js/startseite-v2.js?v=10" defer></script>
 </body>
 </html>
