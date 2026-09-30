@@ -1,0 +1,57 @@
+name: Publish safe static preview
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build public preview allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          find . -maxdepth 1 -type f \( -name '*.html' -o -name '*.pdf' \) -exec cp '{}' _site/ \;
+          cp -a css js _site/
+          mkdir -p _site/Assets
+          rsync -a \
+            --exclude='*.xlsx' \
+            --exclude='*.docx' \
+            --exclude='*.ai' \
+            --exclude='*.af' \
+            --exclude='*.tmp' \
+            Assets/ _site/Assets/
+          touch _site/.nojekyll
+          test -s _site/index.html
+          test ! -e _site/hub
+          test ! -e _site/scripts
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload preview artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
