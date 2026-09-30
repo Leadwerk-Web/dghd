@@ -1,4 +1,4 @@
-/* dghd – Startseite V2 */
+/* dghd – Startseite V5 */
 (function () {
   "use strict";
 
