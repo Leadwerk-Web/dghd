@@ -1,0 +1,7 @@
+# Private Nextcloud mirror and local connection material.
+# These stay on the workstation and must never enter the public repository.
+hub/
+scripts/rclone-dghd-hub.conf
+
+# Local sync output.
+scripts/logs/
