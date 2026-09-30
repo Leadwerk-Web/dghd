@@ -43,8 +43,9 @@
   --glass-shadow: 0 24px 60px -24px rgba(46, 31, 82, .35), inset 0 1px 0 rgba(255, 255, 255, .9);
   --glass-blur: blur(20px) saturate(170%);
 
-  /* Encode Sans Semi Expanded: breit laufend, sachlich, gut lesbar – eine Familie für Headlines und Text */
-  --sans: "Encode Sans Semi Expanded", "Segoe UI", system-ui, sans-serif;
+  /* Headlines: Literata (Serife mit optischer Größe), Fließtext und Bedienelemente: Noto Sans */
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans", "Segoe UI", system-ui, sans-serif;
 
   --wrap: 1320px;
   --gutter: clamp(16px, 4vw, 48px);
@@ -76,9 +77,9 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: var(--bordeaux); text-underline-offset: .2em; text-decoration-thickness: 1px; }
 a:hover { color: var(--violet); }
 :focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; border-radius: 8px; }
-h1, h2, h3 { margin: 0; font-family: var(--sans); font-weight: 400; color: var(--violet); letter-spacing: -.03em; }
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; color: var(--violet); letter-spacing: -.01em; }
 h2 { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.9rem); line-height: 1.1; }
-h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
+h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 500; letter-spacing: -.005em; }
 /* Hervorhebung über das Schriftgewicht: Text normal, hervorgehobene Wörter fett */
 .accent { font-weight: 700; color: inherit; }
 p { margin: 0; }
@@ -299,9 +300,9 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1
 .nav-tab { display: none; }
 @media (min-width: 981px) {
   .nav-tab {
-    position: fixed; left: var(--rail); top: 50%; z-index: 19; /* unter der Leiste (20): Puls nur oben, unten und rechts sichtbar */
+    position: fixed; left: calc(var(--rail) - 16px); top: 50%; z-index: 19; /* beginnt 16 px hinter der Leiste (z 20): links bleibt es auch beim Stupsen lila, Puls nur oben, unten und rechts */
     display: flex; flex-direction: column; align-items: center; gap: 10px;
-    width: 34px; padding: 14px 0 16px;
+    width: 50px; padding: 14px 0 16px 16px;
     border: 0; border-radius: 0 14px 14px 0;
     background: var(--violet); color: var(--white); cursor: pointer;
     font: 700 .72rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase;
@@ -319,7 +320,7 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1
   }
   .nav-tab span { writing-mode: vertical-rl; transform: rotate(180deg); }
   .nav-tab svg { font-size: 1rem; color: var(--gold); stroke-width: 2.6; transition: transform .3s var(--ease); }
-  .nav-tab:hover, .nav-tab:focus-visible { width: 40px; background: var(--bordeaux); }
+  .nav-tab:hover, .nav-tab:focus-visible { width: 56px; background: var(--bordeaux); }
   .nav-tab:hover svg { transform: translateX(2px); }
   /* bei offener Navigation zurückziehen (dort gibt es das ×) */
   .has-menu .nav-tab { opacity: 0; pointer-events: none; transform: translate(-100%, -50%); }
@@ -438,7 +439,7 @@ body.has-menu { overflow: hidden; }
   box-shadow: 0 30px 80px -20px rgba(27, 20, 48, .45);
 }
 .search::backdrop { background: rgba(46, 31, 82, .45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.search label { display: block; margin-bottom: 16px; font: 800 clamp(1.4rem, 1.2rem + 1.2vw, 1.9rem)/1.15 var(--sans); letter-spacing: -.02em; color: var(--violet); }
+.search label { display: block; margin-bottom: 16px; font: 500 clamp(1.4rem, 1.2rem + 1.2vw, 1.9rem)/1.15 var(--serif); letter-spacing: -.01em; color: var(--violet); }
 .search__row { display: flex; gap: 10px; }
 .search input { flex: 1; min-width: 0; height: 52px; padding: 0 18px; border: 0; border-radius: 16px; background: var(--grey); box-shadow: var(--neu-inset); font: 500 1rem var(--sans); color: var(--ink); }
 .search input:focus { outline: 2px solid var(--violet); }
@@ -514,7 +515,7 @@ body.has-menu { overflow: hidden; }
 .hero__copy { position: relative; z-index: 2; }
 .hero__title {
   font-size: clamp(2rem, min(3.1vw, 6vh), 2.9rem);
-  line-height: 1.06; letter-spacing: -.045em;
+  line-height: 1.08; letter-spacing: -.02em;
 }
 .hero__lead { margin-top: clamp(14px, 2.2vh, 24px); max-width: 25em; font-size: clamp(1.02rem, .95rem + .3vw, 1.2rem); color: var(--ink-soft); }
 
@@ -666,7 +667,7 @@ body.has-menu { overflow: hidden; }
 }
 .pb-card__who { display: flex; align-items: center; gap: 10px; font-size: .8rem; font-weight: 600; color: var(--ink-soft); }
 .pb-card__no { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 50%; border: 1.5px solid var(--gold); font-size: .68rem; font-weight: 800; color: var(--ink); transition: background-color .3s, border-color .3s, color .3s; }
-.pb-card h3 { font-size: clamp(1.3rem, 1.1rem + .45vw, 1.55rem); font-weight: 400; line-height: 1.15; letter-spacing: -.025em; hyphens: auto; }
+.pb-card h3 { font-size: clamp(1.3rem, 1.1rem + .45vw, 1.55rem); font-weight: 400; line-height: 1.15; letter-spacing: -.01em; hyphens: auto; }
 .pb-card h3 b { font-weight: 700; }
 .pb-card p { font-size: .93rem; line-height: 1.55; color: var(--ink-soft); }
 .pb-card__more { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 6px; font-weight: 700; color: var(--bordeaux); }
@@ -858,7 +859,7 @@ body.has-menu { overflow: hidden; }
 }
 
 .divider .kicker { margin-bottom: 24px; }
-.divider__title { font-size: clamp(2.4rem, 1.4rem + 3.8vw, 5rem); line-height: 1.02; letter-spacing: -.05em; color: var(--ink); max-width: 11ch; }
+.divider__title { font-size: clamp(2.4rem, 1.4rem + 3.8vw, 5rem); line-height: 1.04; letter-spacing: -.025em; color: var(--ink); max-width: 11ch; }
 .divider__title span { color: var(--bordeaux); font-weight: 700; }
 .rule { display: block; width: 72px; height: 3px; margin: 32px 0 24px; background: var(--bordeaux); }
 .divider__text { max-width: 30em; font-size: clamp(1.05rem, 1rem + .3vw, 1.2rem); color: var(--ink-soft); }
